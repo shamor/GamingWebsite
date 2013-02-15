@@ -1,3 +1,4 @@
+package edu.ycp.cs320.GamingSite;
 /**
  * 
  * @author jfiddle
@@ -24,6 +25,10 @@ public class MemCard {
 	 */
 	public boolean isSame(MemCard card1, MemCard card2)
 	{
-		return true;
+		if(card1.equals(card2))
+            return true;
+        else
+            return false;
+
 	}
 }
