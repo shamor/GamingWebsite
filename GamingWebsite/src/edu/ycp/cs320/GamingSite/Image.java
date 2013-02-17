@@ -7,5 +7,5 @@ package edu.ycp.cs320.GamingSite;
  * Each image will be used twice.
  */
 public enum Image {
-	    Star, Circle, Square, Triangle, Arrow, Speech, Hexagon, Light, Heart, Line; 
+	    Star, Circle, Square, Triangle, Arrow, Speech, Hexagon, Light, Heart, fourPStar; 
 	}
