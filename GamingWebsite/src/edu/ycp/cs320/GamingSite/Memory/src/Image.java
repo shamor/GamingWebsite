@@ -1,3 +1,5 @@
+package edu.ycp.cs320.GamingSite.Memory.src;
+
 /**
  * 
  * @author jfiddle
@@ -6,5 +8,5 @@
  * Each image will be used twice.
  */
 public enum Image {
-
+	
 }
