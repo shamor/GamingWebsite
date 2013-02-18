@@ -1,5 +1,4 @@
-package edu.ycp.cs320.GamingSite.Memory.src;
-
+package edu.ycp.cs320.GamingSite;
 /**
  * 
  * @author jfiddle

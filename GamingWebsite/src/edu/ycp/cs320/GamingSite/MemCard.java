@@ -1,5 +1,4 @@
-package edu.ycp.cs320.GamingSite.Memory.src;
-
+package edu.ycp.cs320.GamingSite;
 /**
  * 
  * @author jfiddle
@@ -10,10 +9,22 @@ package edu.ycp.cs320.GamingSite.Memory.src;
 public class MemCard {
 	
 	private Image img;
+	private double x;
+	private double y;
 	
-	public MemCard(Image img)
+	public MemCard(Image i, double x, double y)
 	{
-		this.img = img;
+		img = i;
+		this.x = x;
+		this.y = x;
+	}
+	
+	public double getX() {
+		return x;
+	}
+	
+	public double getY() {
+		return y;
 	}
 	
 	/**
@@ -24,11 +35,13 @@ public class MemCard {
 	 * 
 	 * @return true: Returns true if cards are equal, false if otherwise.
 	 */
-	public boolean isSame(MemCard card2)
+	public boolean isSame(MemCard card1, MemCard card2)
 	{
-		if(card2.img.compareTo(img) == 0)
-			return true;
-		else
-			return false;
+		if(card1.equals(card2))
+            return true;
+        else
+            return false;
+
 	}
+
 }
