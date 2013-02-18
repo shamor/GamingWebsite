@@ -45,12 +45,6 @@ public class MemGame {
 		time++;
 		// boundarys
 		
-		for(double y = 20; y < 700; y-=220){
-			for(double x = 20; x < 740; x+=170){
-				memcards[][]
-				
-			}
-		}
 		
 	}
 	
