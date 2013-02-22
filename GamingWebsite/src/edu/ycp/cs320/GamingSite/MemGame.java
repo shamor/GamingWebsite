@@ -1,14 +1,4 @@
-<<<<<<< HEAD
-package edu.ycp.cs320.GamingSite;
-/**
- * 
- * @author jfiddle
- *
- */
-public class MemGame {
 
-}
-=======
 package edu.ycp.cs320.GamingSite;
 
 import java.util.ArrayList;
@@ -60,4 +50,3 @@ public class MemGame {
 	}
 	
 }
->>>>>>> refs/remotes/codyhh09/master
