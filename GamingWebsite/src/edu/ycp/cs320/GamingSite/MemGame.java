@@ -32,7 +32,7 @@ public class MemGame {
 		for(int y = 0; y < 5; y++){
 			for(int x = 0; x < 4; x++){
 				memcard = new MemCard(img);
-				memcards[y][x] = memcard;
+				//memcards[y][x] = memcard;
 			}
 		}
 	}
