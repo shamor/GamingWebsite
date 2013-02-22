@@ -12,19 +12,17 @@ public class MemCard {
 	private double x;
 	private double y;
 	
-	public MemCard(Image i, double x, double y)
+	public MemCard(Image i)
 	{
 		img = i;
-		this.x = x;
-		this.y = x;
 	}
 	
-	public double getX() {
-		return x;
+	public Image getImg() {
+		return img;
 	}
 	
-	public double getY() {
-		return y;
+	public void setImg(Image img) {
+		this.img = img;
 	}
 	
 	/**

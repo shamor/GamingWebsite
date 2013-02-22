@@ -16,25 +16,22 @@ public class MemGame {
 	private int[][] memcards;
 	private MemCard memcard;
 	private int time;
-	private Random rand;
 	private int scoring;
 	private boolean gameover;
-	private double x;
-	private double y;
 	private Image img;
 	
 	// constructor
 	public MemGame(){
-		memcard = new MemCard(img, x, y);
+		memcard = new MemCard(img);
 		memcards = new int[5][4];
 		gameover = false;
 		scoring = 0;
 		time = 0;
-		rand = new Random();
+		
 		// random picture.
-		for(y = 0; y < 5; y++){
+		for(int y = 0; y < 5; y++){
 			for(int x = 0; x < 4; x++){
-				memcard = new Memcard()
+				memcard = new MemCard(img);
 				memcards[y][x] = memcard;
 			}
 		}

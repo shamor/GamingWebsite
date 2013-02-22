@@ -15,6 +15,10 @@ import javax.imageio.ImageIO;
 public enum Image {
 	    Star, Circle, Square, Triangle, Arrow, Speech, Hexagon, Light, Heart, fourPStar; 
 	    
+	    public File Image(){
+	    
+	    }
+	    
 //	public void setImage(){
 //	    	Star = ImageIO.read(new File("star1.jpg"));
 //	    	Circle = ImageIO.read(new File("circle.jpg"));
@@ -29,4 +33,4 @@ public enum Image {
 //	}
 	    	
 	  
-	}}
+	}
