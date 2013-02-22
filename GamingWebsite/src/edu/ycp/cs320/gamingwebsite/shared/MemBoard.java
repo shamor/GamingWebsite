@@ -1,4 +1,4 @@
-package edu.ycp.cs320.GamingSite;
+package edu.ycp.cs320.gamingwebsite.shared;
 
 import java.awt.Color;
 import java.awt.Dimension;

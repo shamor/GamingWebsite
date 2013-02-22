@@ -16,6 +16,8 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.LayoutPanel;
+import com.google.gwt.dom.client.Style.Unit;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -39,23 +41,20 @@ public class GamingWebUi implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		final Button sendButton = new Button("Send");
-		final TextBox nameField = new TextBox();
-		nameField.setText("GWT User");
 		final Label errorLabel = new Label();
-
-		// We can add style names to widgets
-		sendButton.addStyleName("sendButton");
 
 		// Add the nameField and sendButton to the RootPanel
 		// Use RootPanel.get() to get the entire body element
-		//RootPanel.get("nameFieldContainer").add(nameField);
-		//RootPanel.get("sendButtonContainer").add(sendButton);
-	//	RootPanel.get("errorLabelContainer").add(errorLabel);
-
-		// Focus the cursor on the name field when the app loads
-		nameField.setFocus(true);
-		nameField.selectAll();
+		RootPanel rootPanel = RootPanel.get("nameFieldContainer");
+		
+		LayoutPanel layoutPanel = new LayoutPanel();
+		rootPanel.add(layoutPanel, 83, 40);
+		layoutPanel.setSize("238px", "143px");
+		
+		Label lblIHaveNo = new Label("I have no idea what i am doing");
+		layoutPanel.add(lblIHaveNo);
+		layoutPanel.setWidgetLeftWidth(lblIHaveNo, 0.0, Unit.PX, 238.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(lblIHaveNo, 27.0, Unit.PX, 18.0, Unit.PX);
 
 		// Create the popup dialog box
 		final DialogBox dialogBox = new DialogBox();
@@ -80,8 +79,8 @@ public class GamingWebUi implements EntryPoint {
 		closeButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				dialogBox.hide();
-				sendButton.setEnabled(true);
-				sendButton.setFocus(true);
+				//sendButton.setEnabled(true);
+				//sendButton.setFocus(true);
 			}
 		});
 
@@ -109,17 +108,17 @@ public class GamingWebUi implements EntryPoint {
 			private void sendNameToServer() {
 				// First, we validate the input.
 				errorLabel.setText("");
-				String textToServer = nameField.getText();
-				if (!FieldVerifier.isValidName(textToServer)) {
-					errorLabel.setText("Please enter at least four characters");
-					return;
-				}
+				//String textToServer = nameField.getText();
+//				if (!FieldVerifier.isValidName(textToServer)) {
+//					errorLabel.setText("Please enter at least four characters");
+//					return;
+//				}
 
 				// Then, we send the input to the server.
-				sendButton.setEnabled(false);
-				textToServerLabel.setText(textToServer);
+				//sendButton.setEnabled(false);
+				//textToServerLabel.setText(textToServer);
 				serverResponseLabel.setText("");
-				greetingService.greetServer(textToServer,
+				//greetingService.greetServer(textToServer,
 						new AsyncCallback<String>() {
 							public void onFailure(Throwable caught) {
 								// Show the RPC error message to the user
@@ -140,13 +139,11 @@ public class GamingWebUi implements EntryPoint {
 								dialogBox.center();
 								closeButton.setFocus(true);
 							}
-						});
+						};
 			}
 		}
 
 		// Add a handler to send the name to the server
 		MyHandler handler = new MyHandler();
-		sendButton.addClickHandler(handler);
-		nameField.addKeyUpHandler(handler);
 	}
 }

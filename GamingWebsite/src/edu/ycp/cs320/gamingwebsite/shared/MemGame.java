@@ -1,15 +1,5 @@
-<<<<<<< HEAD
-package edu.ycp.cs320.GamingSite;
-/**
- * 
- * @author jfiddle
- *
- */
-public class MemGame {
 
-}
-=======
-package edu.ycp.cs320.GamingSite;
+package edu.ycp.cs320.gamingwebsite.shared;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -45,8 +35,8 @@ public class MemGame {
 		// random picture.
 		for(y = 0; y < 5; y++){
 			for(int x = 0; x < 4; x++){
-				memcard = new Memcard()
-				memcards[y][x] = memcard;
+				memcard = new MemCard(img, y, y);
+				//memcards[y][x] = memcard;
 			}
 		}
 	}
@@ -60,4 +50,4 @@ public class MemGame {
 	}
 	
 }
->>>>>>> refs/remotes/codyhh09/master
+
