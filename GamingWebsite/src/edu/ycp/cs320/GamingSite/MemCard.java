@@ -10,8 +10,7 @@ package edu.ycp.cs320.GamingSite;
 public class MemCard {
 	
 	private Image img;
-	private double x;
-	private double y;
+
 	
 	public MemCard(Image i)
 	{
