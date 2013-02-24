@@ -1,4 +1,4 @@
-package edu.ycp.cs320.GamingSite;
+package edu.ycp.cs320.gamingwebsite.shared;
 /**
  * This class should include any instructions for the user logging in
  * requires, login, logout, and password instructions

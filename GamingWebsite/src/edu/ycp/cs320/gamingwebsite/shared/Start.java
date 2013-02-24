@@ -1,4 +1,4 @@
-package edu.ycp.cs320.GamingSite;
+package edu.ycp.cs320.gamingwebsite.shared;
 /**
  * This class will start the game. 
  * @author shamor1
