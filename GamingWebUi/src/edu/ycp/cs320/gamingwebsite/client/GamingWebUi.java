@@ -47,6 +47,9 @@ public class GamingWebUi implements EntryPoint {
 		// Use RootPanel.get() to get the entire body element
 		RootPanel rootPanel = RootPanel.get("nameFieldContainer");
 		
+		Label lblHello = new Label("Hello");
+		rootPanel.add(lblHello, 77, 76);
+		
 		LayoutPanel layoutPanel = new LayoutPanel();
 		rootPanel.add(layoutPanel, 83, 40);
 		layoutPanel.setSize("238px", "143px");
