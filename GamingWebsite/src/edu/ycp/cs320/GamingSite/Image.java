@@ -1,9 +1,5 @@
 package edu.ycp.cs320.GamingSite;
 
-import java.io.File;
-
-import javax.imageio.IIOException;
-import javax.imageio.ImageIO;
 
 /**
  * 
