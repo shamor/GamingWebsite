@@ -10,11 +10,12 @@ package edu.ycp.cs320.GamingSite;
 public class MemCard {
 	
 	private Image img;
-
+	private boolean exposed;
 	
 	public MemCard(Image i)
 	{
 		img = i;
+		boolean exposed = true;
 	}
 	
 	public Image getImg() {
@@ -33,13 +34,20 @@ public class MemCard {
 	 * 
 	 * @return true: Returns true if cards are equal, false if otherwise.
 	 */
-	public boolean isSame(MemCard card1, MemCard card2)
+	public boolean isSame(MemCard card1)
 	{
-		if(card1.equals(card2))
+		if(img.equals(card1.img))
             return true;
         else
             return false;
-
+	}
+	
+	public boolean getExposed(){
+		return exposed;
+	}
+	
+	public void setExposed(boolean exposed){
+		this.exposed = exposed;
 	}
 
 }
