@@ -10,34 +10,27 @@ import java.util.Random;
  */
 public class MemGame {
 	
-	public static final double WIDTH = 640;
-	public static final double HEIGHT = 480;
+	//private MemDeck deck;
 	
-	private int[][] memcards;
-	private MemCard memcard;
-	private int time;
-	private int scoring;
-	private boolean gameover;
-	private Image img;
 	
-	// constructor
 	public MemGame(){
-		memcard = new MemCard(img);
-		memcards = new int[5][4];
-		gameover = false;
-		scoring = 0;
-		time = 0;
-		
-		// random picture.
-		for(int y = 0; y < 5; y++){
-			for(int x = 0; x < 4; x++){
-				memcard = new MemCard(img);
-			
-				img.values();//memcards[y][x] = memcard;
-			}
-		}
+		//deck = new MemDeck();
+		//deck.make();	
 	}
 	
+	public boolean isFinished(){
+		//for(int j=0; j < deck.getNumCards() - 1; j++)
+		{
+			//if(deck.getCard(j).getExposed() == true)
+				return false;
+		}
+		//return true;
+	}
 	
-	
+	public void setCardFalse(MemCard card1, MemCard card2){
+		if(card1.isSame(card2)){
+			card1.setExposed(false);
+		}
+	}	
 }
+
