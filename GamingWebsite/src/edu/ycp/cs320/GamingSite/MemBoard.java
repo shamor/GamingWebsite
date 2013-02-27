@@ -35,7 +35,7 @@ public class MemBoard  extends JPanel{
 	
 		setBackground(BACKGROUND_COLOR);
 	
-		setPreferredSize(new Dimension((int) MemGame.WIDTH, (int) MemGame.HEIGHT));
+//		setPreferredSize(new Dimension((int) MemGame.WIDTH, (int) MemGame.HEIGHT));
 	}
 	
 	public void startGame() {
