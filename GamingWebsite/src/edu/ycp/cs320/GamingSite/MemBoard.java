@@ -35,7 +35,7 @@ public class MemBoard  extends JPanel{
 	
 		setBackground(BACKGROUND_COLOR);
 	
-		setPreferredSize(new Dimension((int) MemGame.WIDTH, (int) MemGame.HEIGHT));
+		//setPreferredSize(new Dimension((int) MemGame.WIDTH, (int) MemGame.HEIGHT));
 	}
 	
 	public void startGame() {
@@ -90,8 +90,8 @@ public class MemBoard  extends JPanel{
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g); // paint the background
-		int placement; 
-		Image[][] images = new Image[4][5];
+		//int placement; 
+		//Image[][] images = new Image[4][5];
 		
 		
 		//paint the game objects
