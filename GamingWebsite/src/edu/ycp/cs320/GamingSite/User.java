@@ -1,4 +1,4 @@
-package edu.ycp.cs320.gamingwebsite.shared;
+package edu.ycp.cs320.GamingSite;
 /** 
  * This class will hold information about the user
  * It will hold information about:

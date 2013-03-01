@@ -1,9 +1,5 @@
-package edu.ycp.cs320.gamingwebsite.shared;
+package edu.ycp.cs320.GamingSite;
 
-import java.io.File;
-
-import javax.imageio.IIOException;
-import javax.imageio.ImageIO;
 
 /**
  * 
@@ -14,6 +10,10 @@ import javax.imageio.ImageIO;
  */
 public enum Image {
 	    Star, Circle, Square, Triangle, Arrow, Speech, Hexagon, Light, Heart, fourPStar; 
+	    
+//	    public File Image(){
+//	    
+//	    }
 	    
 //	public void setImage(){
 //	    	Star = ImageIO.read(new File("star1.jpg"));

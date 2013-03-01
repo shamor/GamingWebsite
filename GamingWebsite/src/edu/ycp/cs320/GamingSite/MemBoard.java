@@ -1,4 +1,4 @@
-package edu.ycp.cs320.gamingwebsite.shared;
+package edu.ycp.cs320.GamingSite;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -35,7 +35,7 @@ public class MemBoard  extends JPanel{
 	
 		setBackground(BACKGROUND_COLOR);
 	
-		setPreferredSize(new Dimension((int) MemGame.WIDTH, (int) MemGame.HEIGHT));
+//		setPreferredSize(new Dimension((int) MemGame.WIDTH, (int) MemGame.HEIGHT));
 	}
 	
 	public void startGame() {

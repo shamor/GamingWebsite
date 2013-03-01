@@ -1,5 +1,5 @@
 
-package edu.ycp.cs320.gamingwebsite.shared;
+package edu.ycp.cs320.GamingSite;
 /**
  * 
  * @author jfiddle
@@ -10,22 +10,20 @@ package edu.ycp.cs320.gamingwebsite.shared;
 public class MemCard {
 	
 	private Image img;
-	private double x;
-	private double y;
+	private boolean exposed;
 	
-	public MemCard(Image i, double x, double y)
+	public MemCard(Image i)
 	{
 		img = i;
-		this.x = x;
-		this.y = x;
+		boolean exposed = true;
 	}
 	
-	public double getX() {
-		return x;
+	public Image getImg() {
+		return img;
 	}
 	
-	public double getY() {
-		return y;
+	public void setImg(Image img) {
+		this.img = img;
 	}
 	
 	/**
@@ -36,13 +34,20 @@ public class MemCard {
 	 * 
 	 * @return true: Returns true if cards are equal, false if otherwise.
 	 */
-	public boolean isSame(MemCard card1, MemCard card2)
+	public boolean isSame(MemCard card1)
 	{
-		if(card1.equals(card2))
+		if(img.equals(card1.img))
             return true;
         else
             return false;
-
+	}
+	
+	public boolean getExposed(){
+		return exposed;
+	}
+	
+	public void setExposed(boolean exposed){
+		this.exposed = exposed;
 	}
 
 }
