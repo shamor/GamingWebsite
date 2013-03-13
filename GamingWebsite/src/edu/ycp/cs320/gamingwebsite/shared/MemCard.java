@@ -13,7 +13,7 @@ public class MemCard {
 	private double x;
 	private double y;
 	
-	public MemCard(Image i, double x, double y)
+	public MemCard(Image i)
 	{
 		img = i;
 		this.x = x;
