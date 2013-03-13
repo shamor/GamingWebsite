@@ -3,23 +3,40 @@ package edu.ycp.cs320.gamingwebsite.client;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.InlineLabel;
+import com.google.gwt.canvas.client.Canvas;
+import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.Button;
+
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+
 
 public class MemView extends Composite {
 	public MemView() {
 		
 		LayoutPanel layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
+	
+
+		InlineLabel lblDisplayScore = new InlineLabel("Score:");
+		layoutPanel.add(lblDisplayScore);
+		layoutPanel.setWidgetLeftWidth(lblDisplayScore, 316.0, Unit.PX, 38.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(lblDisplayScore, 0.0, Unit.PX, 26.0, Unit.PX);
 		
-		InlineLabel nlnlblHeyThere = new InlineLabel("Hey there");
-		layoutPanel.add(nlnlblHeyThere);
-		layoutPanel.setWidgetLeftWidth(nlnlblHeyThere, 0.0, Unit.PX, 90.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(nlnlblHeyThere, 42.0, Unit.PX, 18.0, Unit.PX);
+		Label lblScore = new Label("0");
+		lblScore.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		layoutPanel.add(lblScore);
+		layoutPanel.setWidgetLeftWidth(lblScore, 360.0, Unit.PX, 90.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(lblScore, 0.0, Unit.PX, 26.0, Unit.PX);
 		
-		Button btnAButton = new Button("A button");
-		layoutPanel.add(btnAButton);
-		layoutPanel.setWidgetLeftWidth(btnAButton, 38.0, Unit.PX, 81.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(btnAButton, 107.0, Unit.PX, 30.0, Unit.PX);
+		Button btnReplay = new Button("New button");
+		btnReplay.setText("Replay");
+		layoutPanel.add(btnReplay);
+		layoutPanel.setWidgetLeftWidth(btnReplay, 0.0, Unit.PX, 90.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(btnReplay, 260.0, Unit.PX, 40.0, Unit.PX);
+		
+		Canvas canvas = Canvas.createIfSupported();
+		Context2d context = canvas.getContext2d();
 	}
 }

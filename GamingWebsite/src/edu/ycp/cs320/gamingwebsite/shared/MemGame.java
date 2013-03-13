@@ -26,7 +26,7 @@ public class MemGame {
 	
 	// constructor
 	public MemGame(){
-		memcard = new MemCard(img, x, y);
+		memcard = new MemCard(img);
 		memcards = new int[5][4];
 		gameover = false;
 		scoring = 0;
@@ -35,7 +35,7 @@ public class MemGame {
 		// random picture.
 		for(y = 0; y < 5; y++){
 			for(int x = 0; x < 4; x++){
-				memcard = new MemCard(img, y, y);
+				memcard = new MemCard(img);
 				//memcards[y][x] = memcard;
 			}
 		}
