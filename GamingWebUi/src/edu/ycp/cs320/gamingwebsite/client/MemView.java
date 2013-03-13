@@ -3,6 +3,8 @@ package edu.ycp.cs320.gamingwebsite.client;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.InlineLabel;
+import com.google.gwt.canvas.client.Canvas;
+import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.Button;
 
@@ -33,6 +35,8 @@ public class MemView extends Composite {
 		layoutPanel.add(btnReplay);
 		layoutPanel.setWidgetLeftWidth(btnReplay, 0.0, Unit.PX, 90.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(btnReplay, 260.0, Unit.PX, 40.0, Unit.PX);
-
+		
+		Canvas canvas = Canvas.createIfSupported();
+		Context2d context = canvas.getContext2d();
 	}
 }
