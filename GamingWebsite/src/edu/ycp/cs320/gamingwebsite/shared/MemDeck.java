@@ -1,5 +1,6 @@
 package edu.ycp.cs320.gamingwebsite.shared;
 
+
 import java.util.ArrayList;
 import java.util.Collections;
 /***
@@ -9,13 +10,18 @@ import java.util.Collections;
  */
 
 public class MemDeck {
-	private ArrayList<MemCard> memDeck;
+	private ArrayList<Images> memDeck;
 	private boolean exposed;
+	private ArrayList<String> deckrend;
+
 	/***
 	 * constuctor
 	 */
 	public MemDeck(){
-		memDeck = new ArrayList<MemCard>();
+		memDeck = new ArrayList<Images>();
+		
+		
+		
 	}	
 	/***
 	 * Creates the deck from
@@ -23,11 +29,12 @@ public class MemDeck {
 	 * to generate the field
 	 */
 	public void make(){
-		Image[] allImages = Image.values();
-		for(int i = 0; i <= allImages.length;i++){
-			memDeck.add(new MemCard(allImages[i]));
-			shuffle();
+		
+		Images[] allImages = Images.values();
+		for(int i = 0; i < allImages.length;i++){
+			memDeck.add(allImages[i]);
 		}
+		shuffle();
 	}
 	/***
 	 * 
@@ -47,9 +54,9 @@ public class MemDeck {
 	/**
 	 * 
 	 * @param i
-	 * @return the I th card of the deck
+	 * @return the I the card of the deck
 	 */
-	public MemCard getCard(int i){
+	public Images getCard(int i){
 		return memDeck.get(i);
 	}
 	/**
@@ -58,16 +65,66 @@ public class MemDeck {
 	 * @return the card removed from the deck
 	 * and that card will be added to the field
 	 */
-	public ArrayList<MemCard> removeCard(int index){
-		ArrayList<MemCard> removecard = new ArrayList<MemCard>();
-		for(int i = 0; i < removecard.size(); i++){
-			removecard.add(memDeck.get(i));
+//	public ArrayList<MemCard> removeCard(int index){
+//		ArrayList<MemCard> removecard = new ArrayList<MemCard>();
+//		for(int i = 0; i < removecard.size(); i++){
+//			removecard.add(memDeck.get(i));
+//		}
+//		for(int i = 0; i < removecard.size(); i++){
+//			memDeck.remove(memDeck.size()-1);
+//		}
+//		return removecard;
+//	}
+	public void render(){
+		ArrayList<Images> imgarr1 = new ArrayList<>();
+		ArrayList<Images> imgarr2 = new ArrayList<>();
+		String img = "CardImage/star1.jpg";
+		
+		//make two decks of memcards and store in two arrays
+		make();
+		for(int i = 0; i<getNumCards(); i++){
+			imgarr1.add(getCard(i));
 		}
-		for(int i = 0; i < removecard.size(); i++){
-			memDeck.remove(memDeck.size()-1);
+		
+		shuffle(); //shuffle so the first deck is different
+		for(int i = 0; i<getNumCards(); i++){
+			imgarr2.add(getCard(i));
 		}
-		return removecard;
+		
+		for(int i = 0; i<=20; i++){
+			if(imgarr1.get(i).equals("Star") || imgarr2.get(i).equals("Star")){
+				img = "CardImage/star1.jpg";
+			}
+			else if(imgarr1.get(i).equals("Circle") || imgarr2.get(i).equals("Circle")){
+				img = "CardImage/Circle.jpg";
+			}
+			else if(imgarr1.get(i).equals("Square") || imgarr2.get(i).equals("Square")){
+				img = "CardImage/Square.jpg";			
+			}
+			else if(imgarr1.get(i).equals("Triangle") || imgarr2.get(i).equals("Triangle")){
+				img = "CardImage/Triangle";
+			}
+			else if(imgarr1.get(i).equals("Arrow") || imgarr2.get(i).equals("Arrow")){
+				img = "CardImage/Arrow.jpg";
+			}
+			else if(imgarr1.get(i).equals("Speech") || imgarr2.get(i).equals("Speech")){
+				img = "CardImage/Speech.jpg";
+			}
+			else if(imgarr1.get(i).equals("Hexagon") || imgarr2.get(i).equals("Hexagon")){
+				img = "CardImage/Hexagon.jpg";
+			}
+			else if(imgarr1.get(i).equals("Light") || imgarr2.get(i).equals("Light")){
+				img = "CardImage/Light.jpg";
+			}
+			else if(imgarr1.get(i).equals("Light") || imgarr2.get(i).equals("Light")){
+				img = "CardImage/Heart.jpg";
+			}		
+			else if(imgarr1.get(i).equals("Light") || imgarr2.get(i).equals("Light")){
+				img = "CardImage/fourPStar.jpg";
+			}
+			deckrend.add(img); //add the correct string to the deck
+		}
+		
 	}
-	
 
 }

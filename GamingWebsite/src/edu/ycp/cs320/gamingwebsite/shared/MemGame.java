@@ -22,7 +22,7 @@ public class MemGame {
 	private boolean gameover;
 	private double x;
 	private double y;
-	private Image img;
+	private Images img;
 	
 	// constructor
 	public MemGame(){

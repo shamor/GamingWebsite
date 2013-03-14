@@ -1,5 +1,7 @@
 package edu.ycp.cs320.gamingwebsite.client;
 
+import java.util.ArrayList;
+
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.InlineLabel;
@@ -10,33 +12,42 @@ import com.google.gwt.user.client.ui.Button;
 
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.Image;
+
+import edu.ycp.cs320.gamingwebsite.shared.MemDeck;
 
 
 public class MemView extends Composite {
+	private MemDeck deck; 
+	private MemDeckRender newdeck; 
 	public MemView() {
-		
+		newdeck.render(deck);
 		LayoutPanel layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
-	
+		layoutPanel.setSize("725px", "590px");
+		ArrayList<String> img = newdeck.getDeckRend(); 
+		
+		
+		
+		Image image = new Image(img.get(0));
+		layoutPanel.add(image);
+		layoutPanel.setWidgetLeftWidth(image, 76.0, Unit.PX, 201.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(image, 34.0, Unit.PX, 249.0, Unit.PX);
+		
+		Image image_1 = new Image(img.get(6));
+		layoutPanel.add(image_1);
+		layoutPanel.setWidgetLeftWidth(image_1, 257.0, Unit.PX, 141.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(image_1, 34.0, Unit.PX, 147.0, Unit.PX);
+		
+		Label lblNewLabel = new Label(img.get(0));
+		layoutPanel.add(lblNewLabel);
+		layoutPanel.setWidgetLeftWidth(lblNewLabel, 44.0, Unit.PX, 101.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(lblNewLabel, 0.0, Unit.PX, 18.0, Unit.PX);
+		
 
-		InlineLabel lblDisplayScore = new InlineLabel("Score:");
-		layoutPanel.add(lblDisplayScore);
-		layoutPanel.setWidgetLeftWidth(lblDisplayScore, 316.0, Unit.PX, 38.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(lblDisplayScore, 0.0, Unit.PX, 26.0, Unit.PX);
 		
-		Label lblScore = new Label("0");
-		lblScore.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		layoutPanel.add(lblScore);
-		layoutPanel.setWidgetLeftWidth(lblScore, 360.0, Unit.PX, 90.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(lblScore, 0.0, Unit.PX, 26.0, Unit.PX);
+
 		
-		Button btnReplay = new Button("New button");
-		btnReplay.setText("Replay");
-		layoutPanel.add(btnReplay);
-		layoutPanel.setWidgetLeftWidth(btnReplay, 0.0, Unit.PX, 90.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(btnReplay, 260.0, Unit.PX, 40.0, Unit.PX);
-		
-		Canvas canvas = Canvas.createIfSupported();
-		Context2d context = canvas.getContext2d();
+	
 	}
 }

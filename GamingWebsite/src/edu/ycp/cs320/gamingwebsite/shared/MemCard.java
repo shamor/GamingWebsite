@@ -9,26 +9,16 @@ package edu.ycp.cs320.gamingwebsite.shared;
  */
 public class MemCard {
 	
-	private Image img;
-	private double x;
-	private double y;
+	private Images img;
 	
 
-	public MemCard(Image i)
+	public MemCard(Images i)
 
 	{
-		img = i;
-		this.x = x;
-		this.y = x;
+		this.img = i;
 	}
 	
-	public double getX() {
-		return x;
-	}
 	
-	public double getY() {
-		return y;
-	}
 	
 	/**
 	 * Checks to see if two cards are equal to each other by comparing the cards' images.
@@ -38,9 +28,9 @@ public class MemCard {
 	 * 
 	 * @return true: Returns true if cards are equal, false if otherwise.
 	 */
-	public boolean isSame(MemCard card1, MemCard card2)
+	public boolean isSame(MemCard card1)
 	{
-		if(card1.equals(card2))
+		if(img.equals(card1.img))
             return true;
         else
             return false;
