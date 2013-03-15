@@ -19,30 +19,26 @@ public class MemView extends Composite {
 		private Canvas canvas;
 		private Image image;
 		private Image image_1;
-		private Label lblNewLabel; 
+
 	
 	public MemView() {
 		
 		LayoutPanel layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
-		layoutPanel.setSize("725px", "590px");
-		//create the deck
+	
 		deck = new MemDeck();
 		newdeck = new ArrayList<String>(); 
-		//deck.make();
-		//deck.render();
-		//newdeck = deck.getStringarr();
-		
+
 		
 		this.image = new Image();
 		layoutPanel.add(image);
-		layoutPanel.setWidgetLeftWidth(image, 76.0, Unit.PX, 196.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image, 116.0, Unit.PX, 235.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(image, 76.0, Unit.PX, 134.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(image, 161.0, Unit.PX, -100.0, Unit.PX);
 		
 		this.image_1 = new Image();
 		layoutPanel.add(image_1);
-		layoutPanel.setWidgetLeftWidth(image_1, 257.0, Unit.PX, 51.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_1, 116.0, Unit.PX, 117.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(image_1, 257.0, Unit.PX, 0.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(image_1, 176.0, Unit.PX, -60.0, Unit.PX);
 	
 		
 	
@@ -55,7 +51,7 @@ public class MemView extends Composite {
 	public void update() {
 		render();
 		image.setUrl(newdeck.get(8));
-		lblNewLabel.setText(newdeck.get(8));
+	
 	}
 	
 	/**

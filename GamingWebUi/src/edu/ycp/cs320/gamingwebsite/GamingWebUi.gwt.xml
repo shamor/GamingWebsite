@@ -19,7 +19,7 @@
 
   <!-- Other module inherits                                      -->
 
-  <!-- Specify the app entry point class.                         --><inherits name=" com.google.gwt.widgetideas.GWTCanvas" ></inherits>
+  <!-- Specify the app entry point class.                         -->
   <entry-point class='edu.ycp.cs320.gamingwebsite.client.GamingWebUi'/>
 
   <!-- Specify the paths for translatable code                    -->
