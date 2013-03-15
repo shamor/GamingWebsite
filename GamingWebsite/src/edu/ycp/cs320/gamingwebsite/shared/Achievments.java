@@ -1,5 +1,8 @@
 
 package edu.ycp.cs320.gamingwebsite.shared;
+
+import java.util.ArrayList;
+
 /**
  * This class will contain information about the user's achievements 
  * @author shamor1
@@ -10,9 +13,8 @@ public class Achievments {
 		MemDeck deck = new MemDeck(); 
 		deck.make(); 
 		deck.render();
-		
-		String text  = deck.getCard(1).toString();
-		System.out.println("the thing equals" + text);
+		System.out.println("the thing equals: " + deck.getCard(0).toString());
+		System.out.println("the thing equals: " + deck.getStringarr().get(0));
 
 	}
 

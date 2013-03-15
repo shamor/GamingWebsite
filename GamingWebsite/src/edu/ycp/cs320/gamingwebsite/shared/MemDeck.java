@@ -19,7 +19,7 @@ public class MemDeck {
 	 */
 	public MemDeck(){
 		memDeck = new ArrayList<Images>();
-		
+		deckrend = new ArrayList<String>();
 		
 		
 	}	
@@ -75,6 +75,11 @@ public class MemDeck {
 //		}
 //		return removecard;
 //	}
+	/**
+	 * This method takes an two initial decks and combine them by making their values 
+	 * equal to their file names in a separate array
+	 */
+	
 	public void render(){
 		ArrayList<Images> imgarr1 = new ArrayList<>();
 		ArrayList<Images> imgarr2 = new ArrayList<>();
@@ -91,40 +96,57 @@ public class MemDeck {
 			imgarr2.add(getCard(i));
 		}
 		
-		for(int i = 0; i<=20; i++){
-			if(imgarr1.get(i).equals("Star") || imgarr2.get(i).equals("Star")){
-				img = "CardImage/star1.jpg";
-			}
-			else if(imgarr1.get(i).equals("Circle") || imgarr2.get(i).equals("Circle")){
-				img = "CardImage/Circle.jpg";
-			}
-			else if(imgarr1.get(i).equals("Square") || imgarr2.get(i).equals("Square")){
-				img = "CardImage/Square.jpg";			
-			}
-			else if(imgarr1.get(i).equals("Triangle") || imgarr2.get(i).equals("Triangle")){
-				img = "CardImage/Triangle";
-			}
-			else if(imgarr1.get(i).equals("Arrow") || imgarr2.get(i).equals("Arrow")){
-				img = "CardImage/Arrow.jpg";
-			}
-			else if(imgarr1.get(i).equals("Speech") || imgarr2.get(i).equals("Speech")){
-				img = "CardImage/Speech.jpg";
-			}
-			else if(imgarr1.get(i).equals("Hexagon") || imgarr2.get(i).equals("Hexagon")){
-				img = "CardImage/Hexagon.jpg";
-			}
-			else if(imgarr1.get(i).equals("Light") || imgarr2.get(i).equals("Light")){
-				img = "CardImage/Light.jpg";
-			}
-			else if(imgarr1.get(i).equals("Light") || imgarr2.get(i).equals("Light")){
-				img = "CardImage/Heart.jpg";
-			}		
-			else if(imgarr1.get(i).equals("Light") || imgarr2.get(i).equals("Light")){
-				img = "CardImage/fourPStar.jpg";
-			}
-			deckrend.add(img); //add the correct string to the deck
+			for(int i = 0; i<20; i++){
+			
+				if(imgarr1.get(i).toString().equals("Star") || imgarr2.get(i).toString().equals("Star")){
+					img = "CardImage/star1.jpg";
+					deckrend.add(img); //add the correct string to the deck
+				}
+				else if(imgarr1.get(i).toString().equals("Circle") || imgarr2.get(i).toString().equals("Circle")){
+					img = "CardImage/Circle.jpg";
+					deckrend.add(img); //add the correct string to the deck
+				}
+				else if(imgarr1.get(i).toString().equals("Square") || imgarr2.get(i).toString().equals("Square")){
+					img = "CardImage/Square.jpg";	
+					deckrend.add(img); //add the correct string to the deck
+				}
+				else if(imgarr1.get(i).toString().equals("Triangle") || imgarr2.get(i).toString().equals("Triangle")){
+					img = "CardImage/Triangle";
+					deckrend.add(img); //add the correct string to the deck
+				}
+				else if(imgarr1.get(i).toString().equals("Arrow") || imgarr2.get(i).toString().equals("Arrow")){
+					img = "CardImage/Arrow.jpg";
+					deckrend.add(img); //add the correct string to the deck
+				}
+				else if(imgarr1.get(i).toString().equals("Speech") || imgarr2.get(i).toString().equals("Speech")){
+					img = "CardImage/Speech.jpg";
+					deckrend.add(img); //add the correct string to the deck
+				}
+				else if(imgarr1.get(i).toString().equals("Hexagon") || imgarr2.get(i).toString().equals("Hexagon")){
+					img = "CardImage/Hexagon.jpg";
+					deckrend.add(img); //add the correct string to the deck
+				}
+				else if(imgarr1.get(i).toString().equals("Light") || imgarr2.get(i).toString().equals("Light")){
+					img = "CardImage/Light.jpg";
+					deckrend.add(img); //add the correct string to the deck
+				}
+				else if(imgarr1.get(i).toString().equals("Light") || imgarr2.get(i).toString().equals("Light")){
+					img = "CardImage/Heart.jpg";
+					deckrend.add(img); //add the correct string to the deck
+				}		
+				else if(imgarr1.get(i).toString().equals("Light") || imgarr2.get(i).toString().equals("Light")){
+					img = "CardImage/fourPStar.jpg";
+					deckrend.add(img); //add the correct string to the deck
+				}
+				else{
+					deckrend.add(img); //add the correct string to the deck
+				}
 		}
 		
 	}
-
+	
+	public ArrayList<String> getStringarr()
+	{
+		return deckrend; 
+	}
 }
