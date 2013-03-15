@@ -17,11 +17,11 @@ import com.google.gwt.user.client.ui.RootPanel;
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class GamingWebUi implements EntryPoint {
-	private Canvas canvas; 
-	private int mousePosx;
-	private int mousePosy;
-	private Context2d context; 
-	private ImageElement image; 
+//	private Canvas canvas; 
+//	private int mousePosx;
+//	private int mousePosy;
+//	private Context2d context; 
+//	private ImageElement image; 
 	
 	 //timer refresh rate, in milliseconds   
 	static final int refreshRate = 25; 
@@ -32,35 +32,36 @@ public class GamingWebUi implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		
-		canvas = Canvas.createIfSupported();   
-		canvas.setSize("662px", "532px");
-		canvas.setCoordinateSpaceWidth(662);
-		canvas.setCoordinateSpaceHeight(532);
+//		canvas = Canvas.createIfSupported();   
+//		canvas.setSize("662px", "532px");
+//		canvas.setCoordinateSpaceWidth(662);
+//		canvas.setCoordinateSpaceHeight(532);
 		
 		MemView view = new MemView();
-		image = (ImageElement) new Image("CardImage/star1.jpg").getElement().cast(); 
-		RootPanel.get().add(canvas, 10, 0);
+//		image = (ImageElement) new Image("CardImage/star1.jpg").getElement().cast(); 
+//		RootPanel.get().add(canvas, 10, 0);
 		RootLayoutPanel rootLayoutPanel = RootLayoutPanel.get();
 		rootLayoutPanel.add(view);
 		RootLayoutPanel.get().setWidgetTopBottom(view, 0.0, Unit.PX, 0.0, Unit.PX);
 		RootLayoutPanel.get().setWidgetLeftRight(view, 0.0, Unit.PX, 0.0, Unit.PX);
 		
+		view.update();
 		
-		context.drawImage(image, 20.0, 30.0);
-		// setup timer     
-		final Timer timer = new Timer() {      
-			@Override      
-			public void run() {        
-				Update();       }
-
-			   
-			};    
-			timer.scheduleRepeating(refreshRate); 
-			} 
+//		context.drawImage(image, 20.0, 30.0);
+//		// setup timer     
+//		final Timer timer = new Timer() {      
+//			@Override      
+//			public void run() {        
+//				Update();       }
+//
+//			   
+//			};    
+//			timer.scheduleRepeating(refreshRate); 
+	} 
 		
 	
-		private void Update() {
-			// TODO Auto-generated method stub this is where cody says memgame is going to go
-			
-		} 
+	private void Update() {
+		// TODO Auto-generated method stub this is where cody says memgame is going to go
+		
+	} 
 }

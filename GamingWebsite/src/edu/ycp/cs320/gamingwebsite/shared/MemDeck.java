@@ -12,14 +12,14 @@ import java.util.Collections;
 public class MemDeck {
 	private ArrayList<Images> memDeck;
 	private boolean exposed;
-	private ArrayList<String> deckrend;
+	
 
 	/***
 	 * constuctor
 	 */
 	public MemDeck(){
 		memDeck = new ArrayList<Images>();
-		deckrend = new ArrayList<String>();
+		
 		
 		
 	}	
@@ -49,7 +49,9 @@ public class MemDeck {
 	 */
 	public void shuffle() {
 		//shuffles the deck
-        Collections.shuffle(memDeck);
+		
+		// FIXME: GWT doesn't emulate this method
+        //Collections.shuffle(memDeck);
 	}
 	/**
 	 * 
@@ -75,78 +77,10 @@ public class MemDeck {
 //		}
 //		return removecard;
 //	}
-	/**
-	 * This method takes an two initial decks and combine them by making their values 
-	 * equal to their file names in a separate array
-	 */
 	
-	public void render(){
-		ArrayList<Images> imgarr1 = new ArrayList<>();
-		ArrayList<Images> imgarr2 = new ArrayList<>();
-		String img = "CardImage/star1.jpg";
-		
-		//make two decks of memcards and store in two arrays
-		make();
-		for(int i = 0; i<getNumCards(); i++){
-			imgarr1.add(getCard(i));
-		}
-		
-		shuffle(); //shuffle so the first deck is different
-		for(int i = 0; i<getNumCards(); i++){
-			imgarr2.add(getCard(i));
-		}
-		
-			for(int i = 0; i<20; i++){
-			
-				if(imgarr1.get(i).toString().equals("Star") || imgarr2.get(i).toString().equals("Star")){
-					img = "CardImage/star1.jpg";
-					deckrend.add(img); //add the correct string to the deck
-				}
-				else if(imgarr1.get(i).toString().equals("Circle") || imgarr2.get(i).toString().equals("Circle")){
-					img = "CardImage/Circle.jpg";
-					deckrend.add(img); //add the correct string to the deck
-				}
-				else if(imgarr1.get(i).toString().equals("Square") || imgarr2.get(i).toString().equals("Square")){
-					img = "CardImage/Square.jpg";	
-					deckrend.add(img); //add the correct string to the deck
-				}
-				else if(imgarr1.get(i).toString().equals("Triangle") || imgarr2.get(i).toString().equals("Triangle")){
-					img = "CardImage/Triangle";
-					deckrend.add(img); //add the correct string to the deck
-				}
-				else if(imgarr1.get(i).toString().equals("Arrow") || imgarr2.get(i).toString().equals("Arrow")){
-					img = "CardImage/Arrow.jpg";
-					deckrend.add(img); //add the correct string to the deck
-				}
-				else if(imgarr1.get(i).toString().equals("Speech") || imgarr2.get(i).toString().equals("Speech")){
-					img = "CardImage/Speech.jpg";
-					deckrend.add(img); //add the correct string to the deck
-				}
-				else if(imgarr1.get(i).toString().equals("Hexagon") || imgarr2.get(i).toString().equals("Hexagon")){
-					img = "CardImage/Hexagon.jpg";
-					deckrend.add(img); //add the correct string to the deck
-				}
-				else if(imgarr1.get(i).toString().equals("Light") || imgarr2.get(i).toString().equals("Light")){
-					img = "CardImage/Light.jpg";
-					deckrend.add(img); //add the correct string to the deck
-				}
-				else if(imgarr1.get(i).toString().equals("Light") || imgarr2.get(i).toString().equals("Light")){
-					img = "CardImage/Heart.jpg";
-					deckrend.add(img); //add the correct string to the deck
-				}		
-				else if(imgarr1.get(i).toString().equals("Light") || imgarr2.get(i).toString().equals("Light")){
-					img = "CardImage/fourPStar.jpg";
-					deckrend.add(img); //add the correct string to the deck
-				}
-				else{
-					deckrend.add(img); //add the correct string to the deck
-				}
-		}
-		
-	}
 	
-	public ArrayList<String> getStringarr()
-	{
-		return deckrend; 
-	}
+	
+	
+
+	
 }
