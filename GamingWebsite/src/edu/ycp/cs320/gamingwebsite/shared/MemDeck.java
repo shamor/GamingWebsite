@@ -34,7 +34,7 @@ public class MemDeck {
 		for(int i = 0; i < allImages.length;i++){
 			memDeck.add(allImages[i]);
 		}
-		shuffle();
+		shuffle(memDeck);
 	}
 	/***
 	 * 
@@ -46,12 +46,29 @@ public class MemDeck {
 	/***
 	 * shuffles the deck so the
 	 * game is not too easy
+	 * @return 
 	 */
-	public void shuffle() {
-		//shuffles the deck
+	public  void shuffle(ArrayList<Images> memdeck) {
 		
 		// FIXME: GWT doesn't emulate this method
-        //Collections.shuffle(memDeck);
+		int cardMovements = 500;
+		int numberOfCards = memdeck.size();
+		
+		for(int i = 1; i <= cardMovements; i++)
+		{
+			//finds a random card and gets its index
+			Images randomCardOne = memdeck.get((int)(Math.random()*numberOfCards));
+			int indexOne = memdeck.indexOf(randomCardOne);
+			
+			Images randomCardTwo = memdeck.get((int)(Math.random()*numberOfCards));
+			int indexTwo = memdeck.indexOf(randomCardTwo);
+			
+			//flips the position of the two cards
+			memdeck.set(indexOne, randomCardTwo);
+			memdeck.set(indexTwo, randomCardOne);
+		}
+		
+		
 	}
 	/**
 	 * 
