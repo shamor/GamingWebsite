@@ -31,9 +31,11 @@ public class MemDeck {
 	public void make(){
 		
 		Images[] allImages = Images.values();
+
 		for(int i = 0; i < allImages.length;i++){
 			memDeck.add(allImages[i]);
 		}
+		
 		shuffle(memDeck);
 	}
 	/***
@@ -51,7 +53,7 @@ public class MemDeck {
 	public  void shuffle(ArrayList<Images> memdeck) {
 		
 		// FIXME: GWT doesn't emulate this method
-		int cardMovements = 500;
+		int cardMovements = 1000;
 		int numberOfCards = memdeck.size();
 		
 		for(int i = 1; i <= cardMovements; i++)
