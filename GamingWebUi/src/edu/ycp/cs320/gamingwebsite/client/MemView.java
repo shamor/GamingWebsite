@@ -9,7 +9,6 @@ import com.google.gwt.user.client.ui.Image;
 import edu.ycp.cs320.gamingwebsite.shared.Images;
 import edu.ycp.cs320.gamingwebsite.shared.MemDeck;
 
-
 public class MemView extends Composite {
 		
 		private MemDeck deck; 
@@ -180,12 +179,16 @@ public class MemView extends Composite {
 		render();
 		//implement later the if statement
 		//make a method for if the card is clicked and create a count for how many cards are clicked
-		if (clicked ==true & click%2==0){
-		image.setUrl(newdeck.get(0));
+		int click = 1;
+		boolean read = Clicker(click);
+		if (read && (click == 2)){
+			image.setUrl(newdeck.get(0));
+			
 		}
 		else
 		{
 			image.setUrl("CardImage/Backcard.jpg");
+			click = 0;
 		}
 		image_1.setUrl(newdeck.get(1));
 		image_2.setUrl(newdeck.get(2)); 
@@ -205,7 +208,7 @@ public class MemView extends Composite {
 		image_16.setUrl(newdeck.get(16)); 
 		image_17.setUrl(newdeck.get(17)); 
 		image_18.setUrl(newdeck.get(18)); 
-		image_19.setUrl(newdeck.get(19)); 
+		image_19.setUrl(newdeck.get(19));
 	}
 	
 	/**
@@ -277,9 +280,15 @@ public class MemView extends Composite {
 					newdeck.add(img); //add the correct string to the deck
 				}
 		}
-			 
-		
-			return newdeck;
+		return newdeck;
+	}
+	
+	public boolean Clicker(int click){
+		if(click == 2){
+			return true;
+		}else{
+			return false;
+		}
 		
 	}
 }
