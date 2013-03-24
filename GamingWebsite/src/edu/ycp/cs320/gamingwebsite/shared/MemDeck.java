@@ -21,7 +21,6 @@ public class MemDeck {
 		memDeck = new ArrayList<Images>();
 		
 		
-		
 	}	
 	/***
 	 * Creates the deck from
@@ -32,7 +31,7 @@ public class MemDeck {
 		
 		Images[] allImages = Images.values();
 
-		for(int i = 0; i < allImages.length;i++){
+		for(int i = 0; i < 10;i++){
 			memDeck.add(allImages[i]);
 		}
 		
@@ -52,7 +51,7 @@ public class MemDeck {
 	 */
 	public  void shuffle(ArrayList<Images> memdeck) {
 		
-		// FIXME: GWT doesn't emulate this method
+		// This method reverses two cards by flipping two cards based on a random index
 		int cardMovements = 1000;
 		int numberOfCards = memdeck.size();
 		
