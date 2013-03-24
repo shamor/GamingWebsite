@@ -55,8 +55,8 @@ public class MemView extends Composite {
 		this.image = new Image();
 		layoutPanel.add(image);
 		//general note, the first numerical value controls the top left corner of the picture box
-		layoutPanel.setWidgetLeftWidth(image, 75.0, Unit.PX, 65.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image, 129.0, Unit.PX, 104.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(image, 75.0, Unit.PX, 112.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(image, 0.0, Unit.PX, 149.0, Unit.PX);
 		
 		this.image_1 = new Image();
 		layoutPanel.add(image_1);
@@ -267,9 +267,6 @@ public class MemView extends Composite {
 				}		
 				else if(memdeck.get(i).toString().equals("fourPStar")){
 					img = "CardImage/fourpstar.jpg";
-					newdeck.add(img); //add the correct string to the deck
-				}
-				else{
 					newdeck.add(img); //add the correct string to the deck
 				}
 		}
