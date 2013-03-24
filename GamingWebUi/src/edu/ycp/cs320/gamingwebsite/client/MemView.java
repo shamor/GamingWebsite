@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.logical.shared.AttachEvent;
+import com.google.gwt.event.logical.shared.AttachEvent.Handler;
 import com.google.gwt.user.client.ui.Image;
 
 import edu.ycp.cs320.gamingwebsite.shared.Images;
 import edu.ycp.cs320.gamingwebsite.shared.MemDeck;
+import com.google.gwt.user.client.ui.Hidden;
 
 public class MemView extends Composite {
 		
@@ -47,18 +50,18 @@ public class MemView extends Composite {
 		
 		
 		// this will initialize all 20 images to the gwt and place them evenally
-		
+
 		
 		this.image = new Image();
 		layoutPanel.add(image);
 		//general note, the first numerical value controls the top left corner of the picture box
-		layoutPanel.setWidgetLeftWidth(image, 75.0, Unit.PX, 181.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image, 25.0, Unit.PX, 161.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(image, 75.0, Unit.PX, 65.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(image, 129.0, Unit.PX, 104.0, Unit.PX);
 		
 		this.image_1 = new Image();
 		layoutPanel.add(image_1);
-		layoutPanel.setWidgetLeftWidth(image_1, 200.0, Unit.PX, 181.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_1, 25.0, Unit.PX, 161.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(image_1, 159.0, Unit.PX, -6.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(image_1, 25.0, Unit.PX, 104.0, Unit.PX);
 		
 		this.image_2 = new Image();
 		layoutPanel.add(image_2);
@@ -179,17 +182,7 @@ public class MemView extends Composite {
 		render();
 		//implement later the if statement
 		//make a method for if the card is clicked and create a count for how many cards are clicked
-		int click = 1;
-		boolean read = Clicker(click);
-		if (read && (click == 2)){
-			image.setUrl(newdeck.get(0));
-			
-		}
-		else
-		{
-			image.setUrl("CardImage/Backcard.jpg");
-			click = 0;
-		}
+
 		image_1.setUrl(newdeck.get(1));
 		image_2.setUrl(newdeck.get(2)); 
 		image_3.setUrl(newdeck.get(3)); 
@@ -219,7 +212,7 @@ public class MemView extends Composite {
 		ArrayList<Images> imgarr1 = new ArrayList<Images>();
 		ArrayList<Images> imgarr2 = new ArrayList<Images>();
 		ArrayList<Images> memdeck = new ArrayList<Images>();
-		String img = "CardImage/star1.jpg";
+		String img;
 		
 		//make two decks of memcards and store in two arrays
 		deck.make();
