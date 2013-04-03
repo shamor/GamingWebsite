@@ -5,7 +5,6 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.Image;
-
 import edu.ycp.cs320.gamingwebsite.shared.Images;
 import edu.ycp.cs320.gamingwebsite.shared.MemDeck;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -37,8 +36,9 @@ public class MemView extends Composite {
 		private Image image_18;
 		private Image image_19;
 		private ArrayList<Integer> imgshow;
-		private int click; 
-		private String imgback; 
+		private int click;
+		private Image[] allImages; 
+		private ArrayList<Images> memdeck;
 		
 	
 	public MemView() {
@@ -50,6 +50,7 @@ public class MemView extends Composite {
 		this.deck = new MemDeck();
 		this.newdeck = new ArrayList<String>(); 
 		this.imgshow = new ArrayList<Integer>();
+		this.memdeck = new ArrayList<Images>();
 	
 		for (int i = 0; i<20; i++){
 			imgshow.add(0); 
@@ -57,266 +58,78 @@ public class MemView extends Composite {
 		
 		// this will initialize all 20 images to the gwt and place them evenally
 		
-		
 		this.image = new Image();
-		image.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				imgshow.set(0, 1);
-				click++; 
-				update();
-			}
-		});
-		layoutPanel.add(image);
-		//general note, the first numerical value controls the top left corner of the picture box
-		layoutPanel.setWidgetLeftWidth(image, 75.0, Unit.PX, 181.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image, 25.0, Unit.PX, 161.0, Unit.PX);
-		
 		this.image_1 = new Image();
-		image_1.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				imgshow.set(1, 1);
-				click++; 
-				update();
-			}
-		});
-		layoutPanel.add(image_1);
-		layoutPanel.setWidgetLeftWidth(image_1, 200.0, Unit.PX, 181.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_1, 25.0, Unit.PX, 161.0, Unit.PX);
-		
 		this.image_2 = new Image();
-		image_2.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				imgshow.set(2, 1);
-				click++; 
-				update();
-			}
-		});
-		layoutPanel.add(image_2);
-		layoutPanel.setWidgetLeftWidth(image_2, 325.0, Unit.PX, 181.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_2, 25.0, Unit.PX, 161.0, Unit.PX);
-		
-		
 		this.image_3 = new Image();
-		image_3.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				imgshow.set(3, 1); 
-				click++;
-				update();
-			}
-		});
-		layoutPanel.add(image_3);
-		layoutPanel.setWidgetLeftWidth(image_3, 450.0, Unit.PX, 181.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_3, 25.0, Unit.PX, 161.0, Unit.PX);
-		
-		
 		this.image_4 = new Image();
-		image_4.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				imgshow.set(4, 1);
-				click++; 
-				update();
-			}
-		});
-		layoutPanel.add(image_4);
-		layoutPanel.setWidgetLeftWidth(image_4, 575.0, Unit.PX, 181.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_4, 25.0, Unit.PX, 161.0, Unit.PX);
-		
-		
 		this.image_5 = new Image();
-		image_5.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				imgshow.set(5, 1);
-				click++; 
-				update();
-			}
-		});
-		layoutPanel.add(image_5);
-		layoutPanel.setWidgetLeftWidth(image_5, 75.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_5, 375.0, Unit.PX, 161.0, Unit.PX);
-		
-		
 		this.image_6 = new Image();
-		image_6.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				imgshow.set(6, 1);
-				click++; 
-				update();
-			}
-		});
-		layoutPanel.add(image_6);
-		layoutPanel.setWidgetLeftWidth(image_6, 200.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_6,	375.0, Unit.PX, 161.0, Unit.PX);
-		
-		
 		this.image_7 = new Image();
-		image_7.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				imgshow.set(7, 1);
-				click++; 
-				update();
-			}
-		});
-		layoutPanel.add(image_7);
-		layoutPanel.setWidgetLeftWidth(image_7, 325.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_7, 375.0, Unit.PX, 161.0, Unit.PX);
-		
-		
 		this.image_8 = new Image();
-		image_8.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				imgshow.set(8, 1);
-				click++; 
-				update();
-			}
-		});
-		layoutPanel.add(image_8);
-		layoutPanel.setWidgetLeftWidth(image_8, 450.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_8, 375.0, Unit.PX, 161.0, Unit.PX);
-		
-		
 		this.image_9 = new Image();
-		image_9.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				imgshow.set(9, 1);
-				click++; 
-				update();
-			}
-		});
-		layoutPanel.add(image_9);
-		layoutPanel.setWidgetLeftWidth(image_9, 575.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_9, 375.0, Unit.PX, 161.0, Unit.PX);
-		
-		
 		this.image_10 = new Image();
-		image_10.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				imgshow.set(10, 1);
-				click++; 
-				update();
-			}
-		});
-		layoutPanel.add(image_10);
-		layoutPanel.setWidgetLeftWidth(image_10, 75.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_10, 200.0, Unit.PX, 161.0, Unit.PX);
-		
-		
 		this.image_11 = new Image();
-		image_11.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				imgshow.set(11, 1);
-				click++; 
-				update();
-			}
-		});
-		layoutPanel.add(image_11);
-		layoutPanel.setWidgetLeftWidth(image_11, 200.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_11, 200.0, Unit.PX, 161.0, Unit.PX);
-		
-		
 		this.image_12 = new Image();
-		image_12.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				imgshow.set(12, 1);
-				click++;
-				update();
-			}
-		});
-		layoutPanel.add(image_12);
-		layoutPanel.setWidgetLeftWidth(image_12, 325.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_12, 200.0, Unit.PX, 161.0, Unit.PX);
-		
-		
 		this.image_13 = new Image();
-		image_13.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				imgshow.set(13, 1);
-				click++; 
-				update();
-			}
-		});
-		layoutPanel.add(image_13);
-		layoutPanel.setWidgetLeftWidth(image_13, 450.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_13, 200.0, Unit.PX, 161.0, Unit.PX);
-		
-		
 		this.image_14 = new Image();
-		image_14.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				imgshow.set(14, 1);
-				click++; 
-				update();
-			}
-		});
-		layoutPanel.add(image_14);
-		layoutPanel.setWidgetLeftWidth(image_14, 575.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_14, 200.0, Unit.PX, 161.0, Unit.PX);
-		
-		
 		this.image_15 = new Image();
-		image_15.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				imgshow.set(15, 1);
-				click++; 
-				update();
-			}
-		});
-		layoutPanel.add(image_15);
-		layoutPanel.setWidgetLeftWidth(image_15, 75.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_15, 550.0, Unit.PX, 161.0, Unit.PX);
-		
-		
 		this.image_16 = new Image();
-		image_16.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				imgshow.set(16, 1);
-				click++; 
-				update();
-			}
-		});
-		layoutPanel.add(image_16);
-		layoutPanel.setWidgetLeftWidth(image_16, 200.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_16, 550.0, Unit.PX, 161.0, Unit.PX);
-		
-		
 		this.image_17 = new Image();
-		image_17.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				imgshow.set(17, 1);
-				click++; 
-				update();
-			}
-		});
-		layoutPanel.add(image_17);
-		layoutPanel.setWidgetLeftWidth(image_17, 325.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_17, 550.0, Unit.PX, 161.0, Unit.PX);
-		
-		
 		this.image_18 = new Image();
-		image_18.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				imgshow.set(18, 1);
-				click++; 
-				update();
-			}
-		});
-		layoutPanel.add(image_18);
-		layoutPanel.setWidgetLeftWidth(image_18, 450.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_18, 550.0, Unit.PX, 161.0, Unit.PX);
-		
-		
 		this.image_19 = new Image();
-		image_19.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				imgshow.set(19, 1);
-				click++; 
-				update();
-			}
-		});
-		layoutPanel.add(image_19);
-		layoutPanel.setWidgetLeftWidth(image_19, 575.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_19, 550.0, Unit.PX, 161.0, Unit.PX);
+
 		
 		
+		
+		this.allImages = new Image[]{
+				image,
+				image_1,
+				image_2,
+				image_3,
+				image_4,
+				image_5,
+				image_6,
+				image_7,
+				image_8,
+				image_9,
+				image_10,
+				image_11,
+				image_12,
+				image_13,
+				image_14,
+				image_15,
+				image_16,
+				image_17,
+				image_18,
+				image_19,
+		};
+		for (int i = 0; i < allImages.length; i++) {
+			Image img = allImages[i];
+			
+			final int imageNum = i;
+			
+			// add click handler to image
+			img.addClickHandler(new ClickHandler() {
+				
+				@Override
+				public void onClick(ClickEvent event) {
+					imgshow.set(imageNum, 1);
+					click++; 
+					update();
+				}
+			});
+			
+			// add to panel
+			layoutPanel.add(img);
+			
+			// set position/size
+			int row = i / 5;
+			int col = i % 5;
+			
+			layoutPanel.setWidgetLeftWidth(img, 75.0 + col*125.0, Unit.PX, 100.0, Unit.PX);
+			layoutPanel.setWidgetTopHeight(img, 25.0 + row*175.0, Unit.PX, 200.0, Unit.PX);
+		}
 	
 	
 	}
@@ -456,7 +269,7 @@ public class MemView extends Composite {
 	 * equal to their file names in a separate array
 	 */
 	public void render(){
-		ArrayList<Images> memdeck = new ArrayList<Images>();
+		
 		String img = "CardImage/star1.jpg";
 		
 		//make two decks of memcards and store in a new array
@@ -521,10 +334,39 @@ public class MemView extends Composite {
 	}
 	public void CardsShown(int clicks){
 		//TODO: if they match, set them invisible
+		
 		if (clicks%2 == 0){
-			for (int i = 0; i<20; i++){
-				imgshow.set(i, 0); 
+			boolean samecards = false; 
+			Images img1 = null, img2 = null; 
+			int whichcard = 0, imgindex1 = 0, imgindex2=0 ;
+			//this goes through the imgshow array to see which cards are shown
+			for(int i =0; i<20; i++){
+				if (imgshow.get(i) == 1){
+					if (whichcard == 0){
+						imgindex1= i; 
+						img1 = memdeck.get(imgindex1);
+						whichcard++; 
+					}
+					else if (whichcard==1){
+						imgindex2= i;
+						img2 = memdeck.get(imgindex2);
+						whichcard=0; 
+						samecards = deck.isSame(img1, img2);
+					}
+				}
 			}
+
+		
+			if(samecards == true){
+				allImages[imgindex1].setVisible(false);
+				allImages[imgindex2].setVisible(false);
+				update();
+				}
+			
+				for (int i = 0; i<20; i++){
+					imgshow.set(i, 0); 
+				}
+			
 		}
 	}
 }
