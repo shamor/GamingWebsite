@@ -50,8 +50,6 @@ public class MemView extends Composite {
 		
 		
 		// this will initialize all 20 images to the gwt and place them evenally
-
-		
 		this.image = new Image();
 		layoutPanel.add(image);
 		//general note, the first numerical value controls the top left corner of the picture box
@@ -169,10 +167,6 @@ public class MemView extends Composite {
 		layoutPanel.add(image_19);
 		layoutPanel.setWidgetLeftWidth(image_19, 575.0, Unit.PX, 190.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(image_19, 550.0, Unit.PX, 161.0, Unit.PX);
-		
-		
-	
-	
 	}
 	public void setModel(MemDeck model) {
 		this.deck = model;
