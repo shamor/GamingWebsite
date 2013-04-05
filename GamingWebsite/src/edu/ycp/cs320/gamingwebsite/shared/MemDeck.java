@@ -21,7 +21,6 @@ public class MemDeck {
 		memDeck = new ArrayList<Images>();
 		
 		
-		
 	}	
 	/***
 	 * Creates the deck from
@@ -31,9 +30,11 @@ public class MemDeck {
 	public void make(){
 		
 		Images[] allImages = Images.values();
-		for(int i = 0; i < allImages.length;i++){
+
+		for(int i = 0; i < 10;i++){
 			memDeck.add(allImages[i]);
 		}
+
 		shuffle(memDeck);
 	}
 	/***
@@ -50,11 +51,16 @@ public class MemDeck {
 	 */
 	public  void shuffle(ArrayList<Images> memdeck) {
 		
+
 		// FIXME: GWT doesn't emulate this method
 		int cardMovements = 500;
+
+		// This method reverses two cards by flipping two cards based on a random index
+		int cardMovements1 = 1000;
+
 		int numberOfCards = memdeck.size();
 		
-		for(int i = 1; i <= cardMovements; i++)
+		for(int i = 1; i <= cardMovements1; i++)
 		{
 			//finds a random card and gets its index
 			Images randomCardOne = memdeck.get((int)(Math.random()*numberOfCards));
@@ -96,7 +102,23 @@ public class MemDeck {
 //	}
 	
 	
-	
+	/**
+	 * Checks to see if two cards are equal to each other by comparing the cards' images.
+	 * 
+	 * @param card1: The first card to compare.
+	 * @param card2: The second card to compare.
+	 * 
+	 * @return true: Returns true if cards are equal, false if otherwise.
+	 */
+	public boolean isSame(Images card1, Images card2)
+	{
+		if(card1.compareTo(card2)== 0){
+            return true;
+	}
+        else{
+            return false;
+        }
+	}
 	
 
 	
