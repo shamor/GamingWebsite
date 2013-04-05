@@ -279,4 +279,8 @@ public class MemView extends Composite {
 	public boolean isGood(){
 		return false;
 	}
+	
+	public boolean isFinished(){
+		return false;
+	}
 }
