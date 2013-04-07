@@ -11,13 +11,13 @@ import java.util.Collections;
 
 public class MemDeck {
 	private ArrayList<Images> memDeck;
-	private boolean exposed;
+	private int clicked;
 	/***
 	 * constuctor
 	 */
 	public MemDeck(){
 		memDeck = new ArrayList<Images>();
-		exposed = false;
+		clicked = 0;
 	}	
 	
 	/***
@@ -44,6 +44,8 @@ public class MemDeck {
 	 * 
 	 * @returns the size of the deck
 	 */
+
+	
 	public int getNumCards() {
 		return memDeck.size();
 	}

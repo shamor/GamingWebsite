@@ -309,10 +309,10 @@ public class MemView extends Composite {
 			memdeck.add(deck.getCard(i));
 		}
 
-		//deck.shuffle(memdeck);
+		deck.shuffle(memdeck);
 				
 
-		//deck.shuffle(memdeck);
+		deck.shuffle(memdeck);
 	
 			for(int i = 0; i< memdeck.size(); i++){
 			
@@ -380,39 +380,37 @@ public class MemView extends Composite {
 	public void CardsShown(int clicks){
 		//TODO: if they match, set them invisible
 		
-		if (clicks%2 == 0){
-			boolean samecards = false; 
-			Images img1 = null, img2 = null; 
+		if (clicks%2 == 0){ 
 			int whichcard = 0, imgindex1 = 0, imgindex2=0 ;
 			//this goes through the imgshow array to see which cards are shown
 			for(int i =0; i<20; i++){
-				if (imgshow.get(i) == 1){
+				if (click(i)){
 					if (whichcard == 0){
-						imgindex1= i; 
-						img1 = memdeck.get(imgindex1);
+						imgindex1 = i;
 						whichcard++; 
 					}
-					else if (whichcard==1){
+					else if (whichcard == 1){
 						imgindex2= i;
-						img2 = memdeck.get(imgindex2);
-						whichcard=0; 
-						samecards = deck.isSame(img1, img2);
+						whichcard=0;
+						if(deck.isSame(memdeck.get(imgindex1), memdeck.get(imgindex2))){
+							allImages[imgindex1].setVisible(false);
+							allImages[imgindex2].setVisible(false);
+							update();
+						} 	
+					}else{
+						;
 					}
 				}
 			}
-
-		
-			if(samecards == true){
-				allImages[imgindex1].setVisible(false);
-				allImages[imgindex2].setVisible(false);
-				update();
-				}
-			
-				for (int i = 0; i<20; i++){
-					imgshow.set(i, 0); 
-				}
-			
 		}
+	}
+
+	public boolean click(int i){
+		if(imgshow.get(i) == 1){
+			return true;
+		}else{
+			return false;
+		}		
 	}
 	
 	public boolean isGood(){
