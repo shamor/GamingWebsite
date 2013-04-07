@@ -70,14 +70,7 @@ public class MemView extends Composite {
 		
 		// this will initialize all 20 images to the gwt and place them evenally
 		this.image = new Image();
-		layoutPanel.add(image);
-		//general note, the first numerical value controls the top left corner of the picture box
-		layoutPanel.setWidgetLeftWidth(image, 75.0, Unit.PX, 112.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image, 0.0, Unit.PX, 149.0, Unit.PX);
 		this.image_1 = new Image();
-		layoutPanel.add(image_1);
-		layoutPanel.setWidgetLeftWidth(image_1, 159.0, Unit.PX, -6.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_1, 25.0, Unit.PX, 104.0, Unit.PX);
 		this.image_2 = new Image();
 		this.image_3 = new Image();
 		this.image_4 = new Image();
@@ -96,114 +89,6 @@ public class MemView extends Composite {
 		this.image_17 = new Image();
 		this.image_18 = new Image();
 		this.image_19 = new Image();
-
-
-		this.image_2 = new Image();
-		layoutPanel.add(image_2);
-		layoutPanel.setWidgetLeftWidth(image_2, 325.0, Unit.PX, 181.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_2, 25.0, Unit.PX, 161.0, Unit.PX);
-		
-		
-		this.image_3 = new Image();
-		layoutPanel.add(image_3);
-		layoutPanel.setWidgetLeftWidth(image_3, 450.0, Unit.PX, 181.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_3, 25.0, Unit.PX, 161.0, Unit.PX);
-		
-		
-		this.image_4 = new Image();
-		layoutPanel.add(image_4);
-		layoutPanel.setWidgetLeftWidth(image_4, 575.0, Unit.PX, 181.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_4, 25.0, Unit.PX, 161.0, Unit.PX);
-		
-		
-		this.image_5 = new Image();
-		layoutPanel.add(image_5);
-		layoutPanel.setWidgetLeftWidth(image_5, 75.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_5, 200.0, Unit.PX, 161.0, Unit.PX);
-		
-		
-		this.image_6 = new Image();
-		layoutPanel.add(image_6);
-		layoutPanel.setWidgetLeftWidth(image_6, 200.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_6, 200.0, Unit.PX, 161.0, Unit.PX);
-		
-		
-		this.image_7 = new Image();
-		layoutPanel.add(image_7);
-		layoutPanel.setWidgetLeftWidth(image_7, 325.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_7, 200.0, Unit.PX, 161.0, Unit.PX);
-		
-		
-		this.image_8 = new Image();
-		layoutPanel.add(image_8);
-		layoutPanel.setWidgetLeftWidth(image_8, 450.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_8, 200.0, Unit.PX, 161.0, Unit.PX);
-		
-		
-		this.image_9 = new Image();
-		layoutPanel.add(image_9);
-		layoutPanel.setWidgetLeftWidth(image_9, 575.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_9, 200.0, Unit.PX, 161.0, Unit.PX);
-		
-		
-		this.image_10 = new Image();
-		layoutPanel.add(image_10);
-		layoutPanel.setWidgetLeftWidth(image_10, 75.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_10, 375.0, Unit.PX, 161.0, Unit.PX);
-		
-		
-		this.image_11 = new Image();
-		layoutPanel.add(image_11);
-		layoutPanel.setWidgetLeftWidth(image_11, 200.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_11, 375.0, Unit.PX, 161.0, Unit.PX);
-		
-		
-		this.image_12 = new Image();
-		layoutPanel.add(image_12);
-		layoutPanel.setWidgetLeftWidth(image_12, 325.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_12, 375.0, Unit.PX, 161.0, Unit.PX);
-		
-		
-		this.image_13 = new Image();
-		layoutPanel.add(image_13);
-		layoutPanel.setWidgetLeftWidth(image_13, 450.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_13, 375.0, Unit.PX, 161.0, Unit.PX);
-		
-		
-		this.image_14 = new Image();
-		layoutPanel.add(image_14);
-		layoutPanel.setWidgetLeftWidth(image_14, 575.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_14, 375.0, Unit.PX, 161.0, Unit.PX);
-		
-		
-		this.image_15 = new Image();
-		layoutPanel.add(image_15);
-		layoutPanel.setWidgetLeftWidth(image_15, 75.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_15, 550.0, Unit.PX, 161.0, Unit.PX);
-		
-		
-		this.image_16 = new Image();
-		layoutPanel.add(image_16);
-		layoutPanel.setWidgetLeftWidth(image_16, 200.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_16, 550.0, Unit.PX, 161.0, Unit.PX);
-		
-		
-		this.image_17 = new Image();
-		layoutPanel.add(image_17);
-		layoutPanel.setWidgetLeftWidth(image_17, 325.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_17, 550.0, Unit.PX, 161.0, Unit.PX);
-		
-		
-		this.image_18 = new Image();
-		layoutPanel.add(image_18);
-		layoutPanel.setWidgetLeftWidth(image_18, 450.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_18, 550.0, Unit.PX, 161.0, Unit.PX);
-		
-		
-		this.image_19 = new Image();
-		layoutPanel.add(image_19);
-		layoutPanel.setWidgetLeftWidth(image_19, 575.0, Unit.PX, 190.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(image_19, 550.0, Unit.PX, 161.0, Unit.PX);
 		
 		
 		this.allImages = new Image[]{
@@ -240,6 +125,7 @@ public class MemView extends Composite {
 				public void onClick(ClickEvent event) {
 					imgshow.set(imageNum, 1);
 					click++; 
+					
 					update();
 				}
 			});
@@ -413,120 +299,73 @@ public class MemView extends Composite {
 	 * This method takes an two initial decks and combine them by making their values 
 	 * equal to their file names in a separate array
 	 */
-	public ArrayList<String> render(){
-		ArrayList<Images> imgarr1 = new ArrayList<Images>();
-		ArrayList<Images> imgarr2 = new ArrayList<Images>();
-		ArrayList<Images> memdeck = new ArrayList<Images>();
-		String img;
-	}
 	public void render(){
 		
-		String img = "CardImage/star1.jpg";
+		String img;
 		
 		//make two decks of memcards and store in a new array
 		deck.make();
 		for(int i = 0; i<deck.getNumCards(); i++){
 			memdeck.add(deck.getCard(i));
 		}
-		
-		for(int i = 0; i<deck.getNumCards(); i++){
-			imgarr2.add(deck.getCard(i));
-		}
-		memdeck.addAll(imgarr1);
-		memdeck.addAll(imgarr2);
-		deck.shuffle(memdeck);
-			for(int i = 0; i<20; i++){
-				
-		for(int j = memdeck.size(); j < 20; j++){
-			memdeck.add(deck.getCard(j-10));
-		}
 
-	deck.shuffle(memdeck);
+		//deck.shuffle(memdeck);
+				
+
+		//deck.shuffle(memdeck);
 	
 			for(int i = 0; i< memdeck.size(); i++){
 			
-				if(memdeck.get(i).toString().equals("Star")){
+				if(memdeck.get(i) == Images.Star){
 					img = "CardImage/star1.jpg";
 					newdeck.add(img); //add the correct string to the deck
 				}
-				else if(memdeck.get(i).toString().equals("Circle")){
-					
-				if(memdeck.get(i).toString().equals("Circle")){
+				else if(memdeck.get(i) == Images.Circle){
 
 					img = "CardImage/circle.jpg";
 					newdeck.add(img); //add the correct string to the deck
 				}
 
-				else if(memdeck.get(i).toString().equals("Square")){
-
-				if(memdeck.get(i).toString().equals("Square")){
-
+				else if(memdeck.get(i) == Images.Square){
 					img = "CardImage/square1.jpg";	
 					newdeck.add(img); //add the correct string to the deck
 				}
 
-				else if(memdeck.get(i).toString().equals("Triangle")){
-
-				if(memdeck.get(i).toString().equals("Triangle")){
-
+				else if(memdeck.get(i) == Images.Triangle){
 					img = "CardImage/triangle.jpg";
 					newdeck.add(img); //add the correct string to the deck
 				}
 
-				else if(memdeck.get(i).toString().equals("Arrow")){
-
-				if(memdeck.get(i).toString().equals("Arrow")){
-
+				else if(memdeck.get(i) == Images.Arrow){
 					img = "CardImage/arrow.jpg";
 					newdeck.add(img); //add the correct string to the deck
 				}
 
-				else if(memdeck.get(i).toString().equals("Speech")){
-
-				if(memdeck.get(i).toString().equals("Speech")){
-
+				else if(memdeck.get(i) == Images.Speech){
 					img = "CardImage/speech.jpg";
 					newdeck.add(img); //add the correct string to the deck
 				}
 
-				else if(memdeck.get(i).toString().equals("Hexagon")){
-
-				if(memdeck.get(i).toString().equals("Hexagon")){
-
+				else if(memdeck.get(i) == Images.Hexagon){
 					img = "CardImage/hexagon.jpg";
 					newdeck.add(img); //add the correct string to the deck
 				}
 
-				else if(memdeck.get(i).toString().equals("Light")){
-
-				if(memdeck.get(i).toString().equals("Light")){
-
+				else if(memdeck.get(i) == Images.Light){
 					img = "CardImage/light.jpg";
 					newdeck.add(img); //add the correct string to the deck
 				}
 
-				else if(memdeck.get(i).toString().equals("Heart")){
-
-				if(memdeck.get(i).toString().equals("Heart")){
-
+				else if(memdeck.get(i) == Images.Heart){
 					img = "CardImage/heart.jpg";
 					newdeck.add(img); //add the correct string to the deck
 				}		
 
-				else if(memdeck.get(i).toString().equals("fourPStar")){
+				else if(memdeck.get(i) == Images.fourPStar){
 					img = "CardImage/fourpstar.jpg";
 					newdeck.add(img); //add the correct string to the deck
 				}
-
-				if(memdeck.get(i).toString().equals("fourPStar")){
-					img = "CardImage/fourpstar.jpg";
-					newdeck.add(img); //add the correct string to the deck
-				}
-
-
-		}
-
-		return newdeck;
+			}
 	}
 	
 	public boolean Clicker(int click){

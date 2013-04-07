@@ -12,16 +12,14 @@ import java.util.Collections;
 public class MemDeck {
 	private ArrayList<Images> memDeck;
 	private boolean exposed;
-	
-
 	/***
 	 * constuctor
 	 */
 	public MemDeck(){
 		memDeck = new ArrayList<Images>();
-		
-		
+		exposed = false;
 	}	
+	
 	/***
 	 * Creates the deck from
 	 * which we will draw from
@@ -34,9 +32,14 @@ public class MemDeck {
 		for(int i = 0; i < 10;i++){
 			memDeck.add(allImages[i]);
 		}
+		
+		for(int i = 0; i < 10; i++){
+			memDeck.add(allImages[i]);
+		}
 
 		shuffle(memDeck);
 	}
+	
 	/***
 	 * 
 	 * @returns the size of the deck
@@ -44,6 +47,7 @@ public class MemDeck {
 	public int getNumCards() {
 		return memDeck.size();
 	}
+	
 	/***
 	 * shuffles the deck so the
 	 * game is not too easy
@@ -120,6 +124,5 @@ public class MemDeck {
         }
 	}
 	
-
 	
 }
