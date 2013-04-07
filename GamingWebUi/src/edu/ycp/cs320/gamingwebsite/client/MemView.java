@@ -367,50 +367,53 @@ public class MemView extends Composite {
 				}
 			}
 	}
-	
-	public boolean Clicker(int click){
-		if(click == 2){
-			return true;
-		}else{
-			return false;
-		}
 		
-		
-	}
 	public void CardsShown(int clicks){
 		//TODO: if they match, set them invisible
 		
-		if (clicks%2 == 0){ 
-			int whichcard = 0, imgindex1 = 0, imgindex2=0 ;
-			//this goes through the imgshow array to see which cards are shown
-			for(int i =0; i<20; i++){
-				if (click(i)){
-					if (whichcard == 0){
-						imgindex1 = i;
-						whichcard++; 
-					}
-					else if (whichcard == 1){
-						imgindex2= i;
-						whichcard=0;
-						if(deck.isSame(memdeck.get(imgindex1), memdeck.get(imgindex2))){
-							allImages[imgindex1].setVisible(false);
-							allImages[imgindex2].setVisible(false);
-							update();
-						} 	
-					}else{
-						;
-					}
-				}
-			}
+		int imgindex1 = 0, imgindex2=0 ;
+		
+		if(clicks == 0){
+			// declaring imgindex1
+			imgindex1 = imgshow.indexOf(1);
 		}
-	}
-
-	public boolean click(int i){
-		if(imgshow.get(i) == 1){
-			return true;
+		else if (clicks == 1){  
+			imgindex2 = imgshow.lastIndexOf(1);
+			// if index1 is the same as index2
+			if(imgindex1 == imgindex2){
+				imgindex2 = imgshow.indexOf(1);
+			}
+			// resetting the clicks
+			clicks = 0;
+			// checking if equal
+			if(deck.isSame(memdeck.get(imgindex1), memdeck.get(imgindex2))){
+				allImages[imgindex1].setVisible(false);
+				allImages[imgindex2].setVisible(false);
+			} else{
+				;
+			}
+			
 		}else{
-			return false;
-		}		
+			;
+		}
+	
+			//this goes through the imgshow array to see which cards are shown
+//			for(int i =0; i<20; i++){
+//				if (click(i)){
+//					if (whichcard == 0){
+//						imgindex1 = i;
+//						whichcard++; 
+//					}
+//					else if (whichcard == 1){
+//						imgindex2= i;
+//						whichcard=0;
+//	
+//					}else{
+//						;
+//					}
+//				}
+//			}
+//		}
 	}
 	
 	public boolean isGood(){
