@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.dom.client.Style.Unit;
-import com.google.gwt.event.logical.shared.AttachEvent;
-import com.google.gwt.event.logical.shared.AttachEvent.Handler;
 import com.google.gwt.user.client.ui.Image;
 import edu.ycp.cs320.gamingwebsite.shared.Images;
 import edu.ycp.cs320.gamingwebsite.shared.MemDeck;
-import com.google.gwt.user.client.ui.Hidden;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 
@@ -60,7 +57,7 @@ public class MemView extends Composite {
 		this.newdeck = new ArrayList<String>(); 
 		this.imgshow = new ArrayList<Integer>();
 		this.memdeck = new ArrayList<Images>();
-	
+		
 		for (int i = 0; i<20; i++){
 			imgshow.add(0); 
 		}
@@ -113,6 +110,9 @@ public class MemView extends Composite {
 				image_18,
 				image_19,
 		};
+		
+		render();
+		
 		for (int i = 0; i < allImages.length; i++) {
 			Image img = allImages[i];
 			
@@ -148,7 +148,7 @@ public class MemView extends Composite {
 	}
 	
 	public void update() {
-		render();
+		
 		//implement later the if statement
 		//make a method for if the card is clicked and create a count for how many cards are clicked
 
