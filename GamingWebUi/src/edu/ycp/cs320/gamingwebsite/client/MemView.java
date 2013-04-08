@@ -112,7 +112,6 @@ public class MemView extends Composite {
 		};
 		
 		render();
-		
 		for (int i = 0; i < allImages.length; i++) {
 			Image img = allImages[i];
 			
@@ -125,7 +124,6 @@ public class MemView extends Composite {
 				public void onClick(ClickEvent event) {
 					imgshow.set(imageNum, 1);
 					click++; 
-					
 					update();
 				}
 			});
