@@ -2,7 +2,8 @@ package edu.ycp.cs320.gamingwebsite.shared;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Random;
+
 /***
  * 
  * @author cbechtol, Carl H Howard III(cp3)
@@ -11,7 +12,7 @@ import java.util.Collections;
 
 public class MemDeck {
 	private ArrayList<Images> memDeck;
-	private boolean exposed;
+	//private boolean exposed;
 	
 
 	/***
@@ -21,7 +22,12 @@ public class MemDeck {
 		memDeck = new ArrayList<Images>();
 		
 		
-	}	
+	}
+	
+	public ArrayList<Images> getMemDeck() {
+		return memDeck;
+	}
+	
 	/***
 	 * Creates the deck from
 	 * which we will draw from
@@ -31,12 +37,19 @@ public class MemDeck {
 		
 		Images[] allImages = Images.values();
 
-		for(int i = 0; i < 10;i++){
+		for(int i = 0; i < allImages.length;i++){
 			memDeck.add(allImages[i]);
 		}
+//		shuffle();
+		for(int i = 0; i < allImages.length;i++){
+			memDeck.add(allImages[i]);
+		}
+		shuffle();
 		
-		shuffle(memDeck);
+		
+		
 	}
+	
 	/***
 	 * 
 	 * @returns the size of the deck
@@ -44,35 +57,49 @@ public class MemDeck {
 	public int getNumCards() {
 		return memDeck.size();
 	}
+	
 	/***
-	 * shuffles the deck so the
-	 * game is not too easy
+	 * shuffles the deck
 	 * @return 
 	 */
-	public  void shuffle(ArrayList<Images> memdeck) {
-		
+	public  void shuffle() {
+		/*
 		// This method reverses two cards by flipping two cards based on a random index
 		int cardMovements = 1000;
-		int numberOfCards = memdeck.size();
+		int numberOfCards = memDeck.size();
 		
 		for(int i = 1; i <= cardMovements; i++)
 		{
 			//finds a random card and gets its index
-			Images randomCardOne = memdeck.get((int)(Math.random()*numberOfCards));
-			int indexOne = memdeck.indexOf(randomCardOne);
+			Images randomCardOne = memDeck.get((int)(Math.random()*numberOfCards));
+			int indexOne = memDeck.indexOf(randomCardOne);
 			
-			Images randomCardTwo = memdeck.get((int)(Math.random()*numberOfCards));
-			int indexTwo = memdeck.indexOf(randomCardTwo);
+			Images randomCardTwo = memDeck.get((int)(Math.random()*numberOfCards));
+			int indexTwo = memDeck.indexOf(randomCardTwo);
 			
 			//flips the position of the two cards
-			memdeck.set(indexOne, randomCardTwo);
-			memdeck.set(indexTwo, randomCardOne);
+			memDeck.set(indexOne, randomCardTwo);
+			memDeck.set(indexTwo, randomCardOne);
 		}
 		
+		*/
 		
+		// See: http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
+		// To shuffle an array a of n elements (indices 0..n-1):
+        // for i from n − 1 downto 1 do
+        //   j ← random integer with 0 ≤ j ≤ i
+        //   exchange a[j] and a[i]
+		Random r = new Random();
+		for (int i = memDeck.size() - 1; i > 0; i--) {
+			int j = r.nextInt(i+1);
+			Images tmp = memDeck.get(j);
+			memDeck.set(j, memDeck.get(i));
+			memDeck.set(i, tmp);
+		}
 	}
+	
 	/**
-	 * 
+	 *returns a card from the deck 
 	 * @param i
 	 * @return the I the card of the deck
 	 */
@@ -99,21 +126,20 @@ public class MemDeck {
 	
 	/**
 	 * Checks to see if two cards are equal to each other by comparing the cards' images.
-	 * 
 	 * @param card1: The first card to compare.
 	 * @param card2: The second card to compare.
-	 * 
 	 * @return true: Returns true if cards are equal, false if otherwise.
 	 */
-	public boolean isSame(Images card1, Images card2)
-	{
-		if(card1.compareTo(card2)== 0){
+	public boolean isSame(Images card1, Images card2){
+	
+		if(card1.equals(card2)){
             return true;
-	}
+		}
         else{
             return false;
         }
 	}
+	
 	
 
 	

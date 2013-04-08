@@ -9,12 +9,16 @@ import edu.ycp.cs320.gamingwebsite.shared.Images;
 import edu.ycp.cs320.gamingwebsite.shared.MemDeck;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.user.client.ui.InlineLabel;
 
 
 public class MemView extends Composite {
 		
 		private MemDeck deck; 
 		private	ArrayList<String> newdeck; 
+		private ArrayList<Integer> imgshow;
+		private int click;
+		private Image[] allImages; 
 		private Image image;
 		private Image image_1;
 		private Image image_2;
@@ -35,10 +39,9 @@ public class MemView extends Composite {
 		private Image image_17;
 		private Image image_18;
 		private Image image_19;
-		private ArrayList<Integer> imgshow;
-		private int click;
-		private Image[] allImages; 
-		private ArrayList<Images> memdeck;
+		private int pairsGone;
+	
+
 		
 	
 	public MemView() {
@@ -50,13 +53,11 @@ public class MemView extends Composite {
 		this.deck = new MemDeck();
 		this.newdeck = new ArrayList<String>(); 
 		this.imgshow = new ArrayList<Integer>();
-		this.memdeck = new ArrayList<Images>();
-	
+		this.pairsGone = 0;
+
 		for (int i = 0; i<20; i++){
 			imgshow.add(0); 
 		}
-		
-		// this will initialize all 20 images to the gwt and place them evenally
 		
 		this.image = new Image();
 		this.image_1 = new Image();
@@ -78,9 +79,6 @@ public class MemView extends Composite {
 		this.image_17 = new Image();
 		this.image_18 = new Image();
 		this.image_19 = new Image();
-
-		
-		
 		
 		this.allImages = new Image[]{
 				image,
@@ -104,6 +102,7 @@ public class MemView extends Composite {
 				image_18,
 				image_19,
 		};
+		
 		for (int i = 0; i < allImages.length; i++) {
 			Image img = allImages[i];
 			
@@ -131,198 +130,81 @@ public class MemView extends Composite {
 			layoutPanel.setWidgetTopHeight(img, 25.0 + row*175.0, Unit.PX, 200.0, Unit.PX);
 		}
 	
-	
+		render();
 	}
 	public void setModel(MemDeck model) {
 		this.deck = model;
 	}
 	
 	public void update() {
-		render();
-		//implement later the if statement
-		//make a method for if the card is clicked and create a count for how many cards are clicked
-		if (imgshow.get(0) == 1){
-			image.setUrl(newdeck.get(0));
+
+	
+		//give each image object the address so it will display
+		for(int i =0 ; i<allImages.length; i++){
+			//if imgshow is 1, it should show an image
+			if(imgshow.get(i) == 1){
+				allImages[i].setUrl(newdeck.get(i));
+			}
+			else{//imgshow is 0, so the back card should show
+				allImages[i].setUrl("CardImage/Backcard.jpg");
+			}
+		
 		}
-		else{
-			image.setUrl("CardImage/Backcard.jpg");
-		}
-		if (imgshow.get(1) == 1){
-			image_1.setUrl(newdeck.get(1));
-		}
-		else{
-			image_1.setUrl("CardImage/Backcard.jpg");
-		}
-		if (imgshow.get(2) == 1){
-			image_2.setUrl(newdeck.get(2)); 
-		}
-		else{
-			image_2.setUrl("CardImage/Backcard.jpg");
-		}
-		if (imgshow.get(3) == 1){
-			image_3.setUrl(newdeck.get(3)); 
-		}
-		else{
-			image_3.setUrl("CardImage/Backcard.jpg");
-		}
-		if (imgshow.get(4) == 1){
-			image_4.setUrl(newdeck.get(4)); 
-		}
-		else{
-			image_4.setUrl("CardImage/Backcard.jpg");
-		}
-		if (imgshow.get(5) == 1){
-			image_5.setUrl(newdeck.get(5)); 
-		}
-		else{
-			image_5.setUrl("CardImage/Backcard.jpg");
-		}
-		if (imgshow.get(6) == 1){
-			image_6.setUrl(newdeck.get(6)); 
-		}
-		else{
-			image_6.setUrl("CardImage/Backcard.jpg");
-		}
-		if (imgshow.get(7) == 1){
-			image_7.setUrl(newdeck.get(7)); 
-		}
-		else{
-			image_7.setUrl("CardImage/Backcard.jpg");
-		}
-		if (imgshow.get(8) == 1){
-			image_8.setUrl(newdeck.get(8));
-		}
-		else{
-			image_8.setUrl("CardImage/Backcard.jpg");
-		}
-		if (imgshow.get(9) == 1){
-			image_9.setUrl(newdeck.get(9)); 
-		}
-		else{
-			image_9.setUrl("CardImage/Backcard.jpg");
-		}
-		if (imgshow.get(10) == 1){
-			image_10.setUrl(newdeck.get(10));
-		}
-		else{
-			image_10.setUrl("CardImage/Backcard.jpg");
-		}
-		if (imgshow.get(11) == 1){
-			image_11.setUrl(newdeck.get(11)); 
-		}
-		else{
-			image_11.setUrl("CardImage/Backcard.jpg");
-		}
-		if (imgshow.get(12) == 1){
-			image_12.setUrl(newdeck.get(12)); 
-		}
-		else{
-			image_12.setUrl("CardImage/Backcard.jpg");
-		}
-		if (imgshow.get(13) == 1){
-			image_13.setUrl(newdeck.get(13)); 
-		}
-		else{
-			image_13.setUrl("CardImage/Backcard.jpg");
-		}
-		if (imgshow.get(14) == 1){
-			image_14.setUrl(newdeck.get(14)); 
-		}
-		else{
-			image_14.setUrl("CardImage/Backcard.jpg");
-		}
-		if (imgshow.get(15) == 1){
-			image_15.setUrl(newdeck.get(15)); 
-		}
-		else{
-			image_15.setUrl("CardImage/Backcard.jpg");
-		}
-		if (imgshow.get(16) == 1){
-			image_16.setUrl(newdeck.get(16)); 
-		}
-		else{
-			image_16.setUrl("CardImage/Backcard.jpg");
-		}
-		if (imgshow.get(17) == 1){
-			image_17.setUrl(newdeck.get(17));
-		}
-		else{
-			image_17.setUrl("CardImage/Backcard.jpg");
-		}
-		if (imgshow.get(18) == 1){
-			image_18.setUrl(newdeck.get(18)); 
-		}
-		else{
-			image_18.setUrl("CardImage/Backcard.jpg");
-		}
-		if (imgshow.get(19) == 1){
-			image_19.setUrl(newdeck.get(19)); 
-		}
-		else{
-			image_19.setUrl("CardImage/Backcard.jpg");
-		}
-		CardsShown(click);
+			CardsShown();
+		
+		
 	}
 	
 	/**
-	 * This method takes an two initial decks and combine them by making their values 
-	 * equal to their file names in a separate array
+	 * This method makes a newdeck by taking the values from the deck class and 
+	 * putting their file names in a separate array
 	 */
 	public void render(){
 		
 		String img = "CardImage/star1.jpg";
-		
-		//make two decks of memcards and store in a new array
-		deck.make();
-		for(int i = 0; i<deck.getNumCards(); i++){
-			memdeck.add(deck.getCard(i));
-		}
-		
-		for(int j = memdeck.size(); j < 20; j++){
-			memdeck.add(deck.getCard(j-10));
-		}
-
-	deck.shuffle(memdeck);
-	
-			for(int i = 0; i< memdeck.size(); i++){
+		//make decks of memcards and store in a new array
+		deck.make(); 
+			for(int i = 0; i<deck.getMemDeck().size(); i++){
 			
-				if(memdeck.get(i).toString().equals("Star")){
+				//newdeck is used to store the addresses of each element of memdeck so that is can be printed in the GWT
+				//new deck is not shuffled and should be represented the same way as the deck. 
+				if(deck.getCard(i) == Images.Star) {
 					img = "CardImage/star1.jpg";
 					newdeck.add(img); //add the correct string to the deck
 				}
-				if(memdeck.get(i).toString().equals("Circle")){
+				if(deck.getCard(i) == Images.Circle){
 					img = "CardImage/circle.jpg";
 					newdeck.add(img); //add the correct string to the deck
 				}
-				if(memdeck.get(i).toString().equals("Square")){
+				if(deck.getCard(i) == Images.Square){
 					img = "CardImage/square1.jpg";	
 					newdeck.add(img); //add the correct string to the deck
 				}
-				if(memdeck.get(i).toString().equals("Triangle")){
+				if(deck.getCard(i) == Images.Triangle){
 					img = "CardImage/triangle.jpg";
 					newdeck.add(img); //add the correct string to the deck
 				}
-				if(memdeck.get(i).toString().equals("Arrow")){
+				if(deck.getCard(i) == Images.Arrow){
 					img = "CardImage/arrow.jpg";
 					newdeck.add(img); //add the correct string to the deck
 				}
-				if(memdeck.get(i).toString().equals("Speech")){
+				if(deck.getCard(i) == Images.Speech){
 					img = "CardImage/speech.jpg";
 					newdeck.add(img); //add the correct string to the deck
 				}
-				if(memdeck.get(i).toString().equals("Hexagon")){
+				if(deck.getCard(i) == Images.Hexagon){
 					img = "CardImage/hexagon.jpg";
 					newdeck.add(img); //add the correct string to the deck
 				}
-				if(memdeck.get(i).toString().equals("Light")){
+				if(deck.getCard(i) == Images.Light){
 					img = "CardImage/light.jpg";
 					newdeck.add(img); //add the correct string to the deck
 				}
-				if(memdeck.get(i).toString().equals("Heart")){
+				if(deck.getCard(i) == Images.Heart){
 					img = "CardImage/heart.jpg";
 					newdeck.add(img); //add the correct string to the deck
 				}		
-				if(memdeck.get(i).toString().equals("fourPStar")){
+				if(deck.getCard(i) == Images.fourPStar){
 					img = "CardImage/fourpstar.jpg";
 					newdeck.add(img); //add the correct string to the deck
 				}
@@ -332,41 +214,36 @@ public class MemView extends Composite {
 		
 		
 	}
-	public void CardsShown(int clicks){
+
+	public void CardsShown(){
 		//TODO: if they match, set them invisible
+		boolean samecards = false; 
+		int  imgindex1 = 0, imgindex2=0; 
+		Images img1 = null, img2 = null;
 		
-		if (clicks%2 == 0){
-			boolean samecards = false; 
-			Images img1 = null, img2 = null; 
-			int whichcard = 0, imgindex1 = 0, imgindex2=0 ;
-			//this goes through the imgshow array to see which cards are shown
-			for(int i =0; i<20; i++){
-				if (imgshow.get(i) == 1){
-					if (whichcard == 0){
-						imgindex1= i; 
-						img1 = memdeck.get(imgindex1);
-						whichcard++; 
-					}
-					else if (whichcard==1){
-						imgindex2= i;
-						img2 = memdeck.get(imgindex2);
-						whichcard=0; 
-						samecards = deck.isSame(img1, img2);
-					}
+		if (click%2 == 0){
+			 
+			imgindex1 = imgshow.indexOf(1); 
+			imgindex2 = imgshow.lastIndexOf(1);
+			
+			if ((imgindex1 != -1 && imgindex2 != -1) && (imgindex1 != imgindex2)){
+				img1 = deck.getCard(imgindex1);
+				img2 = deck.getCard(imgindex2); 
+				samecards = deck.isSame(img1, img2);
+				
+				if(samecards == true){
+					allImages[imgindex1].setVisible(false);
+					allImages[imgindex2].setVisible(false);
+					pairsGone++; 		
+					
 				}
 			}
-
+			//flip the cards back over	
+				for (int j = 0; j<20; j++){
+					imgshow.set(j, 0); 
+				}
 		
-			if(samecards == true){
-				allImages[imgindex1].setVisible(false);
-				allImages[imgindex2].setVisible(false);
-				update();
-				}
-			
-				for (int i = 0; i<20; i++){
-					imgshow.set(i, 0); 
-				}
-			
+		}	
 		}
 	}
-}
+
