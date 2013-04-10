@@ -10,13 +10,15 @@ import edu.ycp.cs320.gamingwebsite.shared.MemDeck;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.InlineLabel;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+
 
 
 public class MemView extends Composite {
 		
 		private MemDeck deck; 
 		private	ArrayList<String> newdeck; 
-		private ArrayList<Integer> imgshow;
+		//private ArrayList<Integer> imgshow;
 		private int click;
 		private Image[] allImages; 
 		private Image image;
@@ -40,6 +42,7 @@ public class MemView extends Composite {
 		private Image image_18;
 		private Image image_19;
 		private int pairsGone;
+		private InlineLabel WinLabel;
 	
 
 		
@@ -49,15 +52,20 @@ public class MemView extends Composite {
 		LayoutPanel layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
 		layoutPanel.setSize("798px", "571px");
+		
+		WinLabel = new InlineLabel("CONGRATULATIONS! YOU WON!");
+		WinLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		layoutPanel.add(WinLabel);
+		layoutPanel.setWidgetLeftWidth(WinLabel, 152.0, Unit.PX, 488.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(WinLabel, 169.0, Unit.PX, 149.0, Unit.PX);
+		
 	
 		this.deck = new MemDeck();
 		this.newdeck = new ArrayList<String>(); 
-		this.imgshow = new ArrayList<Integer>();
+		//this.imgshow = new ArrayList<Integer>();
 		this.pairsGone = 0;
 
-		for (int i = 0; i<20; i++){
-			imgshow.add(0); 
-		}
+		deck.resetImgShow(); 
 		
 		this.image = new Image();
 		this.image_1 = new Image();
@@ -113,7 +121,7 @@ public class MemView extends Composite {
 				
 				@Override
 				public void onClick(ClickEvent event) {
-					imgshow.set(imageNum, 1);
+					deck.setImgshow(imageNum, 1);
 					click++; 
 					update();
 				}
@@ -135,14 +143,16 @@ public class MemView extends Composite {
 	public void setModel(MemDeck model) {
 		this.deck = model;
 	}
-	
+	/**
+	 * This updates the game state based on what the user does
+	 */
 	public void update() {
 
 	
 		//give each image object the address so it will display
 		for(int i =0 ; i<allImages.length; i++){
 			//if imgshow is 1, it should show an image
-			if(imgshow.get(i) == 1){
+			if(deck.getImgshow().get(i) == 1){
 				allImages[i].setUrl(newdeck.get(i));
 			}
 			else{//imgshow is 0, so the back card should show
@@ -151,6 +161,13 @@ public class MemView extends Composite {
 		
 		}
 			CardsShown();
+			if(IsFinished()==true){
+				WinLabel.setPixelSize(200, 175);
+				WinLabel.setVisible(true);
+			}
+			else{
+				WinLabel.setVisible(false);
+			}
 		
 		
 	}
@@ -214,17 +231,20 @@ public class MemView extends Composite {
 		
 		
 	}
-
+	
+	/**
+	 * This method determines which cards are showing
+	 */
 	public void CardsShown(){
-		//TODO: if they match, set them invisible
+		//if they match, set them invisible
 		boolean samecards = false; 
 		int  imgindex1 = 0, imgindex2=0; 
 		Images img1 = null, img2 = null;
 		
 		if (click%2 == 0){
 			 
-			imgindex1 = imgshow.indexOf(1); 
-			imgindex2 = imgshow.lastIndexOf(1);
+			imgindex1 = deck.getImgshow().indexOf(1); 
+			imgindex2 = deck.getImgshow().lastIndexOf(1);
 			
 			if ((imgindex1 != -1 && imgindex2 != -1) && (imgindex1 != imgindex2)){
 				img1 = deck.getCard(imgindex1);
@@ -239,11 +259,18 @@ public class MemView extends Composite {
 				}
 			}
 			//flip the cards back over	
-				for (int j = 0; j<20; j++){
-					imgshow.set(j, 0); 
-				}
+				deck.resetImgShow();
 		
 		}	
 		}
+	
+	
+	public boolean IsFinished(){
+		if(pairsGone == (deck.getMemDeck().size()/2)){
+			return true;
+		}
+		else{
+			return false; 
+		}
 	}
-
+}
