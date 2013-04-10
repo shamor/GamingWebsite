@@ -2,23 +2,40 @@ package edu.ycp.cs320.gamingwebsite.shared;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Random;
+
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.RestoreAction;
+
 /***
  * 
- * @author cbechtol, Carl H Howard III(cp3)
+ * @author cbechtol, cody, Sam Hamor
  *
  */
 
 public class MemDeck {
 	private ArrayList<Images> memDeck;
 	private int clicked;
+	private ArrayList<Integer> imgshow;
+	//private boolean exposed;
 	/***
-	 * constuctor
+	 * Constructor
 	 */
 	public MemDeck(){
 		memDeck = new ArrayList<Images>();
+
 		clicked = 0;
-	}	
+		imgshow = new ArrayList<Integer>();
+		for (int i = 0; i<20; i++){
+			imgshow.add(0); 
+		}
+	}
+	/**
+	 * @return the memdeck
+	 */
+	public ArrayList<Images> getMemDeck() {
+		return memDeck;
+	}
+
 	
 	/***
 	 * Creates the deck from
@@ -26,18 +43,22 @@ public class MemDeck {
 	 * to generate the field
 	 */
 	public void make(){
-		
+		resetImgShow();
 		Images[] allImages = Images.values();
 
-		for(int i = 0; i < 10;i++){
+		for(int i = 0; i < allImages.length;i++){
 			memDeck.add(allImages[i]);
 		}
+		for(int i = 0; i < allImages.length;i++){
+			memDeck.add(allImages[i]);
+		}
+		shuffle();
 		
 		for(int i = 0; i < 10; i++){
 			memDeck.add(allImages[i]);
 		}
 
-		shuffle(memDeck);
+		shuffle();
 	}
 	
 	/***
@@ -51,80 +72,89 @@ public class MemDeck {
 	}
 	
 	/***
-	 * shuffles the deck so the
-	 * game is not too easy
+	 * shuffles the deck arrayList
 	 * @return 
 	 */
-	public  void shuffle(ArrayList<Images> memdeck) {
-		
+	public  void shuffle() {
 
 		// FIXME: GWT doesn't emulate this method
-		int cardMovements = 500;
 
 		// This method reverses two cards by flipping two cards based on a random index
 		int cardMovements1 = 1000;
 
-		int numberOfCards = memdeck.size();
+		int numberOfCards = memDeck.size();
 		
-		for(int i = 1; i <= cardMovements1; i++)
-		{
+		for(int k = 1; k <= cardMovements1; k++){
 			//finds a random card and gets its index
-			Images randomCardOne = memdeck.get((int)(Math.random()*numberOfCards));
-			int indexOne = memdeck.indexOf(randomCardOne);
+			Images randomCardOne = memDeck.get((int)(Math.random()*numberOfCards));
+			int indexOne = memDeck.indexOf(randomCardOne);
 			
-			Images randomCardTwo = memdeck.get((int)(Math.random()*numberOfCards));
-			int indexTwo = memdeck.indexOf(randomCardTwo);
+			Images randomCardTwo = memDeck.get((int)(Math.random()*numberOfCards));
+			int indexTwo = memDeck.indexOf(randomCardTwo);
 			
 			//flips the position of the two cards
-			memdeck.set(indexOne, randomCardTwo);
-			memdeck.set(indexTwo, randomCardOne);
+			memDeck.set(indexOne, randomCardTwo);
+			memDeck.set(indexTwo, randomCardOne);	
 		}
-		
-		
+		// See: http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
+        //   exchange a[j] and a[i]
+		Random r = new Random();
+		for (int i = memDeck.size() - 1; i > 0; i--) {
+			int j = r.nextInt(i+1);
+			Images tmp = memDeck.get(j);
+			memDeck.set(j, memDeck.get(i));
+			memDeck.set(i, tmp);
+		}
 	}
+	
 	/**
-	 * 
+	 *returns a card from the deck 
 	 * @param i
 	 * @return the I the card of the deck
 	 */
 	public Images getCard(int i){
 		return memDeck.get(i);
 	}
-	/**
-	 * 
-	 * @param index
-	 * @return the card removed from the deck
-	 * and that card will be added to the field
-	 */
-//	public ArrayList<MemCard> removeCard(int index){
-//		ArrayList<MemCard> removecard = new ArrayList<MemCard>();
-//		for(int i = 0; i < removecard.size(); i++){
-//			removecard.add(memDeck.get(i));
-//		}
-//		for(int i = 0; i < removecard.size(); i++){
-//			memDeck.remove(memDeck.size()-1);
-//		}
-//		return removecard;
-//	}
-	
+
 	
 	/**
 	 * Checks to see if two cards are equal to each other by comparing the cards' images.
-	 * 
 	 * @param card1: The first card to compare.
 	 * @param card2: The second card to compare.
-	 * 
 	 * @return true: Returns true if cards are equal, false if otherwise.
 	 */
-	public boolean isSame(Images card1, Images card2)
-	{
-		if(card1.compareTo(card2)== 0){
+	public boolean isSame(Images card1, Images card2){
+	
+		if(card1.equals(card2)){
             return true;
-	}
+		}
         else{
             return false;
         }
 	}
 	
+	/**
+	 * Set whether the image will be showing
+	 * @param index index of the image showing
+	 * @param value a 0 if the card is not showing, 1 if it is showing
+	 */
+	public void setImgshow(int index, Integer value){
+		imgshow.set(index, value);
+	}
+
+	/**
+	 * @return and array of 0 and 1 which determines which cards are showing
+	 */
+	public ArrayList<Integer> getImgshow() {
+		return imgshow;
+	}
 	
+	/**
+	 * Turns all elements in imgshow back to zeros.
+	 */
+	public void resetImgShow(){
+		for (int i = 0; i<memDeck.size(); i++){
+			imgshow.set(i, 0); 
+		}
+	}
 }
