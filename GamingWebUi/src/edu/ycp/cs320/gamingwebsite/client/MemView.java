@@ -384,7 +384,7 @@ public class MemView extends Composite {
 			// resetting the clicks
 			clicks = 0;
 			// checking if equal
-			if(deck.isSame(memdeck.get(imgindex1), memdeck.get(imgindex2))){
+			if(deck.isSame(memdeck.get(imgindex1), memdeck.get(imgindex2)) && (imgindex1 != imgindex2)){
 				allImages[imgindex1].setVisible(false);
 				allImages[imgindex2].setVisible(false);
 			} else{
