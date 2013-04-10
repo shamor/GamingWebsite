@@ -5,8 +5,10 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.Image;
-import edu.ycp.cs320.gamingwebsite.shared.Images;
-import edu.ycp.cs320.gamingwebsite.shared.MemDeck;
+
+import edu.ycp.cs320.gamingwebsite.shared.memory.Images;
+import edu.ycp.cs320.gamingwebsite.shared.memory.MemDeck;
+
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.InlineLabel;
