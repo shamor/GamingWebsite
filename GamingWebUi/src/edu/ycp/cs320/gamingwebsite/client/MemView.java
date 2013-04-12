@@ -6,8 +6,7 @@ import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.Image;
 
-import edu.ycp.cs320.gamingwebsite.shared.memory.Images;
-import edu.ycp.cs320.gamingwebsite.shared.memory.MemDeck;
+import edu.ycp.cs320.gamingwebsite.shared.memory.*;
 
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -221,7 +220,6 @@ public class MemView extends Composite {
 	 * putting their file names in a separate array
 	 */
 	public void render(){
-		String img;
 		
 		//make two decks of memcards and store in a new array
 		deck.make();
