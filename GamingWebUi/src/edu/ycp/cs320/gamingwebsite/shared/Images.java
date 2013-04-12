@@ -11,6 +11,4 @@ package edu.ycp.cs320.gamingwebsite.shared;
  */
 public enum Images {
 	    Star, Circle, Square, Triangle, Arrow, Speech, Hexagon, Light, Heart, fourPStar; 
-	    
-	  
-	}
+}

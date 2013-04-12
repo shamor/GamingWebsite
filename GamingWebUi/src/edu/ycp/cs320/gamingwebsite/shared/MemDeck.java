@@ -20,11 +20,12 @@ public class MemDeck {
 	 */
 	public MemDeck(){
 		memDeck = new ArrayList<Images>();
-
 		imgshow = new ArrayList<Integer>();
+		
 		for (int i = 0; i<20; i++){
 			imgshow.add(0); 
 		}
+		
 	}
 	/**
 	 * @return the memdeck
@@ -41,6 +42,7 @@ public class MemDeck {
 	 */
 	public void make(){
 		resetImgShow();
+		
 		Images[] allImages = Images.values();
 
 		for(int i = 0; i < allImages.length;i++){
@@ -49,12 +51,6 @@ public class MemDeck {
 		for(int i = 0; i < allImages.length;i++){
 			memDeck.add(allImages[i]);
 		}
-		shuffle();
-		
-		for(int i = 0; i < 10; i++){
-			memDeck.add(allImages[i]);
-		}
-
 		shuffle();
 	}
 	
@@ -150,8 +146,9 @@ public class MemDeck {
 	 * Turns all elements in imgshow back to zeros.
 	 */
 	public void resetImgShow(){
-		for (int i = 0; i<memDeck.size(); i++){
+		for (int i = 0; i < memDeck.size(); i++){
 			imgshow.set(i, 0); 
 		}
+
 	}
 }

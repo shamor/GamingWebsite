@@ -1,18 +1,24 @@
 package edu.ycp.cs320.gamingwebsite.client;
 
 import java.util.ArrayList;
+
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.Image;
 
-import edu.ycp.cs320.gamingwebsite.shared.Images;
-import edu.ycp.cs320.gamingwebsite.shared.MemDeck;
+import edu.ycp.cs320.gamingwebsite.shared.*;
+
 
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.i18n.client.HasDirection.Direction;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.NumberLabel;
+import com.google.gwt.user.client.ui.Button;
 
 
 
@@ -20,7 +26,6 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 public class MemView extends Composite {
 		
 		private MemDeck deck;
-		private ArrayList<Images> memdeck; 
 		private	ArrayList<String> newdeck; 
 		private int click;
 		private Image[] allImages; 
@@ -45,9 +50,10 @@ public class MemView extends Composite {
 		private Image image_18;
 		private Image image_19;
 
-		private ArrayList<Integer> imgshow;
 		private int pairsGone;
 		private InlineLabel WinLabel;
+		private Button pg;
+		static final int refreshRate = 25;
 
 		
 	
@@ -60,30 +66,29 @@ public class MemView extends Composite {
 
 		layoutPanel.setSize("798px", "571px");
 		
-		WinLabel = new InlineLabel("CONGRATULATIONS! YOU WON!");
-		// this is the .css name that it is under.
+		// winning label to the game.
+		WinLabel = new InlineLabel("CONGRATULATIONS! \r\nYOU WON!");
 		WinLabel.setStyleName("win");
 		WinLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		layoutPanel.add(WinLabel);
 		layoutPanel.setWidgetLeftWidth(WinLabel, 115.0, Unit.PX, 527.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(WinLabel, 169.0, Unit.PX, 149.0, Unit.PX);
 		
+		pg = new Button("Play again button");
+		pg.setStyleName("Playagain_button");
+		pg.setText("Play again?");
+		layoutPanel.add(pg);
+		layoutPanel.setWidgetLeftWidth(pg, 313.0, Unit.PX, 118.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(pg, 324.0, Unit.PX, 58.0, Unit.PX);
 	
 		this.deck = new MemDeck();
 		this.newdeck = new ArrayList<String>(); 
-		this.imgshow = new ArrayList<Integer>();
-		this.memdeck = new ArrayList<Images>();
-		
-		for (int i = 0; i<20; i++){
-			imgshow.add(0); 
-		}
 		
 		// this will initialize all 20 images to the gwt and place them evenally
 		//this.imgshow = new ArrayList<Integer>();
 		this.pairsGone = 0;
 
 		deck.resetImgShow(); 
-		
 		
 		// this will initialize all 20 images to the gwt and place them evenally
 		this.image = new Image();
@@ -166,34 +171,6 @@ public class MemView extends Composite {
 	 * This updates the game state based on what the user does
 	 */
 	public void update() {
-		
-		//implement later the if statement
-		//make a method for if the card is clicked and create a count for how many cards are clicked
-
-		image_1.setUrl(newdeck.get(1));
-		image_2.setUrl(newdeck.get(2)); 
-		image_3.setUrl(newdeck.get(3)); 
-		image_4.setUrl(newdeck.get(4)); 
-		image_5.setUrl(newdeck.get(5)); 
-		image_6.setUrl(newdeck.get(6)); 
-		image_7.setUrl(newdeck.get(7)); 
-		image_8.setUrl(newdeck.get(8)); 
-		image_9.setUrl(newdeck.get(9)); 
-		image_10.setUrl(newdeck.get(10)); 
-		image_11.setUrl(newdeck.get(11)); 
-		image_12.setUrl(newdeck.get(12)); 
-		image_13.setUrl(newdeck.get(13)); 
-		image_14.setUrl(newdeck.get(14)); 
-		image_15.setUrl(newdeck.get(15)); 
-		image_16.setUrl(newdeck.get(16)); 
-		image_17.setUrl(newdeck.get(17)); 
-		image_18.setUrl(newdeck.get(18)); 
-		image_19.setUrl(newdeck.get(19));
-		
-		if (imgshow.get(0) == 1){
-			image.setUrl(newdeck.get(0));
-		}
-	
 		//give each image object the address so it will display
 		for(int i =0 ; i<allImages.length; i++){
 			//if imgshow is 1, it should show an image
@@ -205,101 +182,88 @@ public class MemView extends Composite {
 			}
 		
 		}
+		
 		CardsShown();
-		if(IsFinished()==true){
+		
+		if(IsFinished()){
 			WinLabel.setPixelSize(200, 175);
 			WinLabel.setVisible(true);
+			pg.setVisible(true);
+			pg.addClickHandler(new ClickHandler() {
+				
+				@Override
+				public void onClick(ClickEvent event) {
+					deck.resetImgShow();
+					deck.make();
+					pairsGone = 0;
+					click = 0;
+				}
+			});
 		}
 		else{
 			WinLabel.setVisible(false);
+			pg.setVisible(false);
 		}
 	}
-	
 	/**
 	 * This method makes a newdeck by taking the values from the deck class and 
 	 * putting their file names in a separate array
 	 */
 	public void render(){
-		
 		//make two decks of memcards and store in a new array
 		deck.make();
-		for(int i = 0; i<deck.getNumCards(); i++){
-			memdeck.add(deck.getCard(i));
-		}
-	
-		for(int j = 0; j< memdeck.size(); j++){
-			String img1 = "CardImage/star1.jpg";
+
+		String img1;
 		//make decks of memcards and store in a new array
 			
-			for(int i = 0; i<deck.getMemDeck().size(); i++){
-				//newdeck is used to store the addresses of each element of memdeck so that is can be printed in the GWT
-				//new deck is not shuffled and should be represented the same way as the deck. 
-				if(deck.getCard(i) == Images.Star) {
-					img1 = "CardImage/star1.jpg";
-					newdeck.add(img1); //add the correct string to the deck
-				}
-				else if(memdeck.get(j) == Images.Circle){
-					if(deck.getCard(i) == Images.Circle){
-	
-						img1 = "CardImage/circle.jpg";
-						newdeck.add(img1); //add the correct string to the deck
-					}
-				}
+		for(int i = 0; i<deck.getMemDeck().size(); i++){
+			//newdeck is used to store the addresses of each element of memdeck so that is can be printed in the GWT
+			//new deck is not shuffled and should be represented the same way as the deck. 
+			if(deck.getCard(i) == Images.Star) {
+				img1 = "CardImage/star1.jpg";
+				newdeck.add(img1); //add the correct string to the deck
+			}
+			else if(deck.getCard(i) == Images.Circle){
+				img1 = "CardImage/circle.jpg";
+				newdeck.add(img1); //add the correct string to the deck
+			}
+			else if(deck.getCard(i) == Images.Square){
+				img1 = "CardImage/square1.jpg";	
+				newdeck.add(img1); //add the correct string to the deck
 
-				else if(memdeck.get(j) == Images.Square){
-					if(deck.getCard(i) == Images.Square){
-						img1 = "CardImage/square1.jpg";	
-						newdeck.add(img1); //add the correct string to the deck
-					}
-				}
+			}
+			else if(deck.getCard(i) == Images.Triangle){
+				img1 = "CardImage/triangle.jpg";
+				newdeck.add(img1); //add the correct string to the deck
 
-				else if(memdeck.get(j) == Images.Triangle){
-					if(deck.getCard(i) == Images.Triangle){
-						img1 = "CardImage/triangle.jpg";
-						newdeck.add(img1); //add the correct string to the deck
-					}
-				}
+			}
+			else if(deck.getCard(i) == Images.Arrow){
+				img1 = "CardImage/arrow.jpg";
+				newdeck.add(img1); //add the correct string to the deck
+			}
 
-				else if(memdeck.get(j) == Images.Arrow){
-					if(deck.getCard(i) == Images.Arrow){
-						img1 = "CardImage/arrow.jpg";
-						newdeck.add(img1); //add the correct string to the deck
-					}
-				}
+			else if(deck.getCard(i) == Images.Speech){
+				img1 = "CardImage/speech.jpg";
+				newdeck.add(img1); //add the correct string to the deck
+			}
+			else if(deck.getCard(i) == Images.Hexagon){
+				img1 = "CardImage/hexagon.jpg";
+				newdeck.add(img1); //add the correct string to the deck
+			}
 
-				else if(memdeck.get(j) == Images.Speech){
-					if(deck.getCard(i) == Images.Speech){
-						img1 = "CardImage/speech.jpg";
-						newdeck.add(img1); //add the correct string to the deck
-					}
-				}
-				else if(memdeck.get(j) == Images.Hexagon){
-					if(deck.getCard(i) == Images.Hexagon){
-						img1 = "CardImage/hexagon.jpg";
-						newdeck.add(img1); //add the correct string to the deck
-					}
-				}
+			else if(deck.getCard(i) == Images.Light){
+				img1 = "CardImage/light.jpg";
+				newdeck.add(img1); //add the correct string to the deck
+			}
 
-				else if(memdeck.get(j) == Images.Light){
-					if(deck.getCard(i) == Images.Light){
-						img1 = "CardImage/light.jpg";
-						newdeck.add(img1); //add the correct string to the deck
-					}
-				}
-
-				else if(memdeck.get(j) == Images.Heart){
-					if(deck.getCard(i) == Images.Heart){
-						img1 = "CardImage/heart.jpg";
-						newdeck.add(img1); //add the correct string to the deck
-					}
-				}	
-				
-				else if(memdeck.get(j) == Images.fourPStar){
-					if(deck.getCard(i) == Images.fourPStar){
-						img1 = "CardImage/fourpstar.jpg";
-						newdeck.add(img1); //add the correct string to the deck
-					}
-				}
+			else if(deck.getCard(i) == Images.Heart){
+				img1 = "CardImage/heart.jpg";
+				newdeck.add(img1); //add the correct string to the deck
+			}	
+			
+			else if(deck.getCard(i) == Images.fourPStar){
+				img1 = "CardImage/fourpstar.jpg";
+				newdeck.add(img1); //add the correct string to the deck
 			}
 		}
 	}
@@ -322,6 +286,7 @@ public class MemView extends Composite {
 			if ((imgindex11 != -1 && imgindex21 != -1) && (imgindex11 != imgindex21)){
 				img1 = deck.getCard(imgindex11);
 				img2 = deck.getCard(imgindex21); 
+				
 				samecards = deck.isSame(img1, img2);
 				
 				if(samecards == true){
@@ -333,33 +298,8 @@ public class MemView extends Composite {
 			}
 			//flip the cards back over	
 			deck.resetImgShow();
-				
-		if(click == 0){
-			// declaring imgindex1
-			imgindex11 = imgshow.indexOf(1);
-		}
-		else if (click == 1){  
-			imgindex21 = imgshow.lastIndexOf(1);
-			// if index1 is the same as index2
-			if(imgindex11 == imgindex21){
-				imgindex21 = imgshow.indexOf(1);
-			}
-			// resetting the clicks
-			click = 0;
-			// checking if equal
-			if(deck.isSame(memdeck.get(imgindex11), memdeck.get(imgindex21)) && (imgindex11 != imgindex21)){
-				allImages[imgindex11].setVisible(false);
-				allImages[imgindex21].setVisible(false);
-			} else{
-				;
-			}
-			
-		}else{
-			;
-		}	
 		}
 	}
-	
 	
 	public boolean IsFinished(){
 		if(pairsGone == (deck.getMemDeck().size()/2)){

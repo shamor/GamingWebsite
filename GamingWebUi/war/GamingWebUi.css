@@ -7,5 +7,11 @@
 	text-decoration: underline;
 	background-color: White;
 }
+Playagain_button {
+	font-size: 36px;
+	text-decoration: blink;
+	background-color: Yellow;
+	background-image: none;
+}
 
 
