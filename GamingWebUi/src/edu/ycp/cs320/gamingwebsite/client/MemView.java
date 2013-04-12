@@ -2,6 +2,7 @@ package edu.ycp.cs320.gamingwebsite.client;
 
 import java.util.ArrayList;
 
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.dom.client.Style.Unit;
@@ -63,12 +64,13 @@ public class MemView extends Composite {
 		layoutPanel.setSize("798px", "571px");
 		
 		// winning label to the game.
-		WinLabel = new InlineLabel("CONGRATULATIONS! \r\nYOU WON!");
-		WinLabel.setStyleName("win");
+		WinLabel = new InlineLabel("CONGRATULATIONS! YOU WON!");
+		WinLabel.setStyleName("BigMeassage");
+		WinLabel.setDirectionEstimator(true);
 		WinLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		layoutPanel.add(WinLabel);
-		layoutPanel.setWidgetLeftWidth(WinLabel, 115.0, Unit.PX, 527.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(WinLabel, 169.0, Unit.PX, 149.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(WinLabel, 207.0, Unit.PX, 488.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(WinLabel, 191.0, Unit.PX, 149.0, Unit.PX);
 		
 		pg = new Button("Play again button");
 		pg.setStyleName("Playagain_button");
@@ -284,10 +286,22 @@ public class MemView extends Composite {
 				img2 = deck.getCard(imgindex21); 
 				
 				samecards = deck.isSame(img1, img2);
+				//Add wait of 1 second here
+				
+				final int hideIndex1 = imgindex11;
+				final int hideIndex2 = imgindex21;
 				
 				if(samecards == true){
 					allImages[imgindex11].setVisible(false);
 					allImages[imgindex21].setVisible(false);
+					new Timer() {
+						@Override
+						public void run() {
+							allImages[hideIndex1].setVisible(false);
+							allImages[hideIndex2].setVisible(false);
+						}
+					}.schedule(500);
+					
 					pairsGone++; 		
 					
 				}
