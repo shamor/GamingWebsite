@@ -62,9 +62,11 @@ public class MemView extends Composite {
 		layoutPanel.setSize("798px", "571px");
 		
 		WinLabel = new InlineLabel("CONGRATULATIONS! YOU WON!");
+		// this is the .css name that it is under.
+		WinLabel.setStyleName("win");
 		WinLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		layoutPanel.add(WinLabel);
-		layoutPanel.setWidgetLeftWidth(WinLabel, 152.0, Unit.PX, 488.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(WinLabel, 115.0, Unit.PX, 527.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(WinLabel, 169.0, Unit.PX, 149.0, Unit.PX);
 		
 	

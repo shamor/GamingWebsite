@@ -8,11 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.ycp.cs320.pizza.server.DBUtil;
-import edu.ycp.cs320.pizza.server.ITransaction;
-import edu.ycp.cs320.pizza.server.DerbyDatabase.DatabaseConnection;
-import edu.ycp.cs320.pizza.shared.Order;
-import edu.ycp.cs320.pizza.shared.OrderReceipt;
+import edu.ycp.cs320.gamingwebsite.shared.*;
+
 
 public class Database implements IDatabase{
 	
@@ -86,9 +83,9 @@ public class Database implements IDatabase{
 	}
 	
 	void createTables() throws SQLException {
-		//databaseRun(new ITransaction<Boolean>() {
-			//@Override
-			//public Boolean run(Connection conn) throws SQLException {
+		databaseRun(new ITransaction<Boolean>() {
+			@Override
+			public Boolean run(Connection conn) throws SQLException {
 				
 				PreparedStatement stmt = null;
 				
@@ -96,8 +93,8 @@ public class Database implements IDatabase{
 					stmt = conn.prepareStatement(
 							"create table order_receipts (" +
 							"  id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
-							"  userinfo VARCHAR(200) NOT NULL, " +
-							"  price DECIMAL(10,2) " +
+							"  user VARCHAR(200) NOT NULL, " +
+							"  password VARCHAR(200) NOT NULL " +
 							")"
 					);
 					
