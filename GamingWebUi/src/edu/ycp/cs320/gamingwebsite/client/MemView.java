@@ -2,7 +2,6 @@ package edu.ycp.cs320.gamingwebsite.client;
 
 import java.util.ArrayList;
 
-import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.dom.client.Style.Unit;
@@ -13,11 +12,8 @@ import edu.ycp.cs320.gamingwebsite.shared.*;
 
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.i18n.client.HasDirection.Direction;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.NumberLabel;
 import com.google.gwt.user.client.ui.Button;
 
 
