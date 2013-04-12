@@ -76,7 +76,7 @@ public class MemView extends Composite {
 		pg.setStyleName("Playagain_button");
 		pg.setText("Play again?");
 		layoutPanel.add(pg);
-		layoutPanel.setWidgetLeftWidth(pg, 313.0, Unit.PX, 118.0, Unit.PX);
+		layoutPanel.setWidgetRightWidth(pg, 367.0, Unit.PX, 118.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(pg, 324.0, Unit.PX, 58.0, Unit.PX);
 	
 		this.deck = new MemDeck();
