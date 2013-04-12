@@ -15,7 +15,6 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane.RestoreAction;
 
 public class MemDeck {
 	private ArrayList<Images> memDeck;
-	private int clicked;
 	private ArrayList<Integer> imgshow;
 	//private boolean exposed;
 	/***
@@ -24,7 +23,6 @@ public class MemDeck {
 	public MemDeck(){
 		memDeck = new ArrayList<Images>();
 
-		clicked = 0;
 		imgshow = new ArrayList<Integer>();
 		for (int i = 0; i<20; i++){
 			imgshow.add(0); 
