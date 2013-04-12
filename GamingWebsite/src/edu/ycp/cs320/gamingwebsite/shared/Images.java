@@ -1,4 +1,4 @@
-package edu.ycp.cs320.gamingwebsite.shared.memory;
+package edu.ycp.cs320.gamingwebsite.shared;
 
 
 

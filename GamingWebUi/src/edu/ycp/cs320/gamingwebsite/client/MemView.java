@@ -6,8 +6,8 @@ import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.Image;
 
-import edu.ycp.cs320.gamingwebsite.shared.memory.Images;
-import edu.ycp.cs320.gamingwebsite.shared.memory.MemDeck;
+import edu.ycp.cs320.gamingwebsite.shared.Images;
+import edu.ycp.cs320.gamingwebsite.shared.MemDeck;
 
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -19,9 +19,9 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 
 public class MemView extends Composite {
 		
-		private MemDeck deck; 
+		private MemDeck deck;
+		private ArrayList<Images> memdeck; 
 		private	ArrayList<String> newdeck; 
-		//private ArrayList<Integer> imgshow;
 		private int click;
 		private Image[] allImages; 
 		private Image image;
@@ -46,7 +46,6 @@ public class MemView extends Composite {
 		private Image image_19;
 
 		private ArrayList<Integer> imgshow;
-		private ArrayList<Images> memdeck;
 		private int pairsGone;
 		private InlineLabel WinLabel;
 

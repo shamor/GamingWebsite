@@ -1,10 +1,8 @@
-package edu.ycp.cs320.gamingwebsite.shared.memory;
+package edu.ycp.cs320.gamingwebsite.shared;
 
 
 import java.util.ArrayList;
 import java.util.Random;
-
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.RestoreAction;
 
 
 /***

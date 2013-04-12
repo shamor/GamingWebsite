@@ -1,4 +1,4 @@
-package edu.ycp.cs320.gamingwebsite.shared.Log;
+package edu.ycp.cs320.gamingwebsite.shared;
 
 import java.io.Serializable;
 
