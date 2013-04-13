@@ -17,11 +17,7 @@ import com.google.gwt.user.client.ui.RootPanel;
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class GamingWebUi implements EntryPoint {
-//	private Canvas canvas; 
-//	private int mousePosx;
-//	private int mousePosy;
-//	private Context2d context; 
-//	private ImageElement image; 
+
 	
 	 //timer refresh rate, in milliseconds   
 	static final int refreshRate = 25; 
@@ -32,10 +28,7 @@ public class GamingWebUi implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		
-//		canvas = Canvas.createIfSupported();   
-//		canvas.setSize("662px", "532px");
-//		canvas.setCoordinateSpaceWidth(662);
-//		canvas.setCoordinateSpaceHeight(532);
+
 		
 		MemView view = new MemView();
 //		image = (ImageElement) new Image("CardImage/star1.jpg").getElement().cast(); 
