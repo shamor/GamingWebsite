@@ -12,6 +12,15 @@ public interface IPublisher {
 	public abstract void subscribe(Object key, ISubscriber subscriber);
 	
 	/**
+	 * Called by a Subscriber to subscribe to several types of events published by a Publisher.
+	 * 
+	 * @param key        array of keys indicating types of events Subscriber wants to be notified of
+	 * @param subscriber the Subscriber
+	 * @param registrar  the SubscriptionRegistrar that will keep track of subscriptions
+	 */
+	public abstract void subscribeToAll(Object[] keyList, ISubscriber subscriber);
+	
+	/**
 	 * Called by a Subscriber to unsubscribe from a particular type of event.
 	 * 
 	 * @param key        key indicating type of event Subscriber no longer wants to be notified of
@@ -33,5 +42,6 @@ public interface IPublisher {
 	 * @param hint  object with additional information about the event
 	 */
 	public abstract void notifySubscribers(Object key, Object hint);
+
 	
 }
