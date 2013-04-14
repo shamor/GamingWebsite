@@ -10,11 +10,10 @@ import java.util.List;
 
 import edu.ycp.cs320.gamingwebsite.shared.*;
 
-
 public class Database implements IDatabase{
 	
 	// Datastore is the location of where we will put our data at.
-	private static final String DATASTORE = null;
+	private static final String DATASTORE = "/home/git/GamingWebsite";
 
 	// making sure that the driver is running properly
 	static { 
