@@ -51,7 +51,10 @@ public class GamingWebUi implements EntryPoint {
 //			};    
 //			timer.scheduleRepeating(refreshRate); 
 	} 
+	
+	public void usingView(){
 		
+	}
 	
 	private void Update() {
 		// TODO Auto-generated method stub this is where cody says memgame is going to go
