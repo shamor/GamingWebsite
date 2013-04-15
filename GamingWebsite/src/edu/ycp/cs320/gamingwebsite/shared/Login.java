@@ -2,8 +2,7 @@ package edu.ycp.cs320.gamingwebsite.shared;
 
 import java.io.Serializable;
 
-import edu.ycp.cs320.pizza.shared.IPublisher;
-import edu.ycp.cs320.pizza.shared.PizzaPriceController;
+import edu.ycp.cs320.gamingwebsite.shared.IPublisher;
 
 /**
  * This class should include any instructions for the user logging in
