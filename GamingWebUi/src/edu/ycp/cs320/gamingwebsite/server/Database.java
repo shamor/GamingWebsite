@@ -107,6 +107,18 @@ public class Database implements IDatabase{
 			}
 		});
 	}
+
+	@Override
+	public List<Login> getLogin() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Login findLogin(String username, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 //	// user names

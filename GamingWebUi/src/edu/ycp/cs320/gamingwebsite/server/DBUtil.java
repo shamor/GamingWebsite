@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBUtil {
-	private static final IDatabase theInstance = new Database();
+	private static final IDatabase theInstance = new FakeDatabase(); //new Database();
 	
 	public static IDatabase instance() {
 		return theInstance;

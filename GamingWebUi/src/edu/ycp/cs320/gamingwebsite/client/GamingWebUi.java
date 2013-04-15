@@ -30,9 +30,12 @@ public class GamingWebUi implements EntryPoint {
 		
 
 		
-		MemView view = new MemView();
+		//MemView view = new MemView();
 //		image = (ImageElement) new Image("CardImage/star1.jpg").getElement().cast(); 
 //		RootPanel.get().add(canvas, 10, 0);
+		
+		loginView view = new loginView();
+		
 		RootLayoutPanel rootLayoutPanel = RootLayoutPanel.get();
 		rootLayoutPanel.add(view);
 		RootLayoutPanel.get().setWidgetTopBottom(view, 0.0, Unit.PX, 0.0, Unit.PX);
