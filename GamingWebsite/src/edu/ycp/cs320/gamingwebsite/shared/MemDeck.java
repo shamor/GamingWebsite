@@ -126,6 +126,8 @@ public class MemDeck {
         }
 	}
 	
+	
+	
 	/**
 	 * Set whether the image will be showing
 	 * @param index index of the image showing

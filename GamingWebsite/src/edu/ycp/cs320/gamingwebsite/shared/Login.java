@@ -2,6 +2,9 @@ package edu.ycp.cs320.gamingwebsite.shared;
 
 import java.io.Serializable;
 
+import edu.ycp.cs320.pizza.shared.IPublisher;
+import edu.ycp.cs320.pizza.shared.PizzaPriceController;
+
 /**
  * This class should include any instructions for the user logging in
  * requires, login, logout, and password instructions
@@ -13,7 +16,7 @@ public class Login implements Serializable{
 	
 	private int id;
 	private String user;
-	private String password;
+	private int score;
 	
 	public Login() {
 		
@@ -35,11 +38,17 @@ public class Login implements Serializable{
 		return user;
 	}
 	
-	public void setPassword(String password){
-		this.password = password;
+	public int getScore() {
+		return score;
 	}
 	
-	public String getPassword() {
-		return password;
+	public void setScore(int score) {
+		this.score = score;
 	}
+	
+//	@Override
+//	public void eventOccurred(Object key, IPublisher publisher, Object hint) {
+//		PizzaPriceController controller = new PizzaPriceController();
+//		setPrice(controller.calcPrice(pizza));
+//	}
 }

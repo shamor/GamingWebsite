@@ -69,24 +69,30 @@ public class MemView extends Composite {
 		WinLabel.setDirectionEstimator(true);
 		WinLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		layoutPanel.add(WinLabel);
-		layoutPanel.setWidgetLeftWidth(WinLabel, 207.0, Unit.PX, 488.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(WinLabel, 169.0, Unit.PX, 488.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(WinLabel, 191.0, Unit.PX, 149.0, Unit.PX);
 		
+		// play again button
 		pg = new Button("Play again button");
+		pg.addClickHandler(new ClickHandler() {	
+			public void onClick(ClickEvent event) {
+				render();
+				update();
+			}
+		});
 		pg.setStyleName("Playagain_button");
 		pg.setText("Play again?");
 		layoutPanel.add(pg);
-		layoutPanel.setWidgetRightWidth(pg, 367.0, Unit.PX, 118.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(pg, 324.0, Unit.PX, 58.0, Unit.PX);
+		layoutPanel.setWidgetRightWidth(pg, 331.0, Unit.PX, 118.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(pg, 296.0, Unit.PX, 58.0, Unit.PX);
 	
 		this.deck = new MemDeck();
 		this.newdeck = new ArrayList<String>(); 
 		
+		deck.resetImgShow();
 		// this will initialize all 20 images to the gwt and place them evenally
 		//this.imgshow = new ArrayList<Integer>();
 		this.pairsGone = 0;
-
-		deck.resetImgShow(); 
 		
 		// this will initialize all 20 images to the gwt and place them evenally
 		this.image = new Image();
@@ -165,6 +171,7 @@ public class MemView extends Composite {
 	public void setModel(MemDeck model) {
 		this.deck = model;
 	}
+	
 	/**
 	 * This updates the game state based on what the user does
 	 */
@@ -187,20 +194,11 @@ public class MemView extends Composite {
 			WinLabel.setPixelSize(200, 175);
 			WinLabel.setVisible(true);
 			pg.setVisible(true);
-			pg.addClickHandler(new ClickHandler() {
-				
-				@Override
-				public void onClick(ClickEvent event) {
-					deck.resetImgShow();
-					deck.make();
-					pairsGone = 0;
-					click = 0;
-				}
-			});
+			
 		}
 		else{
 			WinLabel.setVisible(false);
-			pg.setVisible(false);
+			pg.setVisible(true);
 		}
 	}
 	/**
@@ -209,8 +207,13 @@ public class MemView extends Composite {
 	 */
 	public void render(){
 		//make two decks of memcards and store in a new array
+		
+		
 		deck.make();
-
+		
+		click = 0;
+		pairsGone = 0;
+		
 		String img1;
 		//make decks of memcards and store in a new array
 			

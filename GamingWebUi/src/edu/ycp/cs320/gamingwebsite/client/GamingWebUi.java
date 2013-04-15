@@ -58,6 +58,5 @@ public class GamingWebUi implements EntryPoint {
 	
 	private void Update() {
 		// TODO Auto-generated method stub this is where cody says memgame is going to go
-		
 	} 
 }
