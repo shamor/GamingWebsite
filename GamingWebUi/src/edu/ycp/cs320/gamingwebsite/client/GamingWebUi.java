@@ -43,7 +43,7 @@ public class GamingWebUi implements EntryPoint {
 			RootLayoutPanel.get().setWidgetLeftRight(view, 0.0, Unit.PX, 0.0, Unit.PX);
 			
 			}else{
-				
+				//we are re commitng
 			rootLayoutPanel.add(view2);
 			RootLayoutPanel.get().setWidgetTopBottom(view2, 0.0, Unit.PX, 0.0, Unit.PX);
 			RootLayoutPanel.get().setWidgetLeftRight(view2, 0.0, Unit.PX, 0.0, Unit.PX);
