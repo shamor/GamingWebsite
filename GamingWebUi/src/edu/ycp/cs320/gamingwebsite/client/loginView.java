@@ -20,8 +20,10 @@ public class loginView extends Composite /*implements ISubscriber*/{
 	private TextBox usernameTextBox;
 	private TextBox passwordTextBox;
 	private Label errorLabel;
+	private boolean pages;
 	
 	public loginView() {
+		this.pages = false;
 		
 		LayoutPanel layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
@@ -33,6 +35,7 @@ public class loginView extends Composite /*implements ISubscriber*/{
 				handleSignInClicked();
 			}
 		});
+		
 		btnNewButton.setText("Sign in");
 		layoutPanel.add(btnNewButton);
 		layoutPanel.setWidgetLeftWidth(btnNewButton, 270.0, Unit.PX, 81.0, Unit.PX);
@@ -67,7 +70,7 @@ public class loginView extends Composite /*implements ISubscriber*/{
 		layoutPanel.setWidgetLeftWidth(lblGamingWebSite, 162.0, Unit.PX, 271.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblGamingWebSite, 53.0, Unit.PX, 49.0, Unit.PX);
 		
-		errorLabel = new Label("New label");
+		errorLabel = new Label();
 		layoutPanel.add(errorLabel);
 		layoutPanel.setWidgetLeftWidth(errorLabel, 20.0, Unit.PX, 566.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(errorLabel, 341.0, Unit.PX, 23.0, Unit.PX);
@@ -82,10 +85,12 @@ public class loginView extends Composite /*implements ISubscriber*/{
 			@Override
 			public void onSuccess(Login result) {
 				if (result == null) {
-					errorLabel.setText("No such username/password");
+					pages = false;
+					errorLabel.setText("No such username/password" +pages);
 				} else {
 					// TODO: switch to home page
-					errorLabel.setText("Success (should go to home page)");
+					pages = true;
+					errorLabel.setText("Success (should go to home page)" +pages);
 				}
 				
 			}
@@ -97,8 +102,8 @@ public class loginView extends Composite /*implements ISubscriber*/{
 			}
 		});
 	}
-
-	public void update(){
-		
+	
+	public boolean getpages(){
+		return pages;
 	}
 }

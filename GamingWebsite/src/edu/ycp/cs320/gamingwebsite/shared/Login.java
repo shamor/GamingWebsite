@@ -15,7 +15,7 @@ public class Login implements Serializable{
 	
 	private int id;
 	private String user;
-	private int score;
+	private String password;
 	
 	public Login() {
 		
@@ -37,17 +37,11 @@ public class Login implements Serializable{
 		return user;
 	}
 	
-	public int getScore() {
-		return score;
+	public String getPassword() {
+		return password;
 	}
 	
-	public void setScore(int score) {
-		this.score = score;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	
-//	@Override
-//	public void eventOccurred(Object key, IPublisher publisher, Object hint) {
-//		PizzaPriceController controller = new PizzaPriceController();
-//		setPrice(controller.calcPrice(pizza));
-//	}
 }
