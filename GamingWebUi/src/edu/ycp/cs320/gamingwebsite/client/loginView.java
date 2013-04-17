@@ -1,5 +1,6 @@
 package edu.ycp.cs320.gamingwebsite.client;
 
+import com.google.gwt.rpc.server.RPC;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 
