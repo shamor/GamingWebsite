@@ -4,11 +4,10 @@ package edu.ycp.cs320.gamingwebsite.shared;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.RestoreAction;
 
 /***
  * 
- * @author cbechtol, Carl H Howard III(cp3), Sam Hamor
+ * @author cbechtol, cody, Sam Hamor
  *
  */
 
@@ -16,17 +15,17 @@ public class MemDeck {
 	private ArrayList<Images> memDeck;
 	private ArrayList<Integer> imgshow;
 	//private boolean exposed;
-	
-
 	/***
 	 * Constructor
 	 */
 	public MemDeck(){
 		memDeck = new ArrayList<Images>();
 		imgshow = new ArrayList<Integer>();
+		
 		for (int i = 0; i<20; i++){
 			imgshow.add(0); 
 		}
+		
 	}
 	/**
 	 * @return the memdeck
@@ -34,6 +33,7 @@ public class MemDeck {
 	public ArrayList<Images> getMemDeck() {
 		return memDeck;
 	}
+
 	
 	/***
 	 * Creates the deck from
@@ -42,6 +42,7 @@ public class MemDeck {
 	 */
 	public void make(){
 		resetImgShow();
+		
 		Images[] allImages = Images.values();
 
 		for(int i = 0; i < allImages.length;i++){
@@ -51,15 +52,14 @@ public class MemDeck {
 			memDeck.add(allImages[i]);
 		}
 		shuffle();
-		
-		
-		
 	}
 	
 	/***
 	 * 
 	 * @returns the size of the deck
 	 */
+
+	
 	public int getNumCards() {
 		return memDeck.size();
 	}
@@ -69,7 +69,26 @@ public class MemDeck {
 	 * @return 
 	 */
 	public  void shuffle() {
+
+		// FIXME: GWT doesn't emulate this method
+
+		// This method reverses two cards by flipping two cards based on a random index
+		int cardMovements1 = 1000;
+
+		int numberOfCards = memDeck.size();
 		
+		for(int k = 1; k <= cardMovements1; k++){
+			//finds a random card and gets its index
+			Images randomCardOne = memDeck.get((int)(Math.random()*numberOfCards));
+			int indexOne = memDeck.indexOf(randomCardOne);
+			
+			Images randomCardTwo = memDeck.get((int)(Math.random()*numberOfCards));
+			int indexTwo = memDeck.indexOf(randomCardTwo);
+			
+			//flips the position of the two cards
+			memDeck.set(indexOne, randomCardTwo);
+			memDeck.set(indexTwo, randomCardOne);	
+		}
 		// See: http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
         //   exchange a[j] and a[i]
 		Random r = new Random();
@@ -107,6 +126,8 @@ public class MemDeck {
         }
 	}
 	
+	
+	
 	/**
 	 * Set whether the image will be showing
 	 * @param index index of the image showing
@@ -127,8 +148,9 @@ public class MemDeck {
 	 * Turns all elements in imgshow back to zeros.
 	 */
 	public void resetImgShow(){
-		for (int i = 0; i<memDeck.size(); i++){
+		for (int i = 0; i < memDeck.size(); i++){
 			imgshow.set(i, 0); 
 		}
+
 	}
 }

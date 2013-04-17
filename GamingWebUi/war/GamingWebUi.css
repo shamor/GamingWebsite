@@ -1,13 +1,7 @@
-/** Add css rules here for your application. */
-
-
-/** Example rules used by the template application (remove for your app) */
-h1 {
-  font-size: 2em;
-  font-weight: bold;
-  color: #777777;
-  margin: 40px 0px 70px;
-  text-align: center;
+.Main Game {
+	font-stretch: condensed;
+	font-variant: normal;
+	font-size: xx-large;
+	font-style: normal;
+	font-weight: 200;
 }
-
-
