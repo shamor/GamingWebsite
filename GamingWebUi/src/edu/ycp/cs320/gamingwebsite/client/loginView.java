@@ -1,6 +1,6 @@
 package edu.ycp.cs320.gamingwebsite.client;
 
-import com.google.gwt.rpc.server.RPC;
+
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 
@@ -20,14 +20,16 @@ public class loginView extends Composite /*implements ISubscriber*/{
 	private TextBox usernameTextBox;
 	private TextBox passwordTextBox;
 	private Label errorLabel;
-	private boolean pages;
+	private LayoutPanel layoutPanel;
+	private MemView memview; 
+
 	
 	public loginView() {
-		this.pages = false;
-		
-		LayoutPanel layoutPanel = new LayoutPanel();
+	
+		memview = new MemView();
+		layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
-		layoutPanel.setSize("605px", "432px");
+		layoutPanel.setSize("1000px", "800px");
 		
 		Button btnNewButton = new Button("Sign in");
 		btnNewButton.addClickHandler(new ClickHandler() {
@@ -85,25 +87,30 @@ public class loginView extends Composite /*implements ISubscriber*/{
 			@Override
 			public void onSuccess(Login result) {
 				if (result == null) {
-					pages = false;
-					errorLabel.setText("No such username/password" +pages);
+					
+					errorLabel.setText("No such username/password");
 				} else {
 					// TODO: switch to home page
-					pages = true;
-					errorLabel.setText("Success (should go to home page)" +pages);
+					
+					errorLabel.setText("Success (should go to home page)" );
+					NextPanel(); 
 				}
 				
 			}
 			
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO: display error (e.g., in a label)
+				//  display error (e.g., in a label)
 				errorLabel.setText("Error logging in (could not contact server)");
 			}
 		});
 	}
 	
-	public boolean getpages(){
-		return pages;
+	
+	
+	public void	NextPanel(){
+		layoutPanel.clear();
+		layoutPanel.add(memview); 
+		memview.update();
 	}
 }

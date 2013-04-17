@@ -16,6 +16,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.NumberLabel;
 
 
 
@@ -24,7 +25,7 @@ public class MemView extends Composite {
 		
 		private MemDeck deck;
 		private	ArrayList<String> newdeck; 
-		private int click;
+		private double click;
 		private Image[] allImages; 
 		private Image image;
 		private Image image_1;
@@ -46,11 +47,11 @@ public class MemView extends Composite {
 		private Image image_17;
 		private Image image_18;
 		private Image image_19;
-
 		private int pairsGone;
 		private InlineLabel WinLabel;
 		private Button pg;
-		static final int refreshRate = 25;
+		private NumberLabel<Double> scorelabl;
+		private double score; 
 
 		
 	
@@ -59,7 +60,7 @@ public class MemView extends Composite {
 		LayoutPanel layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
 
-		layoutPanel.setSize("700px", "460px");
+		this.score = 0;  
 
 		layoutPanel.setSize("798px", "571px");
 		
@@ -69,8 +70,8 @@ public class MemView extends Composite {
 		WinLabel.setDirectionEstimator(true);
 		WinLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		layoutPanel.add(WinLabel);
-		layoutPanel.setWidgetLeftWidth(WinLabel, 169.0, Unit.PX, 488.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(WinLabel, 191.0, Unit.PX, 149.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(WinLabel, 167.0, Unit.PX, 488.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(WinLabel, 118.0, Unit.PX, 94.0, Unit.PX);
 		
 		// play again button
 		pg = new Button("Play again button");
@@ -83,15 +84,21 @@ public class MemView extends Composite {
 		pg.setStyleName("Playagain_button");
 		pg.setText("Play again?");
 		layoutPanel.add(pg);
-		layoutPanel.setWidgetRightWidth(pg, 331.0, Unit.PX, 118.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(pg, 296.0, Unit.PX, 58.0, Unit.PX);
+		layoutPanel.setWidgetRightWidth(pg, 323.0, Unit.PX, 118.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(pg, 293.0, Unit.PX, 58.0, Unit.PX);
+		
+		scorelabl = new NumberLabel<Double>();
+		scorelabl.setStyleName("score");
+		layoutPanel.add(scorelabl);
+		layoutPanel.setWidgetLeftWidth(scorelabl, 322.0, Unit.PX, 161.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(scorelabl, 218.0, Unit.PX, 45.0, Unit.PX);
 	
 		this.deck = new MemDeck();
 		this.newdeck = new ArrayList<String>(); 
 		
 		deck.resetImgShow();
 		// this will initialize all 20 images to the gwt and place them evenally
-		//this.imgshow = new ArrayList<Integer>();
+		
 		this.pairsGone = 0;
 		
 		// this will initialize all 20 images to the gwt and place them evenally
@@ -168,9 +175,7 @@ public class MemView extends Composite {
 	
 		render();
 	}
-	public void setModel(MemDeck model) {
-		this.deck = model;
-	}
+
 	
 	/**
 	 * This updates the game state based on what the user does
@@ -191,14 +196,24 @@ public class MemView extends Composite {
 		CardsShown();
 		
 		if(IsFinished()){
-			WinLabel.setPixelSize(200, 175);
-			WinLabel.setVisible(true);
-			pg.setVisible(true);
+		score = (10/(click/2)) *100; 
+			new Timer() {
+				@Override
+				public void run() {
+					scorelabl.setValue(score);
+					scorelabl.setVisible(true);
+					WinLabel.setVisible(true);
+					pg.setVisible(true);
+					
+				}
+			}.schedule(500);
+	
 			
 		}
 		else{
+			scorelabl.setVisible(false);
 			WinLabel.setVisible(false);
-			pg.setVisible(true);
+			pg.setVisible(false);
 		}
 	}
 	/**
@@ -210,7 +225,7 @@ public class MemView extends Composite {
 		
 		
 		deck.make();
-		
+		score = 0; 
 		click = 0;
 		pairsGone = 0;
 		
@@ -277,26 +292,25 @@ public class MemView extends Composite {
 		//if they match, set them invisible
 		boolean samecards = false; 
 		Images img1 = null, img2 = null;
-		int imgindex11 = 0, imgindex21=0;
+		int imgindex1 = 0, imgindex2=0;
 		
 		if (click%2 == 0){
 			 
-			imgindex11 = deck.getImgshow().indexOf(1); 
-			imgindex21 = deck.getImgshow().lastIndexOf(1);
+			imgindex1 = deck.getImgshow().indexOf(1); 
+			imgindex2 = deck.getImgshow().lastIndexOf(1);
 			
-			if ((imgindex11 != -1 && imgindex21 != -1) && (imgindex11 != imgindex21)){
-				img1 = deck.getCard(imgindex11);
-				img2 = deck.getCard(imgindex21); 
+			if ((imgindex1 != -1 && imgindex2 != -1) && (imgindex1 != imgindex2)){
+				img1 = deck.getCard(imgindex1);
+				img2 = deck.getCard(imgindex2); 
 				
 				samecards = deck.isSame(img1, img2);
-				//Add wait of 1 second here
 				
-				final int hideIndex1 = imgindex11;
-				final int hideIndex2 = imgindex21;
+				final int hideIndex1 = imgindex1;
+				final int hideIndex2 = imgindex2;
 				
 				if(samecards == true){
-					allImages[imgindex11].setVisible(false);
-					allImages[imgindex21].setVisible(false);
+					allImages[imgindex1].setVisible(false);
+					allImages[imgindex2].setVisible(false);
 					new Timer() {
 						@Override
 						public void run() {

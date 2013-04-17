@@ -1,7 +1,23 @@
 .Main Game {
-	font-stretch: condensed;
+	color: magenta;
+	font-stretch: normal;
 	font-variant: normal;
-	font-size: xx-large;
+	font-size: 36px;
 	font-style: normal;
-	font-weight: 200;
+	font-weight: 700;
+	text-align: center;
+	text-decoration: underline overline blink;
+	background-color: navajowhite;
+	background-image: CardImage/Mainworld;
+}
+.BigMeassage {
+	color: red;
+	font-size: xx-large;
+	text-align: center;
+}
+.score {
+	color: dodgerblue;
+	font-size: x-large;
+	text-align: center;
+	text-decoration: underline overline blink;
 }
