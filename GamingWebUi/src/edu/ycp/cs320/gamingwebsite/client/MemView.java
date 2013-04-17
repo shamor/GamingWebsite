@@ -58,10 +58,6 @@ public class MemView extends Composite {
 		
 		LayoutPanel layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
-
-		layoutPanel.setSize("700px", "460px");
-
-		layoutPanel.setSize("798px", "571px");
 		
 		// winning label to the game.
 		WinLabel = new InlineLabel("CONGRATULATIONS! YOU WON!");
@@ -198,7 +194,7 @@ public class MemView extends Composite {
 		}
 		else{
 			WinLabel.setVisible(false);
-			pg.setVisible(true);
+			pg.setVisible(false);
 		}
 	}
 	/**

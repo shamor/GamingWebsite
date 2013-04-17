@@ -18,12 +18,13 @@ public class loginView extends Composite /*implements ISubscriber*/{
 	private TextBox usernameTextBox;
 	private TextBox passwordTextBox;
 	private Label errorLabel;
-	private boolean pages;
+	private MemView view;
+	private LayoutPanel layoutPanel;
 	
 	public loginView() {
-		this.pages = false;
+		view = new MemView();
 		
-		LayoutPanel layoutPanel = new LayoutPanel();
+		layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
 		layoutPanel.setSize("605px", "432px");
 		
@@ -83,12 +84,11 @@ public class loginView extends Composite /*implements ISubscriber*/{
 			@Override
 			public void onSuccess(Login result) {
 				if (result == null) {
-					pages = false;
-					errorLabel.setText("No such username/password" +pages);
+					errorLabel.setText("No such username/password");
 				} else {
 					// TODO: switch to home page
-					pages = true;
-					errorLabel.setText("Success (should go to home page)" +pages);
+					errorLabel.setText("Success (should go to home page)");
+					NextPanel();
 				}
 				
 			}
@@ -101,7 +101,12 @@ public class loginView extends Composite /*implements ISubscriber*/{
 		});
 	}
 	
-	public boolean getpages(){
-		return pages;
+	public void NextPanel(){
+		layoutPanel.clear();
+		
+		layoutPanel.add(view);
+		layoutPanel.setSize("800px", "1000px");
+		view.update();
 	}
+	
 }
