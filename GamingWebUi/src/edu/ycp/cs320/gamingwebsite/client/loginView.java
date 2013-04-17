@@ -3,7 +3,6 @@ package edu.ycp.cs320.gamingwebsite.client;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 
-import edu.ycp.cs320.gamingwebsite.shared.ISubscriber;
 import edu.ycp.cs320.gamingwebsite.shared.Login;
 
 import com.google.gwt.user.client.ui.LayoutPanel;

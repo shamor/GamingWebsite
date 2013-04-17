@@ -1,27 +1,14 @@
 package edu.ycp.cs320.gamingwebsite.client;
 
-import com.google.gwt.canvas.client.Canvas;
-import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.dom.client.Style.Unit;
-import com.google.gwt.user.client.Timer;
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
-import com.google.gwt.user.client.ui.RootPanel;
-
-
 
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class GamingWebUi implements EntryPoint {
-
-	
-	 //timer refresh rate, in milliseconds   
-	static final int refreshRate = 25; 
-	
 	
 	/**
 	 * This is the entry point method.
@@ -51,10 +38,6 @@ public class GamingWebUi implements EntryPoint {
 			
 		}
 	} 
-	
-	public void usingView(){
-		
-	}
 	
 	private void Update() {
 		// TODO Auto-generated method stub this is where cody says memgame is going to go
