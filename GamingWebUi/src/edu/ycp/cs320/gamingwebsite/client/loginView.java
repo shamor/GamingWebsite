@@ -31,13 +31,13 @@ public class loginView extends Composite /*implements ISubscriber*/{
 		Button btnNewButton = new Button("Sign in");
 		btnNewButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				handleSignInClicked();
+				handleLogInClicked();
 			}
 		});
 		
-		btnNewButton.setText("Sign in");
+		btnNewButton.setText("log in");
 		layoutPanel.add(btnNewButton);
-		layoutPanel.setWidgetLeftWidth(btnNewButton, 270.0, Unit.PX, 81.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(btnNewButton, 162.0, Unit.PX, 81.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(btnNewButton, 284.0, Unit.PX, 30.0, Unit.PX);
 		
 		Label lblPassword = new Label("Password :");
@@ -73,10 +73,20 @@ public class loginView extends Composite /*implements ISubscriber*/{
 		layoutPanel.add(errorLabel);
 		layoutPanel.setWidgetLeftWidth(errorLabel, 20.0, Unit.PX, 566.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(errorLabel, 341.0, Unit.PX, 23.0, Unit.PX);
+		
+		Button NewUser = new Button("Sign up");
+		NewUser.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				//handleSignInClicked();
+			}
+		});
+		layoutPanel.add(NewUser);
+		layoutPanel.setWidgetLeftWidth(NewUser, 302.0, Unit.PX, 90.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(NewUser, 284.0, Unit.PX, 30.0, Unit.PX);
 		// init
 	}
 	
-	protected void handleSignInClicked() {
+	protected void handleLogInClicked() {
 		// RPC call to server to see if username/password is valid
 		
 		RPC.loginService.findLogin(usernameTextBox.getText(), passwordTextBox.getText(), new AsyncCallback<Login>() {
@@ -101,6 +111,32 @@ public class loginView extends Composite /*implements ISubscriber*/{
 		});
 	}
 	
+	// ask hovemeyer to look this over so that you can finish working with the database.
+//	protected void handleSignInClicked() {
+//		// RPC call to server to see if username/password is valid
+//		
+//		RPC.loginService.findLogin(usernameTextBox.getText(), passwordTextBox.getText(), new AsyncCallback<Login>() {
+//			
+//			@Override
+//			public void onSuccess(Login result) {
+//				if (result == null) {
+//					errorLabel.setText("No such username/password");
+//				} else {
+//					// TODO: switch to home page
+//					errorLabel.setText("Success (should go to home page)");
+//					NextPanel();
+//				}
+//				
+//			}
+//			
+//			@Override
+//			public void onFailure(Throwable caught) {
+//				// TODO: display error (e.g., in a label)
+//				errorLabel.setText("Error logging in (could not contact server)");
+//			}
+//		});
+//	}
+	
 	public void NextPanel(){
 		layoutPanel.clear();
 		
@@ -108,5 +144,4 @@ public class loginView extends Composite /*implements ISubscriber*/{
 		layoutPanel.setSize("800px", "1000px");
 		view.update();
 	}
-	
 }
