@@ -90,7 +90,7 @@ public class Database implements IDatabase{
 				
 				try {
 					stmt = conn.prepareStatement(
-							"create table order_receipts (" +
+							"create table logins (" +
 							"  id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
 							"  user VARCHAR(200) NOT NULL, " +
 							"  password VARCHAR(200) NOT NULL " +
@@ -115,9 +115,24 @@ public class Database implements IDatabase{
 	}
 
 	@Override
-	public Login findLogin(String username, String password) {
-		// TODO Auto-generated method stub
+	public Login findLogin(String username, String password) {	
 		return null;
+	}
+	
+	@Override
+	public Login addLogin(final String username, final String password) {
+		try {
+			return databaseRun(new ITransaction<Login>() {
+				@Override
+				public Login run(Connection conn) throws SQLException {
+					// TODO: create Login object, insert its data into the database
+					
+					return null;
+				}
+			});
+		} catch (SQLException e) {
+			throw new RuntimeException("SQLException inserting login", e);
+		}
 	}
 	
 	
