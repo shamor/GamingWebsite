@@ -32,6 +32,7 @@ public class loginView extends Composite /*implements ISubscriber*/{
 		initWidget(layoutPanel);
 		layoutPanel.setSize("1000px", "800px");
 		
+		// logining into the website
 		Button btnNewButton = new Button("Sign in");
 		btnNewButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -72,6 +73,7 @@ public class loginView extends Composite /*implements ISubscriber*/{
 		layoutPanel.setWidgetLeftWidth(errorLabel, 20.0, Unit.PX, 566.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(errorLabel, 341.0, Unit.PX, 23.0, Unit.PX);
 		
+		// creating new account
 		Button NewUser = new Button("Sign up");
 		NewUser.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
