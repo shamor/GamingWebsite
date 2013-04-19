@@ -24,12 +24,4 @@ public class GamingWebUi implements EntryPoint {
 		RootLayoutPanel.get().setWidgetTopBottom(view, 0.0, Unit.PX, 0.0, Unit.PX);
 		RootLayoutPanel.get().setWidgetLeftRight(view, 0.0, Unit.PX, 0.0, Unit.PX);
 	} 
-	
-	public void usingView(){
-		
-	}
-	
-	private void Update() {
-		// TODO Auto-generated method stub this is where cody says memgame is going to go
-	} 
 }
