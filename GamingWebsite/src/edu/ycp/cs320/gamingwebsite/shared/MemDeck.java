@@ -108,7 +108,6 @@ public class MemDeck {
 	public Images getCard(int i){
 		return memDeck.get(i);
 	}
-
 	
 	/**
 	 * Checks to see if two cards are equal to each other by comparing the cards' images.

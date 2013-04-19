@@ -1,5 +1,6 @@
 package edu.ycp.cs320.gamingwebsite.client;
 
+
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 
@@ -18,15 +19,17 @@ public class loginView extends Composite /*implements ISubscriber*/{
 	private TextBox usernameTextBox;
 	private TextBox passwordTextBox;
 	private Label errorLabel;
-	private MemView view;
+
 	private LayoutPanel layoutPanel;
+	private MemView memview; 
+
 	
 	public loginView() {
-		view = new MemView();
-		
+	
+		memview = new MemView();
 		layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
-		layoutPanel.setSize("605px", "432px");
+		layoutPanel.setSize("1000px", "800px");
 		
 		Button btnNewButton = new Button("Sign in");
 		btnNewButton.addClickHandler(new ClickHandler() {
@@ -96,21 +99,18 @@ public class loginView extends Composite /*implements ISubscriber*/{
 				if (result == null) {
 					errorLabel.setText("No such username/password");
 				} else {
-					// TODO: switch to home page
-					errorLabel.setText("Success (should go to home page)");
-					NextPanel();
+					errorLabel.setText("Success (should go to home page)" );
+					NextPanel(); 
 				}
-				
 			}
 			
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO: display error (e.g., in a label)
+				//  display error (e.g., in a label)
 				errorLabel.setText("Error logging in (could not contact server)");
 			}
 		});
 	}
-	
 	// ask hovemeyer to look this over so that you can finish working with the database.
 //	protected void handleSignInClicked() {
 //		// RPC call to server to see if username/password is valid
@@ -137,11 +137,9 @@ public class loginView extends Composite /*implements ISubscriber*/{
 //		});
 //	}
 	
-	public void NextPanel(){
+	public void	NextPanel(){
 		layoutPanel.clear();
-		
-		layoutPanel.add(view);
-		layoutPanel.setSize("800px", "1000px");
-		view.update();
+		layoutPanel.add(memview); 
+		memview.update();
 	}
 }
