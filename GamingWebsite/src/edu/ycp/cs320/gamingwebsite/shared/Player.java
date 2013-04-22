@@ -6,7 +6,7 @@ public class Player {
 	
 	public Player(){
 		this.x = 500;
-		this.y = 400;
+		this.y = 350;
 	}
 	
 	public double getX() {

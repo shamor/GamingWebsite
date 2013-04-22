@@ -69,10 +69,9 @@ public class GamingWebUi implements EntryPoint {
 		  	public void onKeyDown(KeyDownEvent event) {
 				int key = event.getNativeKeyCode();
 				if(key < MAX_KEYS) {
-					GWT.log("KEY " + key);
+					//GWT.log("KEY " + key);
 					keys[key] = true;
 					canvas.setFocus(true);
-					//update(player.getX(), player.getY());
 					timer.scheduleRepeating(20);
 				}
 		  	}
@@ -128,19 +127,18 @@ public class GamingWebUi implements EntryPoint {
 	     context.beginPath();
 //	     context.setFillStyle(colorBlue);
 //	     context.arc(player.getX(), player.getY(), 20, 0, 2.0 * Math.PI, true);
-	     img2 = (ImageElement) new Image("CardImage/manlymen.jpg").getElement().cast();
-	     // drawing the image
-	     context.drawImage(img2, 0, 0, 500, 400);
+
 	     img = (ImageElement) new Image("CardImage/Mainworld.jpg").getElement().cast();
 	     // drawing the image
 	     context.drawImage(img, 0, 0, 1000, 800);
+	     img2 = (ImageElement) new Image("CardImage/manlymen.jpg").getElement().cast();
+	     // drawing the image
+	     context.drawImage(img2, player.getX(), player.getY(), 60, 50);
 	     context.closePath();
-	     context.fill();
+	    // context.fill();
 	 }
 	 
-	 public void update(double x, double y, Context2d context){
-		 //render(canvas.getContext2d());
-		 
+	 public void update(double x, double y, Context2d context){		 
 		 double dx = 0;
 		 double dy = 0;
 		 
@@ -148,26 +146,27 @@ public class GamingWebUi implements EntryPoint {
 		 // w
 	 	if(keys[87]) {
 	 		if(Up){
-	 			dy = -5;
+	 			dy = -1;
 	 		}else{}
 		}
 	 	// d
 		if(keys[68]) {
 			if(right){
-				dx = 5;
+				dx = 1;
 			}else{}
 		}
 		//a
 		if(keys[65]) {
 			if(left){
-				dx = -5;
+				dx = -1;
 			}else{}
 		}
 		//s
 		if(keys[83]) {
 			if(down){
-				dy = 5;
-			}else{}
+				dy = 1;
+			}else{
+			}
 		}
 
 		x += dx;
@@ -186,47 +185,72 @@ public class GamingWebUi implements EntryPoint {
 	 }
 	 
 	 public void collision(double x, double y){
-		 if(x == 45){
+		 // left wall
+		 if(x == 25){
 			 left = false;
-		 }else if((x == 340)){
-			 if((y < 340)){
+		 }
+		 // left wall of first building
+		 else if((x == 320)){
+			 if((y <= 320)){
 				  left = false;
-			 }else if((y > 425)){
+			 }else if((y >= 395)){
 				 left = false;
 			 }else{
 				 left = true;
 			 }
-		 }else if(y == 340){
-			 if(x < 340){
+		 }
+		 // bottom wall of first building
+		 else if(y == 320){
+			 if(x <= 320){
 				 Up = false;
-			 }else if(x > 530){
+			 }else if(x >= 395){
 				 Up = false;
 			 }else{
 				 Up = true;
 			 }
-		 }else if(y == 40){
+		 }
+		 // top of the board
+		 else if(y == 20){
 			 Up = false;
-		 }else if(x == 525){
-			 if(y < 340){
+		 }
+		 // right wall of the second building and fourth building
+		 else if(x == 485){
+			 if(y <= 320){
 				 right = false;
-			 }else if(y > 425){
+			 }else if(y >= 395){
 				 right = false;
 			 }else{
 				 right = true;
 			 }
-		 }else if(y == 685){
+		 }
+		 // bottom of the screen
+		 else if(y == 655){
 			 down = false;
-		 }else if(x == 855){
-			 right = false;
-		 }else if(y == 425){
-			 if(x > 525){
+		 }
+		 // right of the screen
+		 else if(x == 815){
+			 if(y == 320){
+				 right = false;
+				 Up = false;
+			 }else if(y == 395){
+				 right = false;
 				 down = false;
-			 }else if(x < 340){
+			 }else{
+				right = false;
+			 } 
+		 }
+		 // top wall of the third and fourth building
+		 else if(y == 395){
+			 if(x >= 490){
+				 down = false;
+			 }else if(x <= 315){
 				 down = false;
 			 }else{
 				 down = true;
 			 }
-		 }else{
+		 }
+		 // if none than all true
+		 else{
 			 right = true;
 			 Up = true;
 			 left = true;
