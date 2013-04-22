@@ -6,8 +6,6 @@
 	font-style: normal;
 	font-weight: 700;
 	text-align: center;
-	text-decoration: underline overline blink;
-	background-color: navajowhite;
 	background-image: CardImage/Mainworld;
 }
 .BigMeassage {
@@ -20,4 +18,10 @@
 	font-size: x-large;
 	text-align: center;
 	text-decoration: underline overline blink;
+}
+.label {
+	color: deepskyblue;
+	font-size: 18px;
+	font-weight: 600;
+	text-align: center;
 }

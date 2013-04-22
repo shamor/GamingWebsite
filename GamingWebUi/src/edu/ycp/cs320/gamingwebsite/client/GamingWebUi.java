@@ -53,6 +53,7 @@ public class GamingWebUi implements EntryPoint {
 	 private boolean down;
 	 private boolean left;
 	 private boolean right;
+	private ImageElement img2;
 	/**
 	 * This is the entry point method.
 	 */
@@ -125,8 +126,11 @@ public class GamingWebUi implements EntryPoint {
 	 public void render(Context2d context){
 	     context = canvas.getContext2d();
 	     context.beginPath();
-	     context.setFillStyle(colorBlue);
-	     context.arc(player.getX(), player.getY(), 20, 0, 2.0 * Math.PI, true);
+//	     context.setFillStyle(colorBlue);
+//	     context.arc(player.getX(), player.getY(), 20, 0, 2.0 * Math.PI, true);
+	     img2 = (ImageElement) new Image("CardImage/manlymen.jpg").getElement().cast();
+	     // drawing the image
+	     context.drawImage(img2, 0, 0, 500, 400);
 	     img = (ImageElement) new Image("CardImage/Mainworld.jpg").getElement().cast();
 	     // drawing the image
 	     context.drawImage(img, 0, 0, 1000, 800);
