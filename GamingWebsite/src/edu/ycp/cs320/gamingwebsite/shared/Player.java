@@ -4,9 +4,9 @@ public class Player {
 	private double x;
 	private double y;
 	
-	public Player(double x, double y){
-		this.x = x;
-		this.y = y;
+	public Player(){
+		this.x = 500;
+		this.y = 400;
 	}
 	
 	public double getX() {
@@ -17,8 +17,13 @@ public class Player {
 		return y;
 	}
 	
-	public void update(double dx, double dy){
-		x += dx;
-		y += dy;
+	public void setX(double x) {
+		this.x = x;
 	}
+	
+	public void setY(double y) {
+		this.y = y;
+	}
+	
+
 }

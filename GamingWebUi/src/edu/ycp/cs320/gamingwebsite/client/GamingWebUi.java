@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
 import edu.ycp.cs320.gamingwebsite.shared.Player;
@@ -23,6 +24,7 @@ import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.event.dom.client.KeyDownEvent;
+import com.google.gwt.user.client.ui.NumberLabel;
 
 
 
@@ -32,7 +34,6 @@ import com.google.gwt.event.dom.client.KeyDownEvent;
 public class GamingWebUi implements EntryPoint {
 //	loginView view;
 //	MainWorld view2;
-	 static final String unsupportedBrowser = "Your browser does not support the HTML5 Canvas";
 	 static final int height = 800;
 	 static final int width = 1000;
 	 final CssColor colorRed = CssColor.make("red");
@@ -44,38 +45,35 @@ public class GamingWebUi implements EntryPoint {
 	 private Player player;
 	 private int MAX_KEYS = 256;
 	 private ImageElement img;
-	 boolean keys[] = new boolean[MAX_KEYS];
-	private Timer timer;
+	 private boolean keys[] = new boolean[MAX_KEYS];
+	 private Timer timer;
+	 private NumberLabel<Double> numberLabel_1;
+	 private NumberLabel<Double> numberLabel;
+	 private boolean Up;
+	 private boolean down;
+	 private boolean left;
+	 private boolean right;
 	/**
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
 		  canvas = Canvas.createIfSupported();
-		  // 
+		  this.player = new Player();
+		  if (canvas == null) {
+		        return;
+		  }
+		  
+		  
 		  canvas.addKeyDownHandler(new KeyDownHandler() {
 		  	public void onKeyDown(KeyDownEvent event) {
-		  		double x = player.getX();
-		  		double y = player.getY();
-		  		double dx = 0;
-		  		double dy = 0;
-		  		
-		  		if(event.isUpArrow()){
-		  			dy = 1;
-		  		}else if(event.isAnyModifierKeyDown()){
-		  			dy = -1;
-		  		}else if(event.isLeftArrow()){
-		  			dx = 1;
-		  		}else if(event.isRightArrow()){
-		  			dx = -1;
-		  		}
-				
-				x += dx;
-				y += dy;
-//				int key = event.getNativeKeyCode();
-//				if(key < MAX_KEYS) {
-//					GWT.log("KEY " + key);
-//					keys[key] = true;
-//				}
+				int key = event.getNativeKeyCode();
+				if(key < MAX_KEYS) {
+					GWT.log("KEY " + key);
+					keys[key] = true;
+					canvas.setFocus(true);
+					//update(player.getX(), player.getY());
+					timer.scheduleRepeating(20);
+				}
 		  	}
 		  });
 		  
@@ -87,69 +85,149 @@ public class GamingWebUi implements EntryPoint {
 				}
 		  	}
 		  });
+		  
+		  this.left = true;
+		  this.Up = true;
+		  this.down = true;
+		  this.right = true;
 
-		  if (canvas == null) {
-		        RootPanel.get().add(new Label(unsupportedBrowser));
-		        return;
-		  }
-		  	this.player = new Player(500, 400);
-		  
 		  createCanvas();
+		  render(canvas.getContext2d());
 		  
-			timer = new Timer() {
-				@Override
-				public void run() {
-					update();
-				}
-			};
+		  timer = new Timer(){
+				  @Override
+				  public void run(){
+					  
+					  update(player.getX(), player.getY(), canvas.getContext2d());
+					  
+				  }
+			
+		  };
+		 
+		  
+
 	 }
 
 	 private void createCanvas(){
-	     canvas.setWidth(width + "px");
-	     canvas.setHeight(height + "px");
+	     canvas.setSize("900px", "625px");
 	     canvas.setCoordinateSpaceWidth(width);
 	     canvas.setCoordinateSpaceHeight(height);
-	
-	     RootPanel.get().add(canvas);
+	     RootPanel rootPanel = RootPanel.get();
+	     rootPanel.add(canvas, 0, 0);
+	     
+	     numberLabel = new NumberLabel<Double>();
+	     rootPanel.add(numberLabel, 25, 20);
+	     
+	     numberLabel_1 = new NumberLabel<Double>();
+	     rootPanel.add(numberLabel_1, 25, 44);
+	 }
+	 
+	 public void render(Context2d context){
 	     context = canvas.getContext2d();
 	     context.beginPath();
 	     context.setFillStyle(colorBlue);
-	     context.arc(player.getX(), player.getY(), 10, 0, 2.0 * Math.PI, true);
+	     context.arc(player.getX(), player.getY(), 20, 0, 2.0 * Math.PI, true);
 	     img = (ImageElement) new Image("CardImage/Mainworld.jpg").getElement().cast();
 	     // drawing the image
 	     context.drawImage(img, 0, 0, 1000, 800);
 	     context.closePath();
 	     context.fill();
-	     
 	 }
 	 
-	 public void update(){
-		double dx = 0;
-		double dy = 0;
-	 	if(keys['w']) {
-			dy = 1;
+	 public void update(double x, double y, Context2d context){
+		 //render(canvas.getContext2d());
+		 
+		 double dx = 0;
+		 double dy = 0;
+		 
+		 collision(x, y);
+		 // w
+	 	if(keys[87]) {
+	 		if(Up){
+	 			dy = -5;
+	 		}else{}
 		}
-		if(keys['d']) {
-			dx = 1;
+	 	// d
+		if(keys[68]) {
+			if(right){
+				dx = 5;
+			}else{}
 		}
-		if(keys['a']) {
-			dx = -1;
+		//a
+		if(keys[65]) {
+			if(left){
+				dx = -5;
+			}else{}
 		}
-		if(keys['s']) {
-			dx = -1;
+		//s
+		if(keys[83]) {
+			if(down){
+				dy = 5;
+			}else{}
 		}
-		
-		double x = player.getX();
-		double y = player.getY();
-		
+
 		x += dx;
 		y += dy;
-//	     context.beginPath();
-//	     context.setFillStyle(colorBlue);
-//	     context.arc(player.getX(), player.getY(), 10, 0, 2.0 * Math.PI, true);
-//		     context.closePath();
-//		     context.fill();
-
+		
+		player.setX(x);
+		player.setY(y);
+		
+		render(context);
+		
+		numberLabel.setValue(x);
+		numberLabel.setVisible(true);
+		
+		numberLabel_1.setValue(y);
+		numberLabel_1.setVisible(true);
+	 }
+	 
+	 public void collision(double x, double y){
+		 if(x == 45){
+			 left = false;
+		 }else if((x == 340)){
+			 if((y < 340)){
+				  left = false;
+			 }else if((y > 425)){
+				 left = false;
+			 }else{
+				 left = true;
+			 }
+		 }else if(y == 340){
+			 if(x < 340){
+				 Up = false;
+			 }else if(x > 530){
+				 Up = false;
+			 }else{
+				 Up = true;
+			 }
+		 }else if(y == 40){
+			 Up = false;
+		 }else if(x == 525){
+			 if(y < 340){
+				 right = false;
+			 }else if(y > 425){
+				 right = false;
+			 }else{
+				 right = true;
+			 }
+		 }else if(y == 685){
+			 down = false;
+		 }else if(x == 855){
+			 right = false;
+		 }else if(y == 425){
+			 if(x > 525){
+				 down = false;
+			 }else if(x < 340){
+				 down = false;
+			 }else{
+				 down = true;
+			 }
+		 }else{
+			 right = true;
+			 Up = true;
+			 left = true;
+			 down = true;
+		 }
 	 }
 }
 //		RootLayoutPanel rootLayoutPanel = RootLayoutPanel.get();
