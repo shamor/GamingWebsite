@@ -89,7 +89,7 @@ public class MainWorld extends Composite {
 	}
 	
 	public void moveAvatar(int x, int y){
-		// x = 360reached the left side of the right buildings, y = 40 for top of screen
+		//x = 360 reached the left side of the right buildings, y = 40 for top of screen
 		//y = 415 for top of bottom buildings, x = 610 for the right of screen
 		//y = 290 for bottom of top buildings, y = 590 for bottom of screen,x = 20 for the left of screen
 		//x = 260 for the right side of the left buildings
