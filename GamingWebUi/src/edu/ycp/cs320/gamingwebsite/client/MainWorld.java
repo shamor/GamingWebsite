@@ -46,13 +46,16 @@ public class MainWorld extends Composite{
 	private  LayoutPanel layoutPanel;
 	private int avieX;
 	private int avieY;
-
+	private double dx;
+	private double dy;
+	
 	public MainWorld(){
 
 		
 		this.avieX = 360; 
 		this.avieY = 590; 	
-		
+		this.dx = 0;
+		this.dy = 0;
 
 		MAX_KEYS = 256;
 		keys = new boolean[MAX_KEYS];
@@ -67,30 +70,31 @@ public class MainWorld extends Composite{
 
 		layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
+		layoutPanel.setSize("1080px", "844px");
 
 		// Use a FocusPanel to allow the canvas to process user input events
 		FocusPanel focusPanel = new FocusPanel();
 		layoutPanel.add(focusPanel);
-		
-		canvas.setSize("900px", "625px");
+		layoutPanel.setWidgetLeftWidth(focusPanel, 0.0, Unit.PX, 1142.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(focusPanel, 0.0, Unit.PX, 931.0, Unit.PX);
+		canvas.setSize("951px", "698px");
 		canvas.setCoordinateSpaceWidth(width);
 		canvas.setCoordinateSpaceHeight(height);
 		canvas.setFocus(true);
-
 		
 		focusPanel.add(canvas);
-		
-
 
 		numberLabel = new NumberLabel<Double>();
+		numberLabel.setStyleName("Main Game");
 		layoutPanel.add(numberLabel);
-		layoutPanel.setWidgetLeftWidth(numberLabel, 0.0, Unit.PX, 765.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(numberLabel, 0.0, Unit.PX, 471.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(numberLabel, 0.0, Unit.PX, 153.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(numberLabel, 0.0, Unit.PX, 23.0, Unit.PX);
 
 		numberLabel_1 = new NumberLabel<Double>();
+		numberLabel_1.setStyleName("Main Game");
 		layoutPanel.add(numberLabel_1);
-		layoutPanel.setWidgetLeftWidth(numberLabel_1, 0.0, Unit.PX, 765.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(numberLabel_1, 46.0, Unit.PX, 471.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(numberLabel_1, 0.0, Unit.PX, 153.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(numberLabel_1, 46.0, Unit.PX, 23.0, Unit.PX);
 
 		canvas.addKeyDownHandler(new KeyDownHandler(){
 			public void onKeyDown(KeyDownEvent event) {
@@ -144,44 +148,58 @@ public class MainWorld extends Composite{
 	}
 
 	public void update(){		 
-		double dx = 0;
-		double dy = 0;
+		 dx = 0;
+		 dy = 0;
 
-		player.collision(player.getX(), player.getY());
+		//player.collision(player.getX(), player.getY());
 		double x = player.getX();
 		double y = player.getY();
 
 		// w
 		if(keys[87]) {
-			if(player.getUp()){
+//			if(player.getUp()){
 				dy = -1;
-			}else{}
+//			}else{}
 		}
 		// d
 		if(keys[68]) {
-			if(player.getright()){
-				dx = 1;
-			}else{}
+//			if(player.getright()){
+		dx = 1;
+//			}else{}
 		}
 		//a
 		if(keys[65]) {
-			if(player.getleft()){
+//			if(player.getleft()){
 				dx = -1;
-			}else{}
+//			}else{}
 		}
 		//s
 		if(keys[83]) {
-			if(player.getdown()){
+//			if(player.getdown()){
 				dy = 1;
-			}else{
-			}
+//			}else{
+//			}
 		}
 
 		x += dx;
 		y += dy;
-
-		player.setX(x);
-		player.setY(y);
+		if(x <= 487 && y <= 652 && y >=24 && x >=320){
+			player.setX(x);
+			player.setY(y);
+		}
+		else{
+			if((y>= 314 && y <=395) && (x>=25 && x<=815)){
+				player.setX(x);
+				player.setY(y);
+			}
+			else{
+				x -= dx;
+				y -= dy;
+				player.setX(x);
+				player.setY(y);
+			}
+		}
+			
 
 		render();
 
@@ -204,16 +222,15 @@ public class MainWorld extends Composite{
 //			layoutPanel.setWidgetTopHeight(avie, avieY, Unit.PX, 55.0, Unit.PX);
 //			
 		}
-		else{
-			if((avieY>= 290 && avieY <=340) && (avieX>=20 && avieX<=610)){
+		
 //				layoutPanel.setWidgetLeftWidth(avie, avieX, Unit.PX, 73.0, Unit.PX);
 //				layoutPanel.setWidgetTopHeight(avie, avieY, Unit.PX, 55.0, Unit.PX);
 			}
-			else{
-				avieX-= x;
-				avieY-= y; 
-			}
-		}
+//			else{
+//				avieX-= x;
+//				avieY-= y; 
+//			}
+//		}
 
 
-}}
+}

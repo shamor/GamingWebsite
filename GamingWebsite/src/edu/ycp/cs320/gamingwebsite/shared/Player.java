@@ -9,7 +9,7 @@ public class Player {
 	 private boolean right;
 	
 	public Player(){
-		this.x = 500;
+		this.x = 450;
 		this.y = 350;
 		Up = false;
 		down = false;
