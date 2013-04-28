@@ -9,4 +9,7 @@ public interface LoginServiceAsync {
 	void findLogin(String username, String password,
 			AsyncCallback<Login> callback);
 
+	void addLogin(String username, String password,
+			AsyncCallback<Login> callback);
+
 }

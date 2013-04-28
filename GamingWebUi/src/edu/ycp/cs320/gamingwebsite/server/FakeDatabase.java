@@ -29,7 +29,7 @@ public class FakeDatabase implements IDatabase {
 		return new ArrayList<Login>(loginList);
 	}
 	
-	// makign
+	// making
 	@Override
 	public Login findLogin(String username, String password) {
 		for (Login user : loginList) {
@@ -38,6 +38,16 @@ public class FakeDatabase implements IDatabase {
 			}
 		}
 		return null; // no such user
+	}
+	
+	@Override
+	public Login addLogin(String username, String password) {
+		Login login = new Login();
+		login.setUserName(username);
+		login.setPassword(password);
+		login.setId(loginList.size());
+		loginList.add(login);
+		return login;
 	}
 
 }

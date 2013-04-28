@@ -1,12 +1,10 @@
 package edu.ycp.cs320.gamingwebsite.client;
 
-
-
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.KeyDownEvent;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
-
-
 
 
 
@@ -14,38 +12,40 @@ import com.google.gwt.user.client.ui.RootLayoutPanel;
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class GamingWebUi implements EntryPoint {
+	loginView view;
+	MainWorld view2;
 
-	
-	 //timer refresh rate, in milliseconds   
-	static final int refreshRate = 25; 
-	
-	
+
 	/**
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		
-
 		RootLayoutPanel rootLayoutPanel = RootLayoutPanel.get();
+		view = new loginView();
+		view2 = new MainWorld();
 
+		rootLayoutPanel.add(view2);	
 		
+
 		loginView view = new loginView();
 		MainWorld main = new MainWorld(); 
-		
-		
-			rootLayoutPanel.add(main);
-			RootLayoutPanel.get().setWidgetTopBottom(main, 0.0, Unit.PX, 0.0, Unit.PX);
-			RootLayoutPanel.get().setWidgetLeftRight(main, 0.0, Unit.PX, 0.0, Unit.PX);
-			
-		
+
+		RootLayoutPanel.get().setWidgetTopBottom(view2, 0.0, Unit.PX, 0.0, Unit.PX);
+		RootLayoutPanel.get().setWidgetLeftRight(view2, 0.0, Unit.PX, 0.0, Unit.PX);
+		view2.update();
+		view2.render();
+
+	new Timer(){
+		  @Override
+		  public void run(){
+			  view2.update();
+			  view2.render();
+		  }
+	  }.scheduleRepeating(5);
+
+
 	} 
 	
-	public void usingView(){
-		
 	}
-	
-	private void Update() {
-		// TODO Auto-generated method stub this is where cody says memgame is going to go
-		
-	} 
-}
+
+

@@ -54,7 +54,7 @@ public class MemView extends Composite {
 	
 	public MemView() {
 		
-		LayoutPanel layoutPanel = new LayoutPanel();
+		final LayoutPanel layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
 
 		this.score = 0;  
@@ -74,8 +74,7 @@ public class MemView extends Composite {
 		pg = new Button("Play again button");
 		pg.addClickHandler(new ClickHandler() {	
 			public void onClick(ClickEvent event) {
-				render();
-				update();
+				makeDeck(layoutPanel);
 			}
 		});
 		pg.setStyleName("Playagain_button");
@@ -89,7 +88,13 @@ public class MemView extends Composite {
 		layoutPanel.add(scorelabl);
 		layoutPanel.setWidgetLeftWidth(scorelabl, 322.0, Unit.PX, 161.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(scorelabl, 218.0, Unit.PX, 45.0, Unit.PX);
+		
+		makeDeck(layoutPanel);
+	}
 	
+	// so that it can remake the deck and reset the game
+	public void makeDeck(LayoutPanel layoutPanel){
+
 		this.deck = new MemDeck();
 		this.newdeck = new ArrayList<String>(); 
 		
@@ -162,6 +167,8 @@ public class MemView extends Composite {
 			// add to panel
 			layoutPanel.add(img);
 			
+			img.setVisible(true);
+			
 			// set position/size
 			int row = i / 5;
 			int col = i % 5;
@@ -171,9 +178,12 @@ public class MemView extends Composite {
 		}
 	
 		render();
+		
+		update();
 	}
 
-	
+
+
 	/**
 	 * This updates the game state based on what the user does
 	 */
@@ -280,7 +290,6 @@ public class MemView extends Composite {
 			}
 		}
 	}
-	
 	
 	/**
 	 * This method determines which cards are showing
