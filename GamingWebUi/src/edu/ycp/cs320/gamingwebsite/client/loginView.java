@@ -22,10 +22,11 @@ public class loginView extends Composite /*implements ISubscriber*/{
 	private Label errorLabel;
 	private LayoutPanel layoutPanel;
 	private MemView memview; 
+	private MainWorld main; 
 
 	
 	public loginView() {
-	
+		main = new MainWorld();
 		memview = new MemView();
 		layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
