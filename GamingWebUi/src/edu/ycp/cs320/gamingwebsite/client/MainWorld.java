@@ -53,10 +53,13 @@ public class MainWorld extends Composite{
 		
 		layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
+		layoutPanel.setSize("921px", "658px");
 
 		// Use a FocusPanel to allow the canvas to process user input events
 		FocusPanel focusPanel = new FocusPanel();
 		layoutPanel.add(focusPanel);
+		layoutPanel.setWidgetLeftWidth(focusPanel, 0.0, Unit.PX, 921.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(focusPanel, 0.0, Unit.PX, 658.0, Unit.PX);
 		
 		canvas.setSize("900px", "625px");
 		canvas.setCoordinateSpaceWidth(width);
@@ -67,13 +70,13 @@ public class MainWorld extends Composite{
 		
 		numberLabel = new NumberLabel<Double>();
 		layoutPanel.add(numberLabel);
-		layoutPanel.setWidgetLeftWidth(numberLabel, 0.0, Unit.PX, 765.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(numberLabel, 0.0, Unit.PX, 471.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(numberLabel, 0.0, Unit.PX, 144.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(numberLabel, 0.0, Unit.PX, 34.0, Unit.PX);
 
 		numberLabel_1 = new NumberLabel<Double>();
 		layoutPanel.add(numberLabel_1);
-		layoutPanel.setWidgetLeftWidth(numberLabel_1, 0.0, Unit.PX, 765.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(numberLabel_1, 46.0, Unit.PX, 471.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(numberLabel_1, 0.0, Unit.PX, 144.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(numberLabel_1, 46.0, Unit.PX, 29.0, Unit.PX);
 	
 		canvas.addKeyDownHandler(new KeyDownHandler(){
 			public void onKeyDown(KeyDownEvent event) {
@@ -98,11 +101,12 @@ public class MainWorld extends Composite{
 
 		player = new Player();
 		
+		render();
+		
 		timer = new Timer(){
 			  @Override
 			  public void run(){
 				  update();
-				  render();
 			  }
 	  };
 	  timer.scheduleRepeating(5);
@@ -159,12 +163,9 @@ public class MainWorld extends Composite{
 			}else{
 			}
 		}
-
-		x += dx;
-		y += dy;
-
-		player.setX(x);
-		player.setY(y);
+		
+		player.setX(x += dx);
+		player.setY(y += dy);
 
 		render();
 
