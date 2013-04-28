@@ -23,14 +23,12 @@ public class GamingWebUi implements EntryPoint {
 		RootLayoutPanel rootLayoutPanel = RootLayoutPanel.get();
 		view = new loginView();
 		view2 = new MainWorld();
-
 		rootLayoutPanel.add(view2);	
-		
 		RootLayoutPanel.get().setWidgetTopBottom(view2, 0.0, Unit.PX, 0.0, Unit.PX);
 		RootLayoutPanel.get().setWidgetLeftRight(view2, 0.0, Unit.PX, 0.0, Unit.PX);
 		view2.update();
 		view2.render();
-		
+
 	new Timer(){
 		  @Override
 		  public void run(){
@@ -38,6 +36,7 @@ public class GamingWebUi implements EntryPoint {
 			  view2.render();
 		  }
 	  }.scheduleRepeating(5);
+
 
 	} 
 	
