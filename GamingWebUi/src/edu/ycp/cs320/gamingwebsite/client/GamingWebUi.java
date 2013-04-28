@@ -3,6 +3,7 @@ package edu.ycp.cs320.gamingwebsite.client;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.KeyDownEvent;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 
 
@@ -22,14 +23,24 @@ public class GamingWebUi implements EntryPoint {
 		RootLayoutPanel rootLayoutPanel = RootLayoutPanel.get();
 		view = new loginView();
 		view2 = new MainWorld();
-		
+
 		rootLayoutPanel.add(view2);	
-		view2.render();
-		view2.update();
+		
 		RootLayoutPanel.get().setWidgetTopBottom(view2, 0.0, Unit.PX, 0.0, Unit.PX);
 		RootLayoutPanel.get().setWidgetLeftRight(view2, 0.0, Unit.PX, 0.0, Unit.PX);
+		view2.update();
+		view2.render();
+		
+	new Timer(){
+		  @Override
+		  public void run(){
+			  view2.update();
+			  view2.render();
+		  }
+	  }.scheduleRepeating(5);
 
 	} 
+	
 	}
 
 
