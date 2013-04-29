@@ -61,20 +61,22 @@ public class Player {
 	public boolean getright() {
 		return right;
 	}
-	
-	public double getDx() {
-		return dx;
-	}
-	
-	public double getDy() {
-		return dy;
-	}
-	
-	public void enterRoom(double x, double y, boolean enter){
-		if((x>683 && x<735) && y == 314){
-			enter = true;
-		}else{
-			enter = false;
+	/**
+	 * This method returns true if the player is about to enter a room
+	 * @return true if about to answer, else false
+	 */
+	public boolean enterRoomMem(){
+		//room will be entered if x is between 680-734 and y == 314
+		if(y == 314){
+			if(x >=680 && x<=734 ){
+				return true; 
+			}else{
+			return false;
+			}
 		}
+		else{
+			return false;
+		}
+			
 	}
 }
