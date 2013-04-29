@@ -25,3 +25,9 @@
 	font-weight: 600;
 	text-align: center;
 }
+.gwt-Button {
+	color: dodgerblue;
+	font-size: 18px;
+	font-weight: 900;
+	background-color: darkred;
+}

@@ -21,6 +21,9 @@ import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 import edu.ycp.cs320.gamingwebsite.shared.Player;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.ClickEvent;
 
 
 
@@ -44,19 +47,21 @@ public class MainWorld extends Composite{
 	private NumberLabel<Double> numberLabel;
 	private ImageElement img2;
 	private  LayoutPanel layoutPanel;
-	private int avieX;
-	private int avieY;
+
 	private double dx;
 	private double dy;
+	private Button scoresbtn;
+	private Button membtn;
+	private MemView memview; 
 	
 	public MainWorld(){
 
 		
-		this.avieX = 360; 
-		this.avieY = 590; 	
 		this.dx = 0;
 		this.dy = 0;
 
+		memview = new MemView();
+		
 		MAX_KEYS = 256;
 		keys = new boolean[MAX_KEYS];
 		canvas = Canvas.createIfSupported();
@@ -70,13 +75,13 @@ public class MainWorld extends Composite{
 
 		layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
-		layoutPanel.setSize("1080px", "844px");
+		layoutPanel.setSize("1125px", "890px");
 
 		// Use a FocusPanel to allow the canvas to process user input events
 		FocusPanel focusPanel = new FocusPanel();
 		layoutPanel.add(focusPanel);
-		layoutPanel.setWidgetLeftWidth(focusPanel, 0.0, Unit.PX, 1142.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(focusPanel, 0.0, Unit.PX, 931.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(focusPanel, 0.0, Unit.PX, 960.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(focusPanel, 0.0, Unit.PX, 705.0, Unit.PX);
 		canvas.setSize("951px", "698px");
 		canvas.setCoordinateSpaceWidth(width);
 		canvas.setCoordinateSpaceHeight(height);
@@ -95,6 +100,29 @@ public class MainWorld extends Composite{
 		layoutPanel.add(numberLabel_1);
 		layoutPanel.setWidgetLeftWidth(numberLabel_1, 0.0, Unit.PX, 153.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(numberLabel_1, 46.0, Unit.PX, 23.0, Unit.PX);
+		
+		membtn = new Button("Enter the Memory Game");
+		membtn.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				layoutPanel.clear();
+				layoutPanel.add(memview);
+				memview.update();
+			}
+		});
+		layoutPanel.add(membtn);
+		layoutPanel.setWidgetLeftWidth(membtn, 979.0, Unit.PX, 124.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(membtn, 155.0, Unit.PX, 73.0, Unit.PX);
+		
+		scoresbtn = new Button("Enter Score Table");
+		scoresbtn.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+			}
+		});
+		layoutPanel.add(scoresbtn);
+		layoutPanel.setWidgetLeftWidth(scoresbtn, 979.0, Unit.PX, 124.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(scoresbtn, 248.0, Unit.PX, 64.0, Unit.PX);
+		
+		
 
 		canvas.addKeyDownHandler(new KeyDownHandler(){
 			public void onKeyDown(KeyDownEvent event) {
@@ -118,31 +146,23 @@ public class MainWorld extends Composite{
 		});
 
 		player = new Player();
-		
-		timer = new Timer(){
-			  @Override
-			  public void run(){
-				  update();
-				  render();
-			  }
-	  };
-	  timer.scheduleRepeating(5);
+		membtn.setVisible(false);
+		scoresbtn.setVisible(false);
+
 	}
 
 	public void render(){
 		context = canvas.getContext2d();
 		context.beginPath();
-		//   context.setFillStyle(colorBlue);
-		//   context.arc(player.getX(), player.getY(), 20, 0, 2.0 * Math.PI, true);
-
+		
+	
+		
 		img = (ImageElement) new Image("CardImage/Mainworld.jpg").getElement().cast();
 		// drawing the image
 		context.drawImage(img, 0, 0, 1000, 800);
 		img2 = (ImageElement) new Image("CardImage/manlymen.jpg").getElement().cast();
 		// drawing the image
 		context.drawImage(img2, player.getX(), player.getY(), 60, 50);
-		//   context.setFillStyle(colorBlue);
-		//   context.rect(20, 20, 295, 295);
 		context.closePath();
 		//   context.fill();
 	}
@@ -150,37 +170,32 @@ public class MainWorld extends Composite{
 	public void update(){		 
 		 dx = 0;
 		 dy = 0;
-
-		//player.collision(player.getX(), player.getY());
+		 
 		double x = player.getX();
 		double y = player.getY();
 
 		// w
 		if(keys[87]) {
-//			if(player.getUp()){
-				dy = -1;
-//			}else{}
+			dy = -1;
 		}
 		// d
 		if(keys[68]) {
-//			if(player.getright()){
-		dx = 1;
-//			}else{}
+			dx = 1;
 		}
 		//a
 		if(keys[65]) {
-//			if(player.getleft()){
 				dx = -1;
-//			}else{}
 		}
 		//s
 		if(keys[83]) {
-//			if(player.getdown()){
 				dy = 1;
-//			}else{
-//			}
 		}
-
+		
+		//x = 360 reached the left side of the right buildings, y = 40 for top of screen
+				//y = 415 for top of bottom buildings, x = 610 for the right of screen
+				//y = 290 for bottom of top buildings, y = 590 for bottom of screen,x = 20 for the left of screen
+				//x = 260 for the right side of the left buildings
+		
 		x += dx;
 		y += dy;
 		if(x <= 487 && y <= 652 && y >=24 && x >=320){
@@ -191,6 +206,13 @@ public class MainWorld extends Composite{
 			if((y>= 314 && y <=395) && (x>=25 && x<=815)){
 				player.setX(x);
 				player.setY(y);
+				if (player.enterRoomMem()== true){
+					membtn.setVisible(true);
+				}
+				else{
+					membtn.setVisible(false);
+				}
+				
 			}
 			else{
 				x -= dx;
@@ -199,7 +221,7 @@ public class MainWorld extends Composite{
 				player.setY(y);
 			}
 		}
-			
+		
 
 		render();
 
@@ -209,28 +231,4 @@ public class MainWorld extends Composite{
 		numberLabel_1.setValue(y);
 		numberLabel_1.setVisible(true);
 	}
-	public void moveAvatar(int x, int y){
-		//x = 360 reached the left side of the right buildings, y = 40 for top of screen
-		//y = 415 for top of bottom buildings, x = 610 for the right of screen
-		//y = 290 for bottom of top buildings, y = 590 for bottom of screen,x = 20 for the left of screen
-		//x = 260 for the right side of the left buildings
-
-		avieX += x;
-		avieY +=y;
-		if(avieX <= 360 && avieY <= 590 && avieY >=40 && avieX >=260){
-//			layoutPanel.setWidgetLeftWidth(avie, avieX, Unit.PX, 73.0, Unit.PX);
-//			layoutPanel.setWidgetTopHeight(avie, avieY, Unit.PX, 55.0, Unit.PX);
-//			
-		}
-		
-//				layoutPanel.setWidgetLeftWidth(avie, avieX, Unit.PX, 73.0, Unit.PX);
-//				layoutPanel.setWidgetTopHeight(avie, avieY, Unit.PX, 55.0, Unit.PX);
-			}
-//			else{
-//				avieX-= x;
-//				avieY-= y; 
-//			}
-//		}
-
-
 }

@@ -48,78 +48,23 @@ public class Player {
 	public boolean getright() {
 		return right;
 	}
-	
-	 public void collision(double x, double y){
-		 // left wall
-		 if(x == 25){
-			 left = false;
-		 }
-		 // left wall of first building
-		 else if((x == 320)){
-			 if((y <= 320)){
-				  left = false;
-			 }else if((y >= 395)){
-				 left = false;
-			 }else{
-				 left = true;
-			 }
-		 }
-		 // bottom wall of first building
-		 else if(y == 320){
-			 if(x <= 320){
-				 Up = false;
-			 }else if(x >= 485){
-				 Up = false;
-			 }else{
-				 Up = true;
-			 }
-		 }
-		 // top of the board
-		 else if(y == 20){
-			 Up = false;
-		 }
-		 // right wall of the second building and fourth building
-		 else if(x == 485){
-			 if(y <= 320){
-				 right = false;
-			 }else if(y >= 395){
-				 right = false;
-			 }else{
-				 right = true;
-			 }
-		 }
-		 // bottom of the screen
-		 else if(y == 655){
-			 down = false;
-		 }
-		 // right of the screen
-		 else if(x == 815){
-			 if(y == 320){
-				 right = false;
-				 Up = false;
-			 }else if(y == 395){
-				 right = false;
-				 down = false;
-			 }else{
-				right = false;
-			 } 
-		 }
-		 // top wall of the third and fourth building
-		 else if(y == 395){
-			 if(x >= 490){
-				 down = false;
-			 }else if(x <= 315){
-				 down = false;
-			 }else{
-				 down = true;
-			 }
-		 }
-		 // if none than all true
-		 else{
-			 right = true;
-			 Up = true;
-			 left = true;
-			 down = true;
-		 }
-	 }
+	/**
+	 * This method returns true if the player is about to enter a room
+	 * @return true if about to answer, else false
+	 */
+	public boolean enterRoomMem(){
+		//room will be entered if x is between 680-734 and y == 314
+		if(y == 314){
+			if(x >=680 && x<=734 ){
+				return true; 
+			}else{
+			return false;
+			}
+		}
+		else{
+			return false;
+		}
+			
+	}
+	 
 }
