@@ -20,17 +20,13 @@ public class loginView extends Composite /*implements ISubscriber*/{
 	private TextBox usernameTextBox;
 	private Label errorLabel;
 	private LayoutPanel layoutPanel;
-	private MemView memview; 
-
 	private MainWorld main; 
-
 	private PasswordTextBox passwordTextBox;
 
 
 	
 	public loginView() {
 		main = new MainWorld();
-		memview = new MemView();
 		layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
 		layoutPanel.setSize("1000px", "800px");
@@ -144,7 +140,7 @@ public class loginView extends Composite /*implements ISubscriber*/{
 	
 	public void	NextPanel(){
 		layoutPanel.clear();
-		layoutPanel.add(memview); 
-		memview.update();
+		layoutPanel.add(main); 
+		main.update();
 	}
 }
