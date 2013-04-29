@@ -149,6 +149,7 @@ public class MainWorld extends Composite{
 		img = (ImageElement) new Image("CardImage/Mainworld.jpg").getElement().cast();
 		// drawing the image
 		context.drawImage(img, 0, 0, 1000, 800);
+		
 		img2 = (ImageElement) new Image("CardImage/manlymen.jpg").getElement().cast();
 		// drawing the image
 		context.drawImage(img2, player.getX(), player.getY(), 60, 50);
@@ -185,6 +186,7 @@ public class MainWorld extends Composite{
 
 		x += dx;
 		y += dy;
+		
 		if(x <= 487 && y <= 652 && y >=24 && x >=320){
 			player.setX(x);
 			player.setY(y);
@@ -201,8 +203,6 @@ public class MainWorld extends Composite{
 				player.setY(y);
 			}
 		}
-			
-
 
 		render();
 
@@ -212,28 +212,5 @@ public class MainWorld extends Composite{
 		numberLabel_1.setValue(y);
 		numberLabel_1.setVisible(true);
 	}
-	public void moveAvatar(int x, int y){
-		//x = 360 reached the left side of the right buildings, y = 40 for top of screen
-		//y = 415 for top of bottom buildings, x = 610 for the right of screen
-		//y = 290 for bottom of top buildings, y = 590 for bottom of screen,x = 20 for the left of screen
-		//x = 260 for the right side of the left buildings
-
-		avieX += x;
-		avieY +=y;
-		if(avieX <= 360 && avieY <= 590 && avieY >=40 && avieX >=260){
-//			layoutPanel.setWidgetLeftWidth(avie, avieX, Unit.PX, 73.0, Unit.PX);
-//			layoutPanel.setWidgetTopHeight(avie, avieY, Unit.PX, 55.0, Unit.PX);
-//			
-		}
-		
-//				layoutPanel.setWidgetLeftWidth(avie, avieX, Unit.PX, 73.0, Unit.PX);
-//				layoutPanel.setWidgetTopHeight(avie, avieY, Unit.PX, 55.0, Unit.PX);
-			}
-//			else{
-//				avieX-= x;
-//				avieY-= y; 
-//			}
-//		}
-
 
 }
