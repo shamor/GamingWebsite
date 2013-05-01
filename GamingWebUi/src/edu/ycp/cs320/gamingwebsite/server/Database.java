@@ -131,30 +131,30 @@ public class Database implements IDatabase{
 	}
 	
 	@Override
-	public Login addLogin(final String username, final String password) throws SQLException {
+	public Login addLogin(final String username, final String password){
 		
-			return databaseRun(new ITransaction<Login>() {
-				@Override
-				public Login run(Connection conn) throws SQLException {
-					// TODO: create Login object, insert its data into the database
-					PreparedStatement stmt = null;
-					ResultSet resultSet = null;
-					try {
-						Login logs = new Login();
-						logs.setUserName(username);
-						logs.setPassword(password);
-						
-						stmt = conn.prepareStatement(
-						"insert into order_receipts (userinfo, price) values (?, ?)",
-						PreparedStatement.RETURN_GENERATED_KEYS
-						);
-					
-					return null;
-					} catch (SQLException e) {
-						throw new RuntimeException("SQLException inserting login", e);
-					}
-				}
-			});
+//			return databaseRun(new ITransaction<Login>() {
+//				@Override
+//				public Login run(Connection conn) throws SQLException {
+//					// TODO: create Login object, insert its data into the database
+//					PreparedStatement stmt = null;
+//					ResultSet resultSet = null;
+//					try {
+//						Login logs = new Login();
+//						logs.setUserName(username);
+//						logs.setPassword(password);
+//						
+//						stmt = conn.prepareStatement(
+//						"insert into order_receipts (userinfo, price) values (?, ?)",
+//						PreparedStatement.RETURN_GENERATED_KEYS
+//						);
+//					
+//					return null;
+//					} catch (SQLException e) {
+//						throw new RuntimeException("SQLException inserting login", e);
+//					}
+//				}
+//			});
 
 	}
 	
