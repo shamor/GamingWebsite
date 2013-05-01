@@ -1,5 +1,7 @@
 package edu.ycp.cs320.gamingwebsite.server;
 
+import java.sql.SQLException;
+
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import edu.ycp.cs320.gamingwebsite.client.LoginService;

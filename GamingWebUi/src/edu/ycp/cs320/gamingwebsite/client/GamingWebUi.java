@@ -26,18 +26,18 @@ public class GamingWebUi implements EntryPoint {
 		RootLayoutPanel.get().setWidgetLeftRight(view, 0.0, Unit.PX, 0.0, Unit.PX);
 	} 
 	
-	public void update(){
-		view2.update();
-		view2.render();
-
-		new Timer(){
-			  @Override
-			  public void run(){
-				  view2.update();
-				  view2.render();
-			  }
-		  }.scheduleRepeating(5);
-	}
+//	public void update(){
+//		view2.update();
+//		view2.render();
+//
+//		new Timer(){
+//			  @Override
+//			  public void run(){
+//				  view2.update();
+//				  view2.render();
+//			  }
+//		  }.scheduleRepeating(5);
+//	}
 	
 	}
 

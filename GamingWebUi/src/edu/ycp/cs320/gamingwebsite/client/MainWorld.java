@@ -55,11 +55,9 @@ public class MainWorld extends Composite{
 	private MemView memview; 
 	
 	public MainWorld(){
-
-		
 		this.dx = 0;
 		this.dy = 0;
-
+	
 		memview = new MemView();
 		
 		MAX_KEYS = 256;
@@ -69,20 +67,20 @@ public class MainWorld extends Composite{
 		if (canvas == null) {
 			return;
 		}
-
+	
 		layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
-
+	
 		layoutPanel.setSize("1125px", "890px");
-
-
+	
+	
 		// Use a FocusPanel to allow the canvas to process user input events
 		FocusPanel focusPanel = new FocusPanel();
 		layoutPanel.add(focusPanel);
-
+	
 		layoutPanel.setWidgetLeftWidth(focusPanel, 0.0, Unit.PX, 960.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(focusPanel, 0.0, Unit.PX, 705.0, Unit.PX);
-
+	
 		canvas.setSize("951px", "698px");
 		
 		canvas.setCoordinateSpaceWidth(width);
@@ -90,7 +88,7 @@ public class MainWorld extends Composite{
 		canvas.setFocus(true);
 		
 		focusPanel.add(canvas);
-
+	
 		numberLabel = new NumberLabel<Double>();
 		numberLabel.setStyleName("Main Game");
 		layoutPanel.add(numberLabel);
@@ -99,7 +97,7 @@ public class MainWorld extends Composite{
 		layoutPanel.setWidgetTopHeight(numberLabel, 0.0, Unit.PX, 34.0, Unit.PX);
 		layoutPanel.setWidgetLeftWidth(numberLabel, 0.0, Unit.PX, 153.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(numberLabel, 0.0, Unit.PX, 23.0, Unit.PX);
-
+	
 		numberLabel_1 = new NumberLabel<Double>();
 		numberLabel_1.setStyleName("Main Game");
 		layoutPanel.add(numberLabel_1);
@@ -113,7 +111,7 @@ public class MainWorld extends Composite{
 		membtn = new Button("Enter the Memory Game");
 		membtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				layoutPanel.clear();
+				layoutPanel.setVisible(false);
 				layoutPanel.add(memview);
 				memview.update();
 			}
@@ -132,7 +130,7 @@ public class MainWorld extends Composite{
 		layoutPanel.setWidgetTopHeight(scoresbtn, 248.0, Unit.PX, 64.0, Unit.PX);
 		
 		
-
+	
 		canvas.addKeyDownHandler(new KeyDownHandler(){
 			public void onKeyDown(KeyDownEvent event) {
 				int key = event.getNativeKeyCode();
@@ -143,7 +141,7 @@ public class MainWorld extends Composite{
 				}
 			}
 		});
-
+	
 		
 		canvas.addKeyUpHandler(new KeyUpHandler() {
 			public void onKeyUp(KeyUpEvent event) {
@@ -153,9 +151,9 @@ public class MainWorld extends Composite{
 				}
 			}
 		});
-
+	
 		player = new Player();
-
+	
 		
 		render();
 		
@@ -164,8 +162,8 @@ public class MainWorld extends Composite{
 			  public void run(){
 				  update();
 			  }
-	  };
-	  timer.scheduleRepeating(5);
+		  };
+		  timer.scheduleRepeating(5);
 		membtn.setVisible(false);
 		scoresbtn.setVisible(false);
 
@@ -174,18 +172,14 @@ public class MainWorld extends Composite{
 	public void render(){
 		context = canvas.getContext2d();
 		context.beginPath();
-		
-	
-		
+		// drawing the image background
 		img = (ImageElement) new Image("CardImage/Mainworld.jpg").getElement().cast();
-		// drawing the image
 		context.drawImage(img, 0, 0, 1000, 800);
-		
+	
 		img2 = (ImageElement) new Image("CardImage/manlymen.jpg").getElement().cast();
-		// drawing the image
+		// drawing the image player
 		context.drawImage(img2, player.getX(), player.getY(), 60, 50);
 		context.closePath();
-		//   context.fill();
 	}
 
 	public void update(){		 
