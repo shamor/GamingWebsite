@@ -60,7 +60,7 @@ public class MemView extends Composite {
 		initWidget(layoutPanel_1);
 
 		this.score = 0;  
-		layoutPanel_1.setSize("886px", "571px");
+		layoutPanel_1.setSize("1033px", "617px");
 		
 		// winning label to the game.
 		WinLabel = new InlineLabel("CONGRATULATIONS! YOU WON!");
@@ -81,8 +81,8 @@ public class MemView extends Composite {
 		pg.setStyleName("Playagain_button");
 		pg.setText("Play again?");
 		layoutPanel_1.add(pg);
-		layoutPanel_1.setWidgetRightWidth(pg, 323.0, Unit.PX, 118.0, Unit.PX);
-		layoutPanel_1.setWidgetTopHeight(pg, 293.0, Unit.PX, 58.0, Unit.PX);
+		layoutPanel_1.setWidgetRightWidth(pg, 540.0, Unit.PX, 118.0, Unit.PX);
+		layoutPanel_1.setWidgetTopHeight(pg, 292.0, Unit.PX, 58.0, Unit.PX);
 		
 		scorelabl = new NumberLabel<Double>();
 		scorelabl.setStyleName("score");
@@ -93,6 +93,11 @@ public class MemView extends Composite {
 		makeDeck(layoutPanel_1);
 		
 		btnBackToHome = new Button("Back to Home Screen");
+		btnBackToHome.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				goHome();
+			}
+		});
 		btnBackToHome.setStyleName("label");
 		layoutPanel_1.add(btnBackToHome);
 		layoutPanel_1.setWidgetLeftWidth(btnBackToHome, 779.0, Unit.PX, 107.0, Unit.PX);
@@ -348,5 +353,11 @@ public class MemView extends Composite {
 		else{
 			return false; 
 		}
+	}
+	public void goHome(){
+		MainWorld main = new MainWorld();
+		layoutPanel_1.clear();
+		layoutPanel_1.add(main);
+		main.update();
 	}
 }
