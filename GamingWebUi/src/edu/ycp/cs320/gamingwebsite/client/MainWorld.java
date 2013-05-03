@@ -47,21 +47,20 @@ public class MainWorld extends Composite{
 	private NumberLabel<Double> numberLabel;
 	private ImageElement img2;
 	private  LayoutPanel layoutPanel;
-	private loginView loginview;
+	//private loginView loginview;
 
 	private double dx;
 	private double dy;
 	private Button scoresbtn;
 	private Button membtn;
 	private MemView memview; 
-	private Button btnLogOff;
+	//private Button btnLogOff;
 	
 	public MainWorld(){
 		this.dx = 0;
 		this.dy = 0;
 	
 		memview = new MemView();
-		loginview = new loginView();
 		
 		MAX_KEYS = 256;
 		keys = new boolean[MAX_KEYS];
@@ -132,17 +131,17 @@ public class MainWorld extends Composite{
 		layoutPanel.setWidgetLeftWidth(scoresbtn, 929.0, Unit.PX, 124.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(scoresbtn, 248.0, Unit.PX, 64.0, Unit.PX);
 		
-		btnLogOff = new Button("Log off");
-		btnLogOff.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-//				layoutPanel.clear();
-//				layoutPanel.add(loginview);
-				
-			}
-		});
-		layoutPanel.add(btnLogOff);
-		layoutPanel.setWidgetLeftWidth(btnLogOff, 929.0, Unit.PX, 107.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(btnLogOff, 15.0, Unit.PX, 36.0, Unit.PX);
+//		btnLogOff = new Button("Log off");
+//		btnLogOff.addClickHandler(new ClickHandler() {
+//			public void onClick(ClickEvent event) {
+////				layoutPanel.clear();
+////				layoutPanel.add(loginview);
+//				
+//			}
+//		});
+//		layoutPanel.add(btnLogOff);
+//		layoutPanel.setWidgetLeftWidth(btnLogOff, 929.0, Unit.PX, 107.0, Unit.PX);
+//		layoutPanel.setWidgetTopHeight(btnLogOff, 15.0, Unit.PX, 36.0, Unit.PX);
 		
 		
 	

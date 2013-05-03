@@ -89,6 +89,9 @@ public class Database implements IDatabase{
 				PreparedStatement stmt = null;
 				
 				try {
+					// TODO: put a unique index on the user column so it
+					// is not possible to have multiple users with
+					// the same username
 					stmt = conn.prepareStatement(
 							"create table logins (" +
 							"  id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
@@ -110,51 +113,98 @@ public class Database implements IDatabase{
 
 	@Override
 	public List<Login> getLogin() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		return databaseRun(new ITransaction<List<Login>>() {
+		@Override
+		public List<Login> run(Connection conn) throws SQLException {
+			PreparedStatement stmt = null;
+			ResultSet resultSet = null;
+			
+			try {
+				stmt = conn.prepareStatement("select * from logins");
+				resultSet = stmt.executeQuery();
+		
+				List<Login> result = new ArrayList<Login>();
+				
+				while(resultSet.next()) {
+					Login login = new Login();
+					
+					login.setId(resultSet.getInt(1));
+					login.setUserName(resultSet.getString(2));
+					login.setPassword(resultSet.getString(3));
+					
+					result.add(login);
+				}
+				
+				return result;
+			} finally {
+				DBUtil.closeQuietly(stmt);
+				DBUtil.closeQuietly(resultSet);
+			}
+		}
+	});
+}
+	
 
 	@Override
-	public Login findLogin(String username, String password) {	
+	public Login findLogin(final String username, final String password) {	
 		try {
 			return databaseRun(new ITransaction<Login>() {
 				@Override
 				public Login run(Connection conn) throws SQLException {
-					// TODO: create Login object, insert its data into the database
+					List<Login> logs = new ArrayList<Login>();
+					logs = getLogin();
 					
-					return null;
+					for(Login user : logs){
+						if (user.getUser().equals(username) && user.getPassword().equals(password)) {
+							return user;
+						}
+					}
+					return null; // no such user
 				}
 			});
 		} catch (SQLException e) {
-			throw new RuntimeException("SQLException finding login", e);
+			throw new RuntimeException("SQL exception adding user to database", e);
 		}
 	}
 	
 	@Override
 	public Login addLogin(final String username, final String password){
-		
-//			return databaseRun(new ITransaction<Login>() {
-//				@Override
-//				public Login run(Connection conn) throws SQLException {
-//					// TODO: create Login object, insert its data into the database
-//					PreparedStatement stmt = null;
-//					ResultSet resultSet = null;
-//					try {
-//						Login logs = new Login();
-//						logs.setUserName(username);
-//						logs.setPassword(password);
-//						
-//						stmt = conn.prepareStatement(
-//						"insert into order_receipts (userinfo, price) values (?, ?)",
-//						PreparedStatement.RETURN_GENERATED_KEYS
-//						);
-//					
-//					return null;
-//					} catch (SQLException e) {
-//						throw new RuntimeException("SQLException inserting login", e);
-//					}
-//				}
-//			});
+		try {
+			return databaseRun(new ITransaction<Login>() {
+				@Override
+				public Login run(Connection conn) throws SQLException {
+					// TODO: create Login object, insert its data into the database
+					PreparedStatement stmt = null;
+					ResultSet keys = null;
+					try {
+						Login login = new Login();
+						login.setUserName(username);
+						login.setPassword(password);
+						
+						stmt = conn.prepareStatement(
+								"insert into logins (user, password) values (?, ?)",
+								PreparedStatement.RETURN_GENERATED_KEYS
+						);
+						stmt.setString(1, username);
+						stmt.setString(2, password);
+						
+						stmt.executeUpdate();
+						
+						keys = stmt.getGeneratedKeys();
+						if (!keys.next()) {
+							throw new SQLException("Can't happen: no generated key for inserted login");
+						}
+						login.setId(keys.getInt(1));
+					
+						return login;
+					} catch (SQLException e) {
+						throw new RuntimeException("SQLException inserting login", e);
+					}
+				}
+			});
+		} catch (SQLException e) {
+			throw new RuntimeException("SQL exception adding user to database", e);
+		}
 
 	}
 	
@@ -208,7 +258,8 @@ public class Database implements IDatabase{
 //				
 //				try {
 //					stmt = conn.prepareStatement("select * from order_receipts");
-//					resultSet = stmt.executeQuery();
+//				resultSet = stmt.executeQuery();
+			
 //					
 //					List<Login> result = new ArrayList<Login>();
 //					
