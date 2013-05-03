@@ -135,7 +135,7 @@ public class Database implements IDatabase{
 		
 			return databaseRun(new ITransaction<Login>() {
 				@Override
-				public Login run(Connection conn) throws SQLException {
+				public Login run(Connection conn)  {
 					// TODO: create Login object, insert its data into the database
 					PreparedStatement stmt = null;
 					ResultSet resultSet = null;

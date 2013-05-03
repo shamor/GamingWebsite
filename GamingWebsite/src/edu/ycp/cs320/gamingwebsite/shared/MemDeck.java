@@ -70,7 +70,6 @@ public class MemDeck {
 	 */
 	public  void shuffle() {
 
-		// FIXME: GWT doesn't emulate this method
 
 		// This method reverses two cards by flipping two cards based on a random index
 		int cardMovements1 = 1000;

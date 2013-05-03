@@ -65,15 +65,14 @@ public class MainWorld extends Composite{
 		MAX_KEYS = 256;
 		keys = new boolean[MAX_KEYS];
 		canvas = Canvas.createIfSupported();
-		//this.player = new Player();
+	
 		if (canvas == null) {
 			return;
 		}
 
 		layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
-
-		layoutPanel.setSize("1125px", "890px");
+		layoutPanel.setSize("1174px", "918px");
 
 
 
@@ -97,8 +96,7 @@ public class MainWorld extends Composite{
 		numberLabel.setStyleName("Main Game");
 		layoutPanel.add(numberLabel);
 		
-		layoutPanel.setWidgetLeftWidth(numberLabel, 0.0, Unit.PX, 144.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(numberLabel, 0.0, Unit.PX, 34.0, Unit.PX);
+		
 		layoutPanel.setWidgetLeftWidth(numberLabel, 0.0, Unit.PX, 153.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(numberLabel, 0.0, Unit.PX, 23.0, Unit.PX);
 
@@ -106,8 +104,6 @@ public class MainWorld extends Composite{
 		numberLabel_1.setStyleName("Main Game");
 		layoutPanel.add(numberLabel_1);
 		
-		layoutPanel.setWidgetLeftWidth(numberLabel_1, 0.0, Unit.PX, 144.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(numberLabel_1, 46.0, Unit.PX, 29.0, Unit.PX);
 	
 		layoutPanel.setWidgetLeftWidth(numberLabel_1, 0.0, Unit.PX, 153.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(numberLabel_1, 46.0, Unit.PX, 23.0, Unit.PX);
@@ -121,8 +117,8 @@ public class MainWorld extends Composite{
 			}
 		});
 		layoutPanel.add(membtn);
-		layoutPanel.setWidgetLeftWidth(membtn, 979.0, Unit.PX, 124.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(membtn, 155.0, Unit.PX, 73.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(membtn, 890.0, Unit.PX, 117.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(membtn, 153.0, Unit.PX, 64.0, Unit.PX);
 		
 		scoresbtn = new Button("Enter Score Table");
 		scoresbtn.addClickHandler(new ClickHandler() {
@@ -130,8 +126,8 @@ public class MainWorld extends Composite{
 			}
 		});
 		layoutPanel.add(scoresbtn);
-		layoutPanel.setWidgetLeftWidth(scoresbtn, 979.0, Unit.PX, 124.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(scoresbtn, 248.0, Unit.PX, 64.0, Unit.PX);
+		layoutPanel.setWidgetLeftWidth(scoresbtn, 890.0, Unit.PX, 117.0, Unit.PX);
+		layoutPanel.setWidgetTopHeight(scoresbtn, 246.0, Unit.PX, 64.0, Unit.PX);
 		
 		
 
@@ -139,7 +135,6 @@ public class MainWorld extends Composite{
 			public void onKeyDown(KeyDownEvent event) {
 				int key = event.getNativeKeyCode();
 				if(key < MAX_KEYS) {
-					GWT.log("KEY " + key);
 					keys[key] = true;
 					timer.scheduleRepeating(5);
 				}
@@ -157,7 +152,15 @@ public class MainWorld extends Composite{
 		});
 
 		player = new Player();
-
+		
+		timer = new Timer(){
+			@Override
+			public void run(){
+				update();
+			}
+		};
+		timer.scheduleRepeating(5);
+		
 		membtn.setVisible(false);
 		scoresbtn.setVisible(false);
 		
