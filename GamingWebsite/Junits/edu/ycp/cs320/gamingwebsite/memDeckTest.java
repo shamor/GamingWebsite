@@ -50,7 +50,7 @@ public class memDeckTest extends TestCase {
 	}
 	
 	private void getCard(int i, int numCards2) {
-		memdeck.getCard(1)
+		memdeck.getCard(1);
 		
 	}
 
