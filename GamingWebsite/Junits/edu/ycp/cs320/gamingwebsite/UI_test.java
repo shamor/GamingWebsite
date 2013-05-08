@@ -1,3 +1,4 @@
+package edu.ycp.cs320.gamingwebsite;
 
 
 
@@ -44,11 +45,10 @@ public class UI_test extends TestCase {
 	}
 	
 	@Test
-	public void testenterRoomMem(){
-		//assertEquals(false); 
+	public void testenterRoomMem() {
 		player1.setX(690);
 		player1.setY(314);
-		//assertEquals(true);
+		
 		
 		
 	}

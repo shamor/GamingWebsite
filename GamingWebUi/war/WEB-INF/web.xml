@@ -10,6 +10,16 @@
     <url-pattern>/gamingwebui/login</url-pattern>
   </servlet-mapping>
   
+     <servlet>
+    <servlet-name>Highscores</servlet-name>
+    <servlet-class>edu.ycp.cs320.gamingwebsite.server.Highscores</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Highscores</servlet-name>
+    <url-pattern>/highscores/*</url-pattern>
+  </servlet-mapping>
+
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>GamingWebUi.html</welcome-file>

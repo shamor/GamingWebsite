@@ -16,9 +16,17 @@ public class Login implements Serializable{
 	private int id;
 	private String user;
 	private String password;
+	private double memscore;
 	
 	public Login() {
 		
+	}
+	public double getMemscore() {
+		return memscore;
+	}
+	
+	public void setMemscore(double memscore) {
+		this.memscore = memscore;
 	}
 	
 	public void setId(int id){

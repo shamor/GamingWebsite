@@ -1,0 +1,10 @@
+----------------------------------------------------------------
+Sun May 05 19:12:29 EDT 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-013e-76f7-c565-000002df09e0 
+on database directory H:\GamingWebsite  with class loader sun.misc.Launcher$AppClassLoader@19035ff9 
+Loaded from file:/H:/git/GamingWebsite/GamingWebUi/war/WEB-INF/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_07-b11
+user.dir=H:\git\GamingWebsite\GamingWebUi
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

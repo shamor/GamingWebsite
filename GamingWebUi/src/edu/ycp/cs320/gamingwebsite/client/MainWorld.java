@@ -31,9 +31,6 @@ import com.google.gwt.event.dom.client.ClickEvent;
 public class MainWorld extends Composite{
 	static final int height = 800;
 	static final int width = 1000;
-	final CssColor colorRed = CssColor.make("red");
-	final CssColor colorGreen = CssColor.make("green");
-	final CssColor colorBlue = CssColor.make("blue");
 
 	private Canvas canvas;
 	private Context2d context;
@@ -54,13 +51,13 @@ public class MainWorld extends Composite{
 	private Button membtn;
 	private MemView memview; 
 	
-	public MainWorld(){
+	public MainWorld(String username){
 
 		
 		this.dx = 0;
 		this.dy = 0;
 
-		memview = new MemView();
+		memview = new MemView(username);
 		
 		MAX_KEYS = 256;
 		keys = new boolean[MAX_KEYS];
@@ -72,7 +69,7 @@ public class MainWorld extends Composite{
 
 		layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
-		layoutPanel.setSize("1174px", "969px");
+		layoutPanel.setSize("1174px", "918px");
 
 
 
@@ -91,22 +88,6 @@ public class MainWorld extends Composite{
 		canvas.setFocus(true);
 		
 		focusPanel.add(canvas);
-
-		numberLabel = new NumberLabel<Double>();
-		numberLabel.setStyleName("Main Game");
-		layoutPanel.add(numberLabel);
-		
-		
-		layoutPanel.setWidgetLeftWidth(numberLabel, 0.0, Unit.PX, 153.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(numberLabel, 0.0, Unit.PX, 23.0, Unit.PX);
-
-		numberLabel_1 = new NumberLabel<Double>();
-		numberLabel_1.setStyleName("Main Game");
-		layoutPanel.add(numberLabel_1);
-		
-	
-		layoutPanel.setWidgetLeftWidth(numberLabel_1, 0.0, Unit.PX, 153.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(numberLabel_1, 46.0, Unit.PX, 23.0, Unit.PX);
 		
 		membtn = new Button("Enter the Memory Game");
 		membtn.addClickHandler(new ClickHandler() {
@@ -141,7 +122,7 @@ public class MainWorld extends Composite{
 			}
 		});
 
-		
+		// the key is up
 		canvas.addKeyUpHandler(new KeyUpHandler() {
 			public void onKeyUp(KeyUpEvent event) {
 				int key = event.getNativeKeyCode();
@@ -172,23 +153,19 @@ public class MainWorld extends Composite{
 		context = canvas.getContext2d();
 		context.beginPath();
 		
-		
-		img = (ImageElement) new Image("CardImage/Mainworld.jpg").getElement().cast();
 		// drawing the image
+		img = (ImageElement) new Image("CardImage/Mainworld.jpg").getElement().cast();
 		context.drawImage(img, 0, 0, 1000, 800);
 		
+		// drawing the avatar
 		img2 = (ImageElement) new Image("CardImage/manlymen.jpg").getElement().cast();
-		// drawing the image
 		context.drawImage(img2, player.getX(), player.getY(), 60, 50);
 		context.closePath();
-		//   context.fill();
 	}
 
 	public void update(){		 
 		 dx = 0;
 		 dy = 0;
-
-
 
 		double x = player.getX();
 		double y = player.getY();
@@ -211,47 +188,19 @@ public class MainWorld extends Composite{
 		}
 
 		
-		//x = 360 reached the left side of the right buildings, y = 40 for top of screen
-				//y = 415 for top of bottom buildings, x = 610 for the right of screen
-				//y = 290 for bottom of top buildings, y = 590 for bottom of screen,x = 20 for the left of screen
-				//x = 260 for the right side of the left buildings
-		
-
 		x += dx;
 		y += dy;
 		
-		if(x <= 487 && y <= 652 && y >=24 && x >=320){
-			player.setX(x);
-			player.setY(y);
+		player.collision(x, y, dx, dy);
+		if (player.getcontact()){
+		membtn.setVisible(true);
 		}
 		else{
-			if((y>= 314 && y <=395) && (x>=25 && x<=815)){
-				player.setX(x);
-				player.setY(y);
-				if (player.enterRoomMem()== true){
-					membtn.setVisible(true);
-				}
-				else{
-					membtn.setVisible(false);
-				}
-				
-			}
-			else{
-				x -= dx;
-				y -= dy;
-				player.setX(x);
-				player.setY(y);
-			}
+			membtn.setVisible(false);
 		}
-
+		
 
 		render();
-
-		numberLabel.setValue(x);
-		numberLabel.setVisible(true);
-
-		numberLabel_1.setValue(y);
-		numberLabel_1.setVisible(true);
 	}
 
 }

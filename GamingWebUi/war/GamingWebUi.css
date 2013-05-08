@@ -31,3 +31,7 @@
 	font-weight: 900;
 	background-color: darkred;
 }
+board {
+	margin: 1px;
+	background-color: forestgreen;
+}

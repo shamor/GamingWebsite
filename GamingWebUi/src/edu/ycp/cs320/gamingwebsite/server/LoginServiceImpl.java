@@ -27,4 +27,12 @@ public class LoginServiceImpl extends RemoteServiceServlet implements
 		return null;
 	}
 
+	public void setscore(String username, double score) {
+		try {
+			System.out.println("Setting score for " + username + " to " + score);
+			DBUtil.instance().setscore(username, score);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
