@@ -43,13 +43,52 @@ public class UI_test extends TestCase {
 		
 	}
 	
+	
+//	@Test
+//	public void testgetcontact(){
+//		assertEquals(false, player1.getcontact());
+//		
+//		
+//	}
+	
+//	@Test
+//	public void testcollision(){
+//		//first if
+//		player1.collision(486, 50, 0, 0);
+//		assertEquals(486.0, player1.getX());
+//		assertEquals(50.0, player1.getY());	
+//		//second if
+//		player1.collision(26, 316, 0, 0);
+//		assertEquals(26.0, player1.getX());
+//		assertEquals(316.0, player1.getY());
+//		// second if's nested if
+//		player1.collision(730, 314, 0, 0);
+//		assertEquals(true, player1.getcontact());
+//		// second if's nested else
+//		player1.collision(600, 314, 0, 0);
+//		assertEquals(false, player1.getcontact());
+//		//final else
+//		player1.collision(816, 313, 1, 1);
+//		assertEquals(815.0, player1.getX());
+//		assertEquals(312.0, player1.getY());
+//	}
+//	
+	
 	@Test
 	public void testenterRoomMem(){
-		//assertEquals(false); 
-		player1.setX(690);
+		//first if
+		player1.setX(730);
 		player1.setY(314);
-		//assertEquals(true);
+		assertEquals(true, player1.enterRoomMem());
+		//inter if's else
+		player1.setX(600);
+		player1.setY(314);
+		assertEquals(false, player1.enterRoomMem());
+		player1.setX(730);
+		player1.setY(300);
+		assertEquals(false, player1.enterRoomMem());
 		
 		
 	}
+	
 }
