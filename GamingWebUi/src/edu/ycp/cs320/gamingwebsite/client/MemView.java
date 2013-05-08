@@ -59,9 +59,10 @@ public class MemView extends Composite {
 		private Label lblNewLabel;
 		private String username;
 		private String password;
-		
+		private Timer timer; 
 	
 	public MemView(String username) {
+	
 		this.username = username;
 		layoutPanel_1 = new LayoutPanel();
 		initWidget(layoutPanel_1);
@@ -110,15 +111,11 @@ public class MemView extends Composite {
 		layoutPanel_1.setWidgetLeftWidth(btnBackToHome, 779.0, Unit.PX, 107.0, Unit.PX);
 		layoutPanel_1.setWidgetTopHeight(btnBackToHome, 0.0, Unit.PX, 83.0, Unit.PX);
 		
-		errorLabel = new Label("New label");
+		errorLabel = new Label();
 		layoutPanel_1.add(errorLabel);
 		layoutPanel_1.setWidgetLeftWidth(errorLabel, 23.0, Unit.PX, 56.0, Unit.PX);
 		layoutPanel_1.setWidgetTopHeight(errorLabel, 599.0, Unit.PX, 18.0, Unit.PX);
-		
-		lblNewLabel = new Label(username);
-		layoutPanel_1.add(lblNewLabel);
-		layoutPanel_1.setWidgetLeftWidth(lblNewLabel, 822.0, Unit.PX, 56.0, Unit.PX);
-		layoutPanel_1.setWidgetTopHeight(lblNewLabel, 194.0, Unit.PX, 18.0, Unit.PX);
+	
 	}
 	
 	// so that it can remake the deck and reset the game
@@ -236,7 +233,7 @@ public class MemView extends Composite {
 			
 			setscore(); 
 			
-			new Timer() {
+			timer = new Timer() {
 				@Override
 				public void run() {
 					scorelabl.setValue(score);
@@ -245,7 +242,8 @@ public class MemView extends Composite {
 					pg.setVisible(true);
 					
 				}
-			}.schedule(500);
+			};
+			timer.schedule(500);
 		}
 		else{
 			scorelabl.setVisible(false);
@@ -343,13 +341,14 @@ public class MemView extends Composite {
 				final int hideIndex2 = imgindex2;
 				
 				if(samecards == true){
-					new Timer() {
+					timer = new Timer() {
 						@Override
 						public void run() {
 							allImages[hideIndex1].setVisible(false);
 							allImages[hideIndex2].setVisible(false);
 						}
-					}.schedule(500);
+					};
+					timer.schedule(500);
 					
 					pairsGone++; 		
 					
@@ -372,6 +371,7 @@ public class MemView extends Composite {
 		MainWorld main = new MainWorld(username);
 		layoutPanel_1.clear();
 		layoutPanel_1.add(main);
+		timer.cancel();
 		main.update();
 	}
 	

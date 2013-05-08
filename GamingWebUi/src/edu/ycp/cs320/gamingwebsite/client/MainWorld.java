@@ -94,7 +94,9 @@ public class MainWorld extends Composite{
 			public void onClick(ClickEvent event) {
 				layoutPanel.clear();
 				layoutPanel.add(memview);
+				timer.cancel();
 				memview.update();
+				
 			}
 		});
 		layoutPanel.add(membtn);
