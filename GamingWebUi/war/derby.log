@@ -1,4 +1,5 @@
 ----------------------------------------------------------------
+<<<<<<< HEAD
 Wed May 08 14:18:22 EDT 2013:
 Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-013e-855d-93d9-000004872790 
 on database directory H:\GamingWebsite  with class loader ContextLoader@null 
@@ -6,5 +7,14 @@ Loaded from file:/H:/git/GamingWebsites/GamingWebsite/GamingWebUi/war/WEB-INF/li
 java.vendor=Oracle Corporation
 java.runtime.version=1.7.0_07-b11
 user.dir=H:\git\GamingWebsites\GamingWebsite\GamingWebUi\war
+=======
+Wed May 08 13:49:33 EDT 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-013e-8543-2fa5-000007d7e6d8 
+on database directory H:\GamingWebsite  with class loader ContextLoader@null 
+Loaded from file:/H:/git/GamingWebsite/GamingWebUi/war/WEB-INF/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_07-b11
+user.dir=H:\git\GamingWebsite\GamingWebUi\war
+>>>>>>> Cody/master
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

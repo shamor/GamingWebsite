@@ -1,3 +1,4 @@
+package edu.ycp.cs320.gamingwebsite;
 
 
 
@@ -75,6 +76,7 @@ public class UI_test extends TestCase {
 //	
 	
 	@Test
+
 	public void testenterRoomMem(){
 		//first if
 		player1.setX(730);
@@ -87,8 +89,7 @@ public class UI_test extends TestCase {
 		player1.setX(730);
 		player1.setY(300);
 		assertEquals(false, player1.enterRoomMem());
-		
-		
+
 	}
-	
+		
 }

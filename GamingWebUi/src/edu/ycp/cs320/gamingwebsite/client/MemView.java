@@ -3,20 +3,26 @@ package edu.ycp.cs320.gamingwebsite.client;
 import java.util.ArrayList;
 
 import com.google.gwt.user.client.Timer;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.Image;
 import edu.ycp.cs320.gamingwebsite.shared.*;
+
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.NumberLabel;
 
+
+
+
 public class MemView extends Composite {
-		
+		private String user;
 		private MemDeck deck;
 		private	ArrayList<String> newdeck; 
 		private double click;
@@ -48,14 +54,18 @@ public class MemView extends Composite {
 		private double score; 
 		private LayoutPanel layoutPanel_1;
 		private Button btnBackToHome;
-
+		private Label errorLabel;
+		private Login login;
+		private Label lblNewLabel;
+		private String username;
+		private String password;
 		
 	
-	public MemView() {
-		
+	public MemView(String username) {
+		this.username = username;
 		layoutPanel_1 = new LayoutPanel();
 		initWidget(layoutPanel_1);
-
+		login = new Login();
 		this.score = 0;  
 		layoutPanel_1.setSize("1033px", "617px");
 		
@@ -99,12 +109,19 @@ public class MemView extends Composite {
 		layoutPanel_1.add(btnBackToHome);
 		layoutPanel_1.setWidgetLeftWidth(btnBackToHome, 779.0, Unit.PX, 107.0, Unit.PX);
 		layoutPanel_1.setWidgetTopHeight(btnBackToHome, 0.0, Unit.PX, 83.0, Unit.PX);
+		
+		errorLabel = new Label("New label");
+		layoutPanel_1.add(errorLabel);
+		layoutPanel_1.setWidgetLeftWidth(errorLabel, 23.0, Unit.PX, 56.0, Unit.PX);
+		layoutPanel_1.setWidgetTopHeight(errorLabel, 599.0, Unit.PX, 18.0, Unit.PX);
+		
+		lblNewLabel = new Label(username);
+		layoutPanel_1.add(lblNewLabel);
+		layoutPanel_1.setWidgetLeftWidth(lblNewLabel, 822.0, Unit.PX, 56.0, Unit.PX);
+		layoutPanel_1.setWidgetTopHeight(lblNewLabel, 194.0, Unit.PX, 18.0, Unit.PX);
 	}
 	
-/**
- * This method creates a deck of cards for the game, stores them into an array, then places them on the board
- * @param layoutPanel
- */
+	// so that it can remake the deck and reset the game
 	public void makeDeck(LayoutPanel layoutPanel){
 
 		this.deck = new MemDeck();
@@ -194,6 +211,8 @@ public class MemView extends Composite {
 		update();
 	}
 
+
+
 	/**
 	 * This updates the game state based on what the user does
 	 */
@@ -213,7 +232,10 @@ public class MemView extends Composite {
 		CardsShown();
 		
 		if(IsFinished()){
-		score = (10/(click/2)) *100; 
+			score = (click/2) *100 ;
+			
+			setscore(); 
+			
 			new Timer() {
 				@Override
 				public void run() {
@@ -224,8 +246,6 @@ public class MemView extends Composite {
 					
 				}
 			}.schedule(500);
-	
-			
 		}
 		else{
 			scorelabl.setVisible(false);
@@ -233,13 +253,12 @@ public class MemView extends Composite {
 			pg.setVisible(false);
 		}
 	}
-	
 	/**
 	 * This method makes a newdeck by taking the values from the deck class and 
 	 * putting their file names in a separate array
 	 */
 	public void render(){
-		
+		//make two decks of memcards and store in a new array
 		deck.make();
 		score = 0; 
 		click = 0;
@@ -331,6 +350,7 @@ public class MemView extends Composite {
 							allImages[hideIndex2].setVisible(false);
 						}
 					}.schedule(500);
+					
 					pairsGone++; 		
 					
 				}
@@ -340,10 +360,6 @@ public class MemView extends Composite {
 		}
 	}
 	
-	/**
-	 * Checks to see if the game is finished by counting the number of pairs gone
-	 * @returns true if finished, false if not
-	 */
 	public boolean IsFinished(){
 		if(pairsGone == (deck.getMemDeck().size()/2)){
 			return true;
@@ -352,14 +368,28 @@ public class MemView extends Composite {
 			return false; 
 		}
 	}
-	
-/**
- * Returns to the main world view
- */
 	public void goHome(){
-		MainWorld main = new MainWorld();
+		MainWorld main = new MainWorld(username);
 		layoutPanel_1.clear();
 		layoutPanel_1.add(main);
 		main.update();
+	}
+	
+	protected void setscore() {
+		// RPC call to server to see if username/password is valid
+		
+		RPC.loginService.setscore(username, score, new AsyncCallback<Void>() {
+
+			@Override
+			public void onSuccess(Void result) {
+				errorLabel.setText("Success (should go to home page)" );
+			}
+			
+			@Override
+			public void onFailure(Throwable caught) {
+				//  display error (e.g., in a label)
+				errorLabel.setText("Error logging in (could not contact server)");
+			}
+		});
 	}
 }

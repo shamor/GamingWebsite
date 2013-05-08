@@ -5,6 +5,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 
 import edu.ycp.cs320.gamingwebsite.shared.Login;
+import edu.ycp.cs320.gamingwebsite.shared.User;
 
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.Button;
@@ -16,23 +17,25 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 
-public class loginView extends Composite /*implements ISubscriber*/{
+public class loginView extends Composite{
 	private TextBox usernameTextBox;
 	private Label errorLabel;
 	private LayoutPanel layoutPanel;
 	private MainWorld main; 
 	private PasswordTextBox passwordTextBox;
-
+	private LayoutPanel layoutPanel_1;
+	private Button btnNewButton;
+	private Button NewUser;
 
 	
 	public loginView() {
-		main = new MainWorld();
+		
 		layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
 		layoutPanel.setSize("1000px", "800px");
 		
 		// logining into the website
-		Button btnNewButton = new Button("Sign in");
+		btnNewButton = new Button("Sign in");
 		btnNewButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				handleLogInClicked();
@@ -44,12 +47,12 @@ public class loginView extends Composite /*implements ISubscriber*/{
 		layoutPanel.setWidgetLeftWidth(btnNewButton, 162.0, Unit.PX, 81.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(btnNewButton, 284.0, Unit.PX, 30.0, Unit.PX);
 		
-		Label lblPassword = new Label("Password :");
+		final Label lblPassword = new Label("Password :");
 		layoutPanel.add(lblPassword);
 		layoutPanel.setWidgetLeftWidth(lblPassword, 124.0, Unit.PX, 68.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblPassword, 213.0, Unit.PX, 34.0, Unit.PX);
 		
-		Label lblUserName = new Label("User Name :");
+		final Label lblUserName = new Label("User Name :");
 		layoutPanel.add(lblUserName);
 		layoutPanel.setWidgetLeftWidth(lblUserName, 124.0, Unit.PX, 81.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(lblUserName, 153.0, Unit.PX, 18.0, Unit.PX);
@@ -59,6 +62,8 @@ public class loginView extends Composite /*implements ISubscriber*/{
 		layoutPanel.add(usernameTextBox);
 		layoutPanel.setWidgetLeftWidth(usernameTextBox, 219.0, Unit.PX, 173.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(usernameTextBox, 153.0, Unit.PX, 34.0, Unit.PX);
+		
+		
 		
 		Label lblGamingWebSite = new Label("Gaming Web Site");
 		lblGamingWebSite.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -73,7 +78,7 @@ public class loginView extends Composite /*implements ISubscriber*/{
 		layoutPanel.setWidgetTopHeight(errorLabel, 341.0, Unit.PX, 23.0, Unit.PX);
 		
 		// creating new account
-		Button NewUser = new Button("Sign up");
+		NewUser = new Button("Sign up");
 		NewUser.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				handleSignInClicked();
@@ -87,7 +92,8 @@ public class loginView extends Composite /*implements ISubscriber*/{
 		layoutPanel.add(passwordTextBox);
 		layoutPanel.setWidgetLeftWidth(passwordTextBox, 219.0, Unit.PX, 173.0, Unit.PX);
 		layoutPanel.setWidgetTopHeight(passwordTextBox, 213.0, Unit.PX, 32.0, Unit.PX);
-		// init
+		
+		
 	}
 	
 	protected void handleLogInClicked() {
@@ -129,16 +135,16 @@ public class loginView extends Composite /*implements ISubscriber*/{
 				if(result == null){
 					errorLabel.setText("No can not create");
 				} else {
+					System.out.println(result.getUser() + result.getPassword() + result.getMemscore());
 					errorLabel.setText("Created New User");
 					
 				}
 			}
-			
-			
 		});
 	}
 	
 	public void	NextPanel(){
+		main = new MainWorld(usernameTextBox.getText());
 		layoutPanel.clear();
 		layoutPanel.add(main); 
 		main.update();

@@ -10,4 +10,6 @@ public interface LoginService extends RemoteService {
 	public Login findLogin(String username, String password);
 	
 	public Login addLogin(String username, String password);
+
+	public void setscore(String username, double score);
 }
