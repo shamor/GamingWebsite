@@ -72,7 +72,7 @@ public class MainWorld extends Composite{
 
 		layoutPanel = new LayoutPanel();
 		initWidget(layoutPanel);
-		layoutPanel.setSize("1174px", "918px");
+		layoutPanel.setSize("1174px", "969px");
 
 
 

@@ -15,9 +15,6 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.NumberLabel;
 
-
-
-
 public class MemView extends Composite {
 		
 		private MemDeck deck;
@@ -104,7 +101,10 @@ public class MemView extends Composite {
 		layoutPanel_1.setWidgetTopHeight(btnBackToHome, 0.0, Unit.PX, 83.0, Unit.PX);
 	}
 	
-	// so that it can remake the deck and reset the game
+/**
+ * This method creates a deck of cards for the game, stores them into an array, then places them on the board
+ * @param layoutPanel
+ */
 	public void makeDeck(LayoutPanel layoutPanel){
 
 		this.deck = new MemDeck();
@@ -194,8 +194,6 @@ public class MemView extends Composite {
 		update();
 	}
 
-
-
 	/**
 	 * This updates the game state based on what the user does
 	 */
@@ -235,13 +233,12 @@ public class MemView extends Composite {
 			pg.setVisible(false);
 		}
 	}
+	
 	/**
 	 * This method makes a newdeck by taking the values from the deck class and 
 	 * putting their file names in a separate array
 	 */
 	public void render(){
-		//make two decks of memcards and store in a new array
-		
 		
 		deck.make();
 		score = 0; 
@@ -327,8 +324,6 @@ public class MemView extends Composite {
 				final int hideIndex2 = imgindex2;
 				
 				if(samecards == true){
-					allImages[imgindex1].setVisible(false);
-					allImages[imgindex2].setVisible(false);
 					new Timer() {
 						@Override
 						public void run() {
@@ -336,7 +331,6 @@ public class MemView extends Composite {
 							allImages[hideIndex2].setVisible(false);
 						}
 					}.schedule(500);
-					
 					pairsGone++; 		
 					
 				}
@@ -346,6 +340,10 @@ public class MemView extends Composite {
 		}
 	}
 	
+	/**
+	 * Checks to see if the game is finished by counting the number of pairs gone
+	 * @returns true if finished, false if not
+	 */
 	public boolean IsFinished(){
 		if(pairsGone == (deck.getMemDeck().size()/2)){
 			return true;
@@ -354,6 +352,10 @@ public class MemView extends Composite {
 			return false; 
 		}
 	}
+	
+/**
+ * Returns to the main world view
+ */
 	public void goHome(){
 		MainWorld main = new MainWorld();
 		layoutPanel_1.clear();
