@@ -221,13 +221,13 @@ public class Database implements IDatabase{
 				try {					
 					stmt = conn.prepareStatement("update logins " +
 							" set memscore = ?" +
-							" where username = ? " +  // FIXME: security issue
-							" AND ? < memscore"     // only update score if new score is higher
+							" where username = ? "  // FIXME:+  security issue
+							//" AND ? < memscore"     // only update score if new score is higher
 							);
 					
 					stmt.setDouble(1, score);
 					stmt.setString(2,  username);
-					stmt.setDouble(3, score);
+					//stmt.setDouble(3, score);
 					
 					stmt.executeUpdate();
 

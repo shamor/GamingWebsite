@@ -79,9 +79,8 @@ public class MainWorld extends Composite{
 		layoutPanel.add(focusPanel);
 
 		layoutPanel.setWidgetLeftWidth(focusPanel, 0.0, Unit.PX, 960.0, Unit.PX);
-		layoutPanel.setWidgetTopHeight(focusPanel, 0.0, Unit.PX, 705.0, Unit.PX);
-
-		canvas.setSize("951px", "698px");
+		layoutPanel.setWidgetTopHeight(focusPanel, 0.0, Unit.PX, 682.0, Unit.PX);
+		canvas.setSize("951px", "646px");
 		
 		canvas.setCoordinateSpaceWidth(width);
 		canvas.setCoordinateSpaceHeight(height);

@@ -18,8 +18,8 @@ public class UI_test extends TestCase {
 		player1 = new Player();
 		player1.setX(50);
 		player1.setY(50);
-		
 	}
+	
 	@Test
 	public void testgetX(){
 		assertEquals(50, player1.getX(), DELTA);

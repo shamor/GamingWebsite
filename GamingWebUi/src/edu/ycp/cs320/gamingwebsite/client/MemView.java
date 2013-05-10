@@ -68,7 +68,7 @@ public class MemView extends Composite {
 		initWidget(layoutPanel_1);
 		login = new Login();
 		this.score = 0;  
-		layoutPanel_1.setSize("1033px", "617px");
+		layoutPanel_1.setSize("1033px", "700px");
 		
 		// winning label to the game.
 		WinLabel = new InlineLabel("CONGRATULATIONS! YOU WON!");
@@ -232,7 +232,7 @@ public class MemView extends Composite {
 			score = (click/2) *100 ;
 			
 			setscore(); 
-			
+			timer.cancel();
 			timer = new Timer() {
 				@Override
 				public void run() {
